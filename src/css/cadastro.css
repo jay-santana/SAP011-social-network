@@ -1,0 +1,38 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+}
+
+main {
+    width: 100vw;
+    height: 68vh;
+    padding: 5vh;
+}
+
+#btns {
+    width: 100vw;
+    height: 5vh;
+    display: flex;
+    align-items: center;
+    padding: 3vh 5vw 0 5vw;
+}
+
+#ul-btns {
+    list-style: none;
+}
+
+#btnLogin a {
+    text-decoration: none;
+    color: black;
+}
+
+#btnCadastro a {
+    text-decoration: none;
+    color: black;
+}
