@@ -1,4 +1,6 @@
 export default () => {
+  document.getElementById('menuFooter').classList.add('footerNone');
+  document.getElementById('menu-header').classList.add('headerNone');
   const container = document.createElement('div');
 
   const template = `

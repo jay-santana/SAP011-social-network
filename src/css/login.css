@@ -37,3 +37,10 @@ main {
     color: black;
 }
 
+.footerNone {
+    display: none;
+}
+
+.headerNone {
+    display: none;
+}
