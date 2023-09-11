@@ -15,7 +15,7 @@ main {
     padding: 5vh;
 }
 
-#menu-header {
+header {
     width: 100vw;
     height: 13vh;
     background-color: aquamarine;

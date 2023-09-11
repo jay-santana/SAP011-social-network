@@ -1,5 +1,6 @@
 export default () => {
-  document.getElementById("menuFooter").classList.remove("displayNone");
+  document.getElementById("menuFooter").classList.remove("footerNone");
+  document.getElementById("menu-header").classList.remove("headerNone");
   const container = document.createElement('div');
 
   const template = `
