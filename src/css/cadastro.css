@@ -15,7 +15,7 @@ main {
     padding: 5vh;
 }
 
-#btns {
+/* #btns {
     width: 100vw;
     height: 5vh;
     display: flex;
@@ -25,14 +25,14 @@ main {
 
 #ul-btns {
     list-style: none;
-}
+} */
 
 #btnLogin a {
     text-decoration: none;
     color: black;
 }
 
-#btnCadastro a {
+#passwordConfirm a {
     text-decoration: none;
     color: black;
 }
