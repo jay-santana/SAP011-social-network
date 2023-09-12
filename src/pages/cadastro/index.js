@@ -4,6 +4,7 @@ export default () => {
   const template = `
   <body>
   <main>
+  <section id='feed-container'>
     <h1>DIÁRIO DE VIAGEM</h1>
     <h2>Bem-vindo(a)!</h2>
     <h3>Preencha os dados para cadastrar</h3> 
@@ -18,6 +19,7 @@ export default () => {
       <p>Já tem uma conta? <button id="btnLogin"><a href="/#login">Faça login</a></button></p>
     </section> 
       <h4>Desenvolvido por Jayanny<a href="https://github.com/jay-santana"></a> e Sarah<a href="https://github.com/laosarah"></a></h4>
+  </section>
   </main>  
 </body>
   `;

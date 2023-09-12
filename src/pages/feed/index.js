@@ -16,14 +16,16 @@ export default () => {
       </nav>
     </header>
     <main>
+    <section id='feed-container'>
       <h2>Olá, Nome de usuário!</h2>
       <input id="publication-text" type="text" placeholder="Conte-nos suas novas aventuras..">
+    </section>
     </main>
     <footer id="menuFooter">
       <nav id="nav-footer">
         <ul id="ul-footer">
           <li id="li-footer">
-            <span class="material-symbols-outlined">house</span><a href="/#feed">Feed</a>
+            <span class="material-symbols-outlined">home</span><a href="/#feed">Feed</a>
           </li>
           <li id="li-footer">
             <span class="material-symbols-outlined">info</span><a href="/#sobre">Sobre</a>

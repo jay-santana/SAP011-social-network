@@ -16,6 +16,7 @@ export default () => {
       </nav>
     </header>
     <main>
+    <section id='feed-container'>
       <p>O "Diário de Viagem" é uma plataforma 
         digital concebida para atender tanto os 
         entusiastas de viagens ávido por 
@@ -45,12 +46,13 @@ export default () => {
         <span>icone linkedin</span>
         <span>icone github</span>
       </section>
+    </section>
     </main>
     <footer id="menuFooter">
       <nav id="nav-footer">
         <ul id="ul-footer">
           <li id="li-footer">
-            <span class="material-symbols-outlined">house</span><a href="/#feed">Feed</a>
+            <span class="material-symbols-outlined">home</span><a href="/#feed">Feed</a>
           </li>
           <li id="li-footer">
             <span class="material-symbols-outlined">info</span><a href="/#sobre">Sobre</a>
