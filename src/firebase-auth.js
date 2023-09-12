@@ -1,15 +1,5 @@
 // import { getAuth } from "firebase/auth";
-
-// firebase.auth().signInWithEmailAndPassword("any@email.com", "123456").then(response => {
-//     console.log('success', response)
-// }).catch(error => {
-//     console.log('error', error)
-// }); 
-
-// const auth = getAuth(app);
-
-
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
 
 import { auth } from './firebase-conf.js';
 
@@ -17,13 +7,15 @@ import { auth } from './firebase-conf.js';
 export function createUser(user, email, password) {
 createUserWithEmailAndPassword(auth, email, password)
   .then((userCredential) => {
+
+  // updateProfile(user, { displayName });
   // Signed in 
     const user = userCredential.user;
   })
   .catch((error) => {
     const errorCode = error.code;
     const errorMessage = error.message;
-    // return updateProfile(user, { userName });
+    
   });
 }
 
@@ -39,3 +31,13 @@ export function signIn(email, password) {
       const errorMessage = error.message;
     });
 }
+
+//Para desconectar um usuário
+// const auth = getAuth();
+// signOut(auth).then(() => {
+//   // Sign-out successful.
+// }).catch((error) => {
+//   // An error happened.
+// });
+
+// export {signIn};

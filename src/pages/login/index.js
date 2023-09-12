@@ -1,3 +1,5 @@
+import { signIn } from "../../firebase-auth.js"
+
 export default () => {
   const container = document.createElement('div');
 
@@ -37,16 +39,34 @@ export default () => {
   const password = container.querySelector('#password');
   const buttonLogin = container.querySelector('#btnLogin');
 
-  buttonLogin.addEventListener('click', function() {
+  buttonLogin.addEventListener('click', function(event) {
+    event.preventDefault();
     if(email.value === '') {
-      return container.querySelector('#emailAlert').innerHTML = 'E-mail obrigatório'
-    } else if(password.value === '') {
-      return container.querySelector('#passwordAlert').innerHTML = 'Senha obrigatória'
-    }
-  })
+      container.querySelector('#emailAlert').innerHTML = 'E-mail obrigatório'
+    } 
+    if(password.value === '') {
+      container.querySelector('#passwordAlert').innerHTML = 'Senha obrigatória'
+    } else {
+    signIn(email.value, password.value)
+    .then((userCredential) => { 
+      window.location.hash = "#feed";
+      const user = userCredential.user;
+    }) 
+    .catch((error) => {
+      console.log(error);
+      const errorCode = error.code;
+      const errorMessage = error.message;
+    });
+  }
+  });
+  return container;
+};
+  
+     //Import function signIn
+     //Executar a função 
+     //Repassar e-mail e senha (firebase)
 
   // container.querySelector(#idDoInput); exemplo de como vai ficar mais ou menos
   // manipulação de dom 
   // click de botão  
-  return container;
-};
+
