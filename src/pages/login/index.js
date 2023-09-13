@@ -14,10 +14,10 @@ export default () => {
         <h2>Bem-vindo(a)!</h2>
         <h3>faça login para continuar</h3> 
         <form>
-          <input id="email" type="text" placeholder="E-mail">
-          <p id='emailAlert'></p>
-          <input id="password" type="password" placeholder="Senha">
-          <p id='passwordAlert'></p> 
+          <input id="emailLogin" type="text" placeholder="E-mail">
+          <p id='emailAlertLogin'></p>
+          <input id="passwordLogin" type="password" placeholder="Senha">
+          <p id='passwordAlertLogin'></p> 
           <button id="btnLogin"><a href="/#login">Login</a></button>
         </form> 
         <p>ou</p>
@@ -35,19 +35,19 @@ export default () => {
   `;
   container.innerHTML = template;
 
-  const email = container.querySelector('#email');
-  const password = container.querySelector('#password');
+  const emailLogin = container.querySelector('#emailLogin');
+  const passwordLogin = container.querySelector('#passwordLogin');
   const buttonLogin = container.querySelector('#btnLogin');
 
   buttonLogin.addEventListener('click', function(event) {
     event.preventDefault();
-    if(email.value === '') {
-      container.querySelector('#emailAlert').innerHTML = 'E-mail obrigatório'
+    if(emailLogin.value === '') {
+      container.querySelector('#emailAlertLogin').innerHTML = 'E-mail obrigatório'
     } 
-    if(password.value === '') {
-      container.querySelector('#passwordAlert').innerHTML = 'Senha obrigatória'
+    if(passwordLogin.value === '') {
+      container.querySelector('#passwordAlertLogin').innerHTML = 'Senha obrigatória'
     } else {
-    signIn(email.value, password.value)
+    signIn(emailLogin.value, passwordLogin.value)
     .then((userCredential) => { 
       window.location.hash = "#feed";
       const user = userCredential.user;
