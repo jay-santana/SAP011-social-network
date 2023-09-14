@@ -56,8 +56,13 @@ export default () => {
       console.log(error);
       const errorCode = error.code;
       const errorMessage = error.message;
-      container.querySelector('#emailAlertLogin').innerHTML = 'E-mail não cadastrado!'
-      // alert("Usuário não cadastrado!")
+     
+      if (errorCode === 'auth/email-already-in-use') {
+        container.querySelector('#emailAlertLogin').textContent = 'E-mail já cadastrado!'
+      }
+       if (errorCode === 'auth/user-not-found') {
+        container.querySelector('#emailAlertLogin').textContent = 'E-mail não cadastrado!'
+      }
     });
     } 
   });

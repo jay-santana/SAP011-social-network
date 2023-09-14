@@ -50,18 +50,30 @@ buttonCreate.addEventListener('click', function(event) {
   }
   if(confirmPassword.value === '') {
     container.querySelector('#confirmPasswordAlert').innerHTML = 'Confirmar senha obrigatório'
+  } 
+  if(createPassword.value !== confirmPassword.value) {
+    container.querySelector('#confirmPasswordAlert').innerHTML = 'Senhas precisam ser iguais!'
   } else {
-    createUser(createUsername.value, createEmail.value, createPassword.value)
-    .then((userCredential) => {
+    createUser(createUsername.value, createEmail.value, createPassword.value, confirmPassword.value)
+    .then(() => {
       window.location.hash = '#feed';
-      const user = userCredential.user;
+      // const user = userCredential.user;
     })
     .catch((error) => {
+      console.log(error);
       const errorCode = error.code;
       const errorMessage = error.message;
-      // console.log(error);
+
+        // Se o erro estiver relacionado ao email já cadastrado, exibe a mensagem de erro no elemento HTML correspondente
+        if (errorCode === 'auth/email-already-in-use') {
+          container.querySelector('#createEmailAlert').textContent = 'E-mail já cadastrado!'
+        }
+        if (errorCode === 'auth/invalid-email') {
+          container.querySelector('#createEmailAlert').textContent = 'E-mail inválido!'
+        }
+
       // container.querySelector('#createEmailAlert').innerHTML = 'E-mail já cadastrado!'
-      alert("Email já cadastrado")
+      // alert("Email já cadastrado")
     });
   }
 });
