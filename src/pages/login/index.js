@@ -14,19 +14,19 @@ export default () => {
         <h2>Bem-vindo(a)!</h2>
         <h3>faça login para continuar</h3> 
         <form>
-          <input id="emailLogin" type="text" placeholder="E-mail">
+          <input id="emailLogin" type="email" placeholder="E-mail">
           <p id='emailAlertLogin'></p>
           <input id="passwordLogin" type="password" placeholder="Senha">
           <p id='passwordAlertLogin'></p> 
-          <button id="btnLogin"><a href="/#login">Login</a></button>
+          <button id="buttonLogin"><a href="/#login">Login</a></button>
         </form> 
         <p>ou</p>
         <p>Fazer login com o Google</p>
         <section> 
-          <button id="google"> Entre com sua conta Google</button>
+          <button id="buttonGoogle"> Entre com sua conta Google</button>
         </section> 
         <section> 
-          <p>Não tem uma conta? <button id="btnCadastro"><a href="/#cadastro">Cadastre-se</a></button></p>
+          <p>Não tem uma conta? <button id="btnCreate"><a href="/#cadastro">Cadastre-se</a></button></p>
         </section> 
           <h4>Desenvolvido por Jayanny<a href="https://github.com/jay-santana"></a> e Sarah<a href="https://github.com/laosarah"></a></h4>
       </section>
@@ -37,7 +37,7 @@ export default () => {
 
   const emailLogin = container.querySelector('#emailLogin');
   const passwordLogin = container.querySelector('#passwordLogin');
-  const buttonLogin = container.querySelector('#btnLogin');
+  const buttonLogin = container.querySelector('#buttonLogin');
 
   buttonLogin.addEventListener('click', function(event) {
     event.preventDefault();
@@ -57,7 +57,7 @@ export default () => {
       const errorCode = error.code;
       const errorMessage = error.message;
     });
-  }
+    } 
   });
   return container;
 };

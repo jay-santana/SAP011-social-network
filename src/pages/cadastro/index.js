@@ -11,13 +11,13 @@ export default () => {
     <h2>Bem-vindo(a)!</h2>
     <h3>Preencha os dados para cadastrar</h3> 
     <form>
-      <input id="userCreate" type="text" placeholder="Nome de usuário">
-      <p id="createUserAlert"></p>
-      <input id="createEmail" type="text" placeholder="E-mail">
+      <input id="createUsername" type="text" placeholder="Nome de usuário">
+      <p id="createUsernameAlert"></p>
+      <input id="createEmail" type="email" placeholder="E-mail">
       <p id="createEmailAlert"></p>
       <input id="createPassword" type="password" placeholder="Senha">
       <p id="createPasswordAlert"></p> 
-      <input id="passwordConfirm" type="password" placeholder="Confirmar senha">
+      <input id="confirmPassword" type="password" placeholder="Confirmar senha">
       <p id="confirmPasswordAlert"></p> 
       <button id="buttonCreate"><a href="/#feed">Cadastrar</a></button>
     </form>
@@ -31,16 +31,16 @@ export default () => {
   `;
   container.innerHTML = template;
 
-const userCreate = document.querySelector('#userCreate');
-const createEmail = document.querySelector('#createEmail');
-const createPassword = document.querySelector('#createPassword');
-const passwordConfirm = document.querySelector('#passwordConfirm');
-const buttonCreate = document.querySelector('#buttonCreate');
+const createUsername = container.querySelector('#createUsername');
+const createEmail = container.querySelector('#createEmail');
+const createPassword = container.querySelector('#createPassword');
+const confirmPassword = container.querySelector('#confirmPassword');
+const buttonCreate = container.querySelector('#buttonCreate');
 
 buttonCreate.addEventListener('click', function(event) {
   event.preventDefault();
-  if(userCreate.value === '') {
-    container.querySelector('#createUserAlert').innerHTML = 'Nome de usuário obrigatório'
+  if(createUsername.value === '') {
+    container.querySelector('#createUsernameAlert').innerHTML = 'Nome de usuário obrigatório'
   } 
   if(createEmail.value === '') {
     container.querySelector('#createEmailAlert').innerHTML = 'E-mail obrigatório'
@@ -48,10 +48,10 @@ buttonCreate.addEventListener('click', function(event) {
   if(createPassword.value === '') {
     container.querySelector('#createPasswordAlert').innerHTML = 'Senha obrigatório'
   }
-  if(passwordConfirm.value === '') {
+  if(confirmPassword.value === '') {
     container.querySelector('#confirmPasswordAlert').innerHTML = 'Confirmar senha obrigatório'
   } else {
-    createUser(userCreate.value, createEmail.value, createPassword.value)
+    createUser(createUsername.value, createEmail.value, createPassword.value)
     .then((userCredential) => {
       window.location.hash = '#feed';
       const user = userCredential.user;
@@ -61,6 +61,6 @@ buttonCreate.addEventListener('click', function(event) {
       const errorMessage = error.message;
     });
   }
-})
-  return container;
+});
+return container;
 };

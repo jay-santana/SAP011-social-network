@@ -4,12 +4,11 @@ import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, up
 import { auth } from './firebase-conf.js';
 
 //Criação de novos usuários
-export function createUser(userCreate, createEmail, createPassword) {
+export function createUser(createUsername, createEmail, createPassword) {
   createUserWithEmailAndPassword(auth, createEmail, createPassword)
-  // return createUserWithEmailAndPassword(auth, createEmail, createPassword)
     .then((userCredential) => {
       updateProfile(auth.currentUser, {
-        displayName: userCreate,
+        displayName: createUsername,
       });
       // Signed in 
       const user = userCredential.user;
@@ -19,6 +18,7 @@ export function createUser(userCreate, createEmail, createPassword) {
       const errorMessage = error.message;
     });
   return createUserWithEmailAndPassword(auth, createEmail, createPassword); 
+  // return createUserWithEmailAndPassword(auth, email, password); 
 }
 
 
