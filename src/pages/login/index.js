@@ -56,6 +56,8 @@ export default () => {
       console.log(error);
       const errorCode = error.code;
       const errorMessage = error.message;
+      container.querySelector('#emailAlertLogin').innerHTML = 'E-mail não cadastrado!'
+      // alert("Usuário não cadastrado!")
     });
     } 
   });

@@ -59,6 +59,9 @@ buttonCreate.addEventListener('click', function(event) {
     .catch((error) => {
       const errorCode = error.code;
       const errorMessage = error.message;
+      // console.log(error);
+      // container.querySelector('#createEmailAlert').innerHTML = 'E-mail já cadastrado!'
+      alert("Email já cadastrado")
     });
   }
 });
