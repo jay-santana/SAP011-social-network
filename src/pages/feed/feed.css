@@ -80,3 +80,108 @@ footer {
     background-color: transparent;
 }
 
+#feed-container {
+    cursor: pointer;
+    opacity: 0.9;
+}
+
+/* #feed-container:hover {
+    opacity: 1;
+} */
+
+#fade, #modal {
+    transition: .5s;
+    opacity: 1;
+    pointer-events: all;
+}
+  
+#fade {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 5;
+}
+  
+#modal {
+    position: fixed; 
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    z-index: 10;
+    width: 500px;
+    max-width: 90%;
+    padding: 1.2rem;
+    border-radius: 0.5rem;
+}
+
+#modal.hide, 
+#fade.hide {
+  opacity: 0;
+  pointer-events: none;
+}
+
+#modal.hide {
+  top:0;
+}
+
+#close-modal {
+    display: flex;
+    justify-content: flex-end;
+    /* border-bottom: 1px solid #ccc; */
+    margin-bottom: 0.5rem;
+    padding-bottom: 0.5rem;
+    position: relative;
+    cursor: pointer;
+}
+
+#userPublication {
+    display: flex;
+    align-items: center;
+    gap: 3vw;
+    position: absolute;
+    bottom: 22vh;
+}
+
+.modal-body {
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+}
+
+#location {
+    display: flex;
+    align-items: center;
+    gap: 3vw;
+}
+
+#textBox {
+    width: 80vw;
+    height: 8vh;
+    padding: 2vw;
+}
+
+#textBox::placeholder, #locationInput::placeholder{
+    display: flex;
+    text-align: left;
+}
+
+#locationInput {
+    width: 60vw;
+    height: 3vh;
+    padding: 2vw;
+}
+
+#publication {
+    display: flex;
+    justify-content: center;
+}
+
+#publicationBtn {
+    width: 30vw;
+    height: 3vh;
+    cursor: pointer;
+}
