@@ -42,7 +42,7 @@ main {
     flex-direction: column;
 }
 
-#btnLogoutMobile {
+#logoutMobileBtn {
     border: none;
     background-color: transparent;
 }

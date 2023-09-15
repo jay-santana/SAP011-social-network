@@ -57,11 +57,14 @@ export default () => {
       const errorCode = error.code;
       const errorMessage = error.message;
      
+      if (errorCode === 'auth/user-not-found') {
+        container.querySelector('#loginEmailAlert').textContent = 'E-mail não cadastrado!'
+      }
       if (errorCode === 'auth/email-already-in-use') {
         container.querySelector('#loginEmailAlert').textContent = 'E-mail já cadastrado!'
       }
-       if (errorCode === 'auth/user-not-found') {
-        container.querySelector('#loginEmailAlert').textContent = 'E-mail não cadastrado!'
+      if (errorCode === 'auth/wrong-password') {
+        container.querySelector('#loginEmailAlert').textContent = 'Senha incorreta!'
       }
     });
     } 
