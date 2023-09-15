@@ -31,11 +31,12 @@ export function signIn(loginEmail, loginPassword) {
     });
   return signInWithEmailAndPassword(auth, loginEmail, loginPassword);
 }
-
-//Para desconectar um usuário
 // const auth = getAuth();
-// signOut(auth).then(() => {
-//   // Sign-out successful.
-// }).catch((error) => {
-//   // An error happened.
-// });
+//Para desconectar um usuário
+export function signOutBtn() {
+  return signOut(auth).then(() => {
+  // Sign-out successful.
+  }).catch((error) => {
+  // An error happened.
+  });
+}
