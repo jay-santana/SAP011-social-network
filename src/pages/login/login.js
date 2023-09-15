@@ -14,19 +14,19 @@ export default () => {
         <h2>Bem-vindo(a)!</h2>
         <h3>faça login para continuar</h3> 
         <form>
-          <input id="emailLogin" type="email" placeholder="E-mail">
-          <p id='emailAlertLogin'></p>
-          <input id="passwordLogin" type="password" placeholder="Senha">
-          <p id='passwordAlertLogin'></p> 
-          <button id="buttonLogin"><a href="/#login">Login</a></button>
+          <input id="loginEmail" type="email" placeholder="E-mail">
+          <p id='loginEmailAlert'></p>
+          <input id="loginPassword" type="password" placeholder="Senha">
+          <p id='loginPasswordAlert'></p> 
+          <button id="loginButton"><a href="/#login">Login</a></button>
         </form> 
         <p>ou</p>
         <p>Fazer login com o Google</p>
         <section> 
-          <button id="buttonGoogle"> Entre com sua conta Google</button>
+          <button id="googleButton"> Entre com sua conta Google</button>
         </section> 
         <section> 
-          <p>Não tem uma conta? <button id="btnCreate"><a href="/#cadastro">Cadastre-se</a></button></p>
+          <p>Não tem uma conta? <button id="registerBtn"><a href="/#cadastro">Cadastre-se</a></button></p>
         </section> 
           <h4>Desenvolvido por Jayanny<a href="https://github.com/jay-santana"></a> e Sarah<a href="https://github.com/laosarah"></a></h4>
       </section>
@@ -35,19 +35,19 @@ export default () => {
   `;
   container.innerHTML = template;
 
-  const emailLogin = container.querySelector('#emailLogin');
-  const passwordLogin = container.querySelector('#passwordLogin');
-  const buttonLogin = container.querySelector('#buttonLogin');
+  const loginEmail = container.querySelector('#loginEmail');
+  const loginPassword = container.querySelector('#loginPassword');
+  const loginButton = container.querySelector('#loginButton');
 
-  buttonLogin.addEventListener('click', function(event) {
+  loginButton.addEventListener('click', function(event) {
     event.preventDefault();
-    if(emailLogin.value === '') {
-      container.querySelector('#emailAlertLogin').innerHTML = 'E-mail obrigatório'
+    if(loginEmail.value === '') {
+      container.querySelector('#loginEmailAlert').innerHTML = 'E-mail obrigatório'
     } 
-    if(passwordLogin.value === '') {
-      container.querySelector('#passwordAlertLogin').innerHTML = 'Senha obrigatória'
+    if(loginPassword.value === '') {
+      container.querySelector('#loginPasswordAlert').innerHTML = 'Senha obrigatória'
     } else {
-    signIn(emailLogin.value, passwordLogin.value)
+    signIn(loginEmail.value, loginPassword.value)
     .then((userCredential) => { 
       window.location.hash = "#feed";
       const user = userCredential.user;
@@ -58,10 +58,10 @@ export default () => {
       const errorMessage = error.message;
      
       if (errorCode === 'auth/email-already-in-use') {
-        container.querySelector('#emailAlertLogin').textContent = 'E-mail já cadastrado!'
+        container.querySelector('#loginEmailAlert').textContent = 'E-mail já cadastrado!'
       }
        if (errorCode === 'auth/user-not-found') {
-        container.querySelector('#emailAlertLogin').textContent = 'E-mail não cadastrado!'
+        container.querySelector('#loginEmailAlert').textContent = 'E-mail não cadastrado!'
       }
     });
     } 

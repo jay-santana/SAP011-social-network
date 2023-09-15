@@ -19,7 +19,7 @@ export default () => {
     </header>
     <main>
     <section id="feed-container">
-      <h2 id="displayName">"Olá,"</h2>
+      <h2 id="displayName"></h2>
       <input id="publication-text" type="text" placeholder="Conte-nos suas novas aventuras..">
     </section>
     </main>
@@ -42,7 +42,21 @@ export default () => {
   `;
   container.innerHTML = template;
 
-  // const displayName = container.querySelector('#displayName');
+  const displayName = container.querySelector('#displayName');
+
+  function updateUsername(createUserName) {
+    displayName.textContent = `Olá, ${createUserName}!`;
+}
+// Adiciona um ouvinte de eventos personalizados para 'userCreated' e 'userLoggedIn'
+window.addEventListener('userCreated', (event) => {
+    const createUserNameCreate = event.detail;
+    updateUsername(createUserNameCreate);
+});
+//Adiciona um ouvinte de eventos personalizados para 'userLoggedIn'
+window.addEventListener('userLoggedIn', (event) => {
+    const createUserNameLogin = event.detail;
+    updateUsername(createUserNameLogin);
+});
 
   return container;
 };

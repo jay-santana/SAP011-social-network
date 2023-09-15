@@ -28,12 +28,12 @@ main {
     list-style: none;
 } */
 
-#btnLogin a {
+#loginBtn a {
     text-decoration: none;
     color: black;
 }
 
-#buttonCreate a {
+#registerButton a {
     text-decoration: none;
     color: black;
 }
