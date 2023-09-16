@@ -18,7 +18,7 @@ export default () => {
         </ul>
       </nav>
     </header>
-    <main>
+    <main id='feed-page'>
     <h2 id="displayName"></h2>
     <section id="feed-container">
       <input id="publication-text" type="text" placeholder="Conte-nos suas novas aventuras..">

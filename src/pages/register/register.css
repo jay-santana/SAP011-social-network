@@ -11,9 +11,22 @@ body {
 
 main {
     width: 100vw;
-    /* height: 68vh; */
-    height: 73vh;
-    /* padding: 5vh; */
+    height: 100vh;
+}
+
+#register-page {
+    width: 100vw;
+    height: 100vh;
+    background-image: url(../../assets-2/mobile_login-e-cadastro.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center bottom;
+    background-color: #BEE1E5;
+}
+
+#register-container {
+    padding: 5vh;
 }
 
 /* #btns {

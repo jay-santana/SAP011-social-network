@@ -17,8 +17,8 @@ export default () => {
         </ul>
       </nav>
     </header>
-    <main>
-    <section id='feed-container'>
+    <main id='about-page'>
+    <section id='about-container'>
       <p>O "Diário de Viagem" é uma plataforma 
         digital concebida para atender tanto os 
         entusiastas de viagens ávido por 

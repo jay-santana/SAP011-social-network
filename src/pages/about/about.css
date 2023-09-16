@@ -20,9 +20,20 @@ header {
 
 main {
     width: 100vw;
-    /* height: 68vh; */
     height: 73vh;
-    /* padding: 5vh; */
+}
+
+#about-page {
+    background-image: url(../../assets-2/mobile_bg-telas.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center bottom;
+    background-color: #BEE1E5;
+}
+
+#about-container {
+    padding: 10vw;
 }
 
 #ul-header {

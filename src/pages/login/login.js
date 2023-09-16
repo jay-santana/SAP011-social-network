@@ -5,8 +5,8 @@ export default () => {
 
   const template = `
     <body>
-      <main>
-      <section id='feed-container'>
+      <main id='login-page'>
+      <section id='login-container'>
         <h1>DIÁRIO DE VIAGEM</h1>
         <h3>Registre sensações, compartilhe 
           experiências e eterniza momentos 

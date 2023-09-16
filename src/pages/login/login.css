@@ -7,18 +7,26 @@
 body {
     width: 100vw;
     height: 100vh;
-    background-image: url(../../assets-2/mobile_login-e-cadastro.png);
-    background-repeat: no-repeat;
-    background-position-x: center;
-    background-position-y: center;
-    background-color: #BEE1E5;
 }
 
 main {
     width: 100vw;
-    /* height: 68vh; */
-    height: 73vh;
-    /* padding: 5vh; */
+    height: 100vh;
+}
+
+#login-page {
+    width: 100vw;
+    height: 100vh;
+    background-image: url(../../assets-2/mobile_login-e-cadastro.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center bottom;
+    background-color: #BEE1E5;
+}
+
+#login-container {
+    padding: 5vh;
 }
 
 /* #btns {
