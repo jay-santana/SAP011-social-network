@@ -1,7 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
 }
 
 body {
@@ -12,6 +15,10 @@ body {
 main {
     width: 100vw;
     height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
 }
 
 #register-page {
@@ -26,27 +33,104 @@ main {
 }
 
 #register-container {
-    padding: 5vh;
-}
-
-/* #btns {
-    width: 100vw;
-    height: 5vh;
+    width: 80vw;
+    height: 70vh;
+    padding: 10vw;
+    margin-top: 5vh;
+    background: #85B8BC;
+    border-radius: 29px;
     display: flex;
-    align-items: center;
-    padding: 3vh 5vw 0 5vw;
+    flex-direction: column;
+    justify-content: flex-start;
+    text-align: center;
 }
 
-#ul-btns {
-    list-style: none;
+#welcome {
+    height: 15vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* #inform-register {
+    width: 80vw;
+    height: 60vh;
+    padding: 5vh;
+    background: #85B8BC;
+    border-radius: 20px;
+    display: flex;
+    text-align: center;
+    display: inline-block;
+    opacity: 1;
 } */
+
+#gotologin {
+    margin-top: 5vh;
+}
+
+#loginBtn {
+    border: none;
+    background-color: transparent;
+}
 
 #loginBtn a {
     text-decoration: none;
-    color: black;
+    color: #0048ff;
+}
+
+#createUserName, #createEmail, #createPassword, #confirmPassword {
+    width: 100%;
+    height: 5vh;
+    padding: 5vw;
+    margin: 0.8vh 0;
+    background-color: #E6EAEA;
+    border: none;
+    border-radius: 11px;
+}
+
+#registerButton {
+    width: 30vw;
+    height: 4vh;
+    margin-top: 5px;
+    background-color: #E6EAEA;
+    border: none;
+    border-radius: 11px;
 }
 
 #registerButton a {
     text-decoration: none;
     color: black;
+}
+
+h1 {
+    font-size: 1.5rem;
+    color: #054040;
+}
+
+h2 {
+    font-size: 1.1rem;
+}
+
+h3 {
+    font-size: 0.85rem;
+}
+
+h4 {
+    font-size: 0.87rem;
+}
+
+p {
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+#developedBy {
+    height: 10vh;
+    display: flex;
+    align-items: center;
+}
+
+#registerDevOne, 
+#registerDevTwo {
+    color:#0048ff;
 }

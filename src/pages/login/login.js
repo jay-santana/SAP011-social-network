@@ -5,8 +5,8 @@ export default () => {
 
   const template = `
   <body>
-  <main id='login-page'>
-  <section id='login-container'>
+  <main id="login-page">
+  <section id="login-container">
     <h1>DIÁRIO DE VIAGEM</h1>
     <h3>Registre sensações, compartilhe 
       experiências e eterniza momentos 
@@ -17,9 +17,9 @@ export default () => {
     </span>
     <form>
       <input id="loginEmail" type="email" placeholder="E-mail">
-      <p id='loginEmailAlert'></p>
+      <p id="loginEmailAlert"></p>
       <input id="loginPassword" type="password" placeholder="Senha">
-      <p id='loginPasswordAlert'></p> 
+      <p id="loginPasswordAlert"></p> 
       <button id="loginButton"><a href="/#login">Login</a></button>
     </form>
     <p>-------------------- ou --------------------</p>
@@ -32,7 +32,7 @@ export default () => {
     </section> 
   </section>
   <section id="footerContainer">
-    <h4 id="footerInformation">Desenvolvido por <span id="devOne">Jayanny<a href="https://github.com/jay-santana"></span></a> e <span id="devTwo">Sarah<a href="https://github.com/laosarah"></span></a></h4>
+    <h4 id="footerInformation">Desenvolvido por <span id="loginDevOne">Jayanny<a href="https://github.com/jay-santana"></span></a> e <span id="loginDevTwo">Sarah<a href="https://github.com/laosarah"></span></a></h4>
   </section>
   </main> 
 </body>
