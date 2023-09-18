@@ -30,7 +30,10 @@ export default () => {
       </span>
       <span class="modal-body">
         <div id="userPublication">
-        <span class="material-symbols-outlined">account_circle</span><label>Nome de Usuário</label>
+          <span class="material-symbols-outlined">account_circle</span><label id="userNamePublication"></label>
+        </div>
+        <div id="dataPublication">
+          <input id="dataBox" type="number" placeholder="20/09/2023">
         </div>
         <div>
           <textarea id="textBox" type="text" placeholder="Digite aqui seu texto"></textarea>
@@ -64,9 +67,11 @@ export default () => {
   container.innerHTML = template;
 
   const displayName = container.querySelector('#displayName');
+  const userNamePublication = container.querySelector('#userNamePublication');
 
   function updateUsername(createUserName) {
     displayName.textContent = `Olá, ${createUserName}!`;
+    userNamePublication.textContent = `${createUserName}`;
   }
 // Adiciona um ouvinte de eventos personalizados para 'userCreated' e 'userLoggedIn'
   window.addEventListener('userCreated', (event) => {

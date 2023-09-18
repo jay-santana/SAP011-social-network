@@ -29,7 +29,6 @@ const init = () => {
   window.addEventListener('hashchange', () => {
     verifyHash();
     // console.log(window.location.hash)
- 
   });
 };
 

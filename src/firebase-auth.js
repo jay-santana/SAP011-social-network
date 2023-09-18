@@ -11,8 +11,10 @@ export function createUser(createUserName, createEmail, createPassword, confirmP
       }).then(() => {
         const eventCreate = new CustomEvent('userCreated', { detail: createUserName });
         window.dispatchEvent(eventCreate);
-    });
+        const eventNamePublication = new CustomEvent('userPublication', { detail: createUserName });
+        window.dispatchEvent(eventNamePublication);
       });
+    });
 }
 
 //Login de usuários existentes

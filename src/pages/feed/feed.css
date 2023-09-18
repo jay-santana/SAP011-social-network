@@ -52,6 +52,16 @@ main {
     padding: 4vw;
 }
 
+#dataPublication {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+#dataBox {
+    width: 26vw;
+}
+
 #ul-header {
     display: flex;
     flex-direction: row;
