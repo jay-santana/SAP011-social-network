@@ -4,35 +4,39 @@ export default () => {
   const container = document.createElement('div');
 
   const template = `
-    <body>
-      <main id='login-page'>
-      <section id='login-container'>
-        <h1>DIÁRIO DE VIAGEM</h1>
-        <h3>Registre sensações, compartilhe 
-          experiências e eterniza momentos 
-          das suas viagens com a gente!</h3> 
-        <h2>Bem-vindo(a)!</h2>
-        <h3>faça login para continuar</h3> 
-        <form>
-          <input id="loginEmail" type="email" placeholder="E-mail">
-          <p id='loginEmailAlert'></p>
-          <input id="loginPassword" type="password" placeholder="Senha">
-          <p id='loginPasswordAlert'></p> 
-          <button id="loginButton"><a href="/#login">Login</a></button>
-        </form> 
-        <p>ou</p>
-        <p>Fazer login com o Google</p>
-        <section> 
-          <button id="googleButton"> Entre com sua conta Google</button>
-        </section> 
-        <section> 
-          <p>Não tem uma conta? <button id="registerBtn"><a href="/#cadastro">Cadastre-se</a></button></p>
-        </section> 
-          <h4>Desenvolvido por Jayanny<a href="https://github.com/jay-santana"></a> e Sarah<a href="https://github.com/laosarah"></a></h4>
-      </section>
-      </main>  
-    </body>
-  `;
+  <body>
+  <main id='login-page'>
+  <section id='login-container'>
+    <h1>DIÁRIO DE VIAGEM</h1>
+    <h3>Registre sensações, compartilhe 
+      experiências e eterniza momentos 
+      das suas viagens com a gente!</h3>
+    <span id="welcomeText"> 
+      <h2>Bem-vindo(a)!</h2>
+      <h3>faça login para continuar</h3>
+    </span>
+    <form>
+      <input id="loginEmail" type="email" placeholder="E-mail">
+      <p id='loginEmailAlert'></p>
+      <input id="loginPassword" type="password" placeholder="Senha">
+      <p id='loginPasswordAlert'></p> 
+      <button id="loginButton"><a href="/#login">Login</a></button>
+    </form>
+    <p>-------------------- ou --------------------</p>
+    <p>Fazer login com o Google</p>
+    <section> 
+      <img id="googleIcon"src="../../assets-2/google_icon.png" alt="ícone Goggle">
+    </section> 
+    <section> 
+      <p>Não tem uma conta? <button id="registerBtn"><a href="/#cadastro">Cadastre-se</a></button></p>
+    </section> 
+  </section>
+  <section id="footerContainer">
+    <h4 id="footerInformation">Desenvolvido por <span id="devOne">Jayanny<a href="https://github.com/jay-santana"></span></a> e <span id="devTwo">Sarah<a href="https://github.com/laosarah"></span></a></h4>
+  </section>
+  </main> 
+</body>
+`;
   container.innerHTML = template;
 
   const loginEmail = container.querySelector('#loginEmail');
