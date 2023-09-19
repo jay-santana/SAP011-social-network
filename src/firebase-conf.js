@@ -22,4 +22,5 @@ export const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 
 // Initialize Firestore
-export const dataBase = getFirestore(app);
+export const db = getFirestore(app);
+// dataBase não pode ser esse nome, tem que ser db porque é do faristore
