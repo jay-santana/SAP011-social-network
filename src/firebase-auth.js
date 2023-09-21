@@ -1,5 +1,5 @@
 // import { getAuth } from "firebase/auth";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, updateProfile } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, updateProfile, onAuthStateChanged } from "firebase/auth";
 
 import { auth } from './firebase-conf.js';
 
@@ -17,6 +17,31 @@ export function createUser(createUserName, createEmail, createPassword, confirmP
     });
 }
 
+export function verifyUserLogin(callback ) {
+  onAuthStateChanged(auth, callback);
+}
+
+//Acessar informação do usuários 
+export function accessUser() {
+  const user = auth.currentUser;
+  if (user !== null) {
+  // The user object has basic properties such as display name, email, etc.
+    const displayName = user.displayName;
+    const email = user.email;
+    return user;
+    const uid = user.uid;
+    // const photoURL = user.photoURL;
+    // const emailVerified = user.emailVerified;
+  } 
+} 
+
+// const editPost = doc(db, "Diário de Viagem");
+// await updateDoc(editPost, {
+//   dataBox: true,
+//   textBox: true,
+//   locationInput: true,
+// });
+
 //Login de usuários existentes
 export function signIn(loginEmail, loginPassword) {
   signInWithEmailAndPassword(auth, loginEmail, loginPassword)
@@ -33,6 +58,7 @@ export function signIn(loginEmail, loginPassword) {
     });
   return signInWithEmailAndPassword(auth, loginEmail, loginPassword);
 }
+
 // const auth = getAuth();
 //Para desconectar um usuário
 export function signOutBtn() {

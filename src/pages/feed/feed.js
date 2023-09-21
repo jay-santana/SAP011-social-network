@@ -1,5 +1,7 @@
-import { signOutBtn } from "../../firebase-auth.js";
+import { db } from '../../firebase-conf.js';
+import { signOutBtn, accessUser } from '../../firebase-auth.js';
 import { publication } from '../../firebase-store.js';
+import { collection, addDoc, getDocs } from 'firebase/firestore';
 
 export default () => {
   const container = document.createElement('div');
@@ -68,7 +70,7 @@ export default () => {
   container.innerHTML = template;
 
   const displayName = container.querySelector('#displayName');
-  const userNamePublication = container.querySelector('#userNamePublication');
+  // const userNamePublication = container.querySelector('#userNamePublication');
   const logoutMobileBtn = container.querySelector('#logoutMobileBtn');
   const openModal = container.querySelector('#feed-container');
   const closeModalButton = container.querySelector('#close-modal');
@@ -79,22 +81,22 @@ export default () => {
   const locationInput = container.querySelector('#locationInput');
   const textBox = container.querySelector('#textBox');
   const publicationPoster = container.querySelector('#publicationPoster');
+  const user = accessUser();
 
-
-  function updateUsername(createUserName) {
-    displayName.textContent = `Olá, ${createUserName}!`;
-    userNamePublication.textContent = `${createUserName}`;
-  }
+  // function updateUsername(createUserName) {
+  //   displayName.textContent = `Olá, ${createUserName}!`;
+  //   userNamePublication.textContent = `${createUserName}`;
+  // }
   // Adiciona um ouvinte de eventos personalizados para 'userCreated' e 'userLoggedIn'
-  window.addEventListener('userCreated', (event) => {
-    const createUserNameCreate = event.detail;
-    updateUsername(createUserNameCreate);
-  });
+  // window.addEventListener('userCreated', (event) => {
+  //   const createUserNameCreate = event.detail;
+  //   updateUsername(createUserNameCreate);
+  // });
   //Adiciona um ouvinte de eventos personalizados para 'userLoggedIn'
-  window.addEventListener('userLoggedIn', (event) => {
-    const createUserNameLogin = event.detail;
-    updateUsername(createUserNameLogin);
-  });
+  // window.addEventListener('userLoggedIn', (event) => {
+  //   const createUserNameLogin = event.detail;
+  //   updateUsername(createUserNameLogin);
+  // });
 
   logoutMobileBtn.addEventListener('click', function (event) {
     event.preventDefault();
@@ -119,30 +121,47 @@ export default () => {
       dataBox: dataBox.value,
       locationInput: locationInput.value,
       textBox: textBox.value,
-    };
+      user: user.uid,
+      displayName: user.displayName,
+    }; console.log(data);
     publication(data);
+
+    const posterCollection = collection(db, 'Diário de Viagem');
+
+    addDoc(posterCollection, data);
   });
 
-  const feedPoster = document.createElement('div');
+  function addPoster(data) {
+    const templatePoster = `
+    <section id="poster">
+      <div id="userPoster">
+        <span class="material-symbols-outlined">account_circle</span><label >${data.displayName}</label>
+      </div>
+      <div id="dataPoster">
+        <span id="dataBoxPoster" >${data.dataBox}</span>
+      </div>
+      <div>
+        <span id="textBoxPoster" >${data.textBox}</span>
+      </div>
+      <div id="locationPoster">
+        <span class="material-symbols-outlined">location_on</span><span id="locationInputPoster">${data.locationInput}</span>
+      </div>
+    </section>
+    `;
+    publicationPoster.innerHTML += templatePoster;
+  }
 
-  const templatePoster = `
-  <section id="poster">
-    <div id="userPoster">
-      <span class="material-symbols-outlined">account_circle</span><label id="userNamePoster"></label>
-    </div>
-    <div id="dataPoster">
-      <input id="dataBoxPoster" type="text">
-    </div>
-    <div>
-      <textarea id="textBoxPoster" type="text"></textarea>
-    </div>
-    <div id="locationPoster">
-      <span class="material-symbols-outlined">location_on</span><input id="locationInputPoster" type="text">
-    </div>
-  </section>
-  `;
-  feedPoster.innerHTML = templatePoster;
-
+  function loadPoster() {
+    // publicationPoster.innerHTML = 'Carregando...';
+    const posterCollection = collection(db, 'Diário de Viagem');
+    getDocs(posterCollection).then(onSnapshot => {
+      // publicationPoster.innerHTML = '';
+      onSnapshot.forEach(data => {
+        addPoster(data.data());
+      })
+    })
+  } 
+  loadPoster();
 
   return container;
 };
