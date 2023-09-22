@@ -1,7 +1,7 @@
 import { db } from '../../firebase-conf.js';
 import { signOutBtn, accessUser } from '../../firebase-auth.js';
 import { publication } from '../../firebase-store.js';
-import { collection, addDoc, getDocs } from 'firebase/firestore';
+import { collection, addDoc, getDocs,  query, orderBy, QuerySnapshot, onSnapshot, serverTimestamp, updateDoc } from 'firebase/firestore';
 
 export default () => {
   const container = document.createElement('div');
@@ -112,29 +112,9 @@ export default () => {
     [modal, fade].forEach((event) => event.classList.toggle("hide"));
   };
 
-  [openModal, closeModalButton, fade].forEach((event) => {
+  [openModal, closeModalButton, fade, publicationBtn].forEach((event) => {
     event.addEventListener("click", () => toggleModal());
   });
-
-
-
-
-  //Adicionar dados ao Cloud Firestore
-  // publicationBtn.addEventListener('click', function (event) {
-  //   event.preventDefault();
-  //   const data = {
-  //     dataBox: dataBox.value,
-  //     locationInput: locationInput.value,
-  //     textBox: textBox.value,
-  //     user: user.uid,
-  //     displayName: user.displayName,
-  //   }; console.log(data);
-  //   publication(data);
-
-  //   const posterCollection = collection(db, 'Diário de Viagem');
-
-  //   addDoc(posterCollection, data);
-  // });
 
 
   //Adicionar dados ao Cloud Firestore
@@ -147,25 +127,34 @@ export default () => {
       user: user.uid,
       displayName: user.displayName,
     }; 
-    console.log(data);
-
+   
     const posterCollection = collection(db, 'Diário de Viagem');
 
     // Adicione o novo post ao firestore
     const addDocPromise = addDoc(posterCollection, data);
 
     addDocPromise.then(() => {
-        // Após adicionar o post com sucesso, adicione-o ao feed
+        // Após adicionar o post ao firestore com sucesso, adicione-o ao feed
         addPoster(data);
+        // Limpa conteúdo do modal de publicação
+        dataBox.value = '';
+        locationInput.value = '';
+        textBox.value = '';
       })
       .catch(error => {
         console.error('Erro ao adicionar post:', error);
       });
   });
 
-
-
-
+  // const formatDateTime = (date) => {
+  //   const options = { year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric' };
+  //   return new Date(date).toLocaleDateString(undefined, options);
+  // };
+  // // Chame a função formatDateTime com a data do seu post
+  // const date = new Date(); // Substitua por sua data real do post
+  // const formattedDateTime = formatDateTime(date);
+  // // Exiba a data e hora formatadas onde você quiser
+  // console.log(`Publicado em: ${formattedDateTime}`);
 
   // Criando a estrutura do post que vai aparecer no feed 
   function addPoster(data) {
@@ -175,10 +164,10 @@ export default () => {
         <span class="material-symbols-outlined">account_circle</span><label >${data.displayName}</label>
       </div>
       <div id="dataPoster">
-        <span id="dataBoxPoster" >${data.dataBox}</span>
+        <span id="dataBoxPoster"></span>
       </div>
       <div>
-        <span id="textBoxPoster" >${data.textBox}</span>
+        <span id="textBoxPoster">${data.textBox}</span>
       </div>
       <div id="locationPoster">
         <span class="material-symbols-outlined">location_on</span><span id="locationInputPoster">${data.locationInput}</span>
@@ -188,18 +177,22 @@ export default () => {
     publicationPoster.innerHTML += templatePoster;
   }
 
-  // Carregando o poster no feed 
-  function loadPoster() {
-    // publicationPoster.innerHTML = 'Carregando...'; 
+
+
+  // // Carregando o poster no feed 
+  function loadPoster() { 
     const posterCollection = collection(db, 'Diário de Viagem');
-    getDocs(posterCollection).then(onSnapshot => {
-      // publicationPoster.innerHTML = '';
-      onSnapshot.forEach(data => {
-        addPoster(data.data());
-      })
-    })
-  } 
+    const orderPoster = query(posterCollection, orderBy("dataBox", "desc"));
+    getDocs(orderPoster).then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        addPoster(doc.data());
+      });
+    }).catch((error) => {
+      console.error('Erro ao carregar postagens ordenadas:', error);
+    });
+  }
   loadPoster();
+
 
   return container;
 };
