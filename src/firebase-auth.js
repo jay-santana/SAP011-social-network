@@ -17,7 +17,8 @@ export function createUser(createUserName, createEmail, createPassword, confirmP
     });
 }
 
-export function verifyUserLogin(callback ) {
+//Verificar se usuário está logado
+export function verifyUserLogged(callback ) {
   onAuthStateChanged(auth, callback);
 }
 
@@ -25,16 +26,14 @@ export function verifyUserLogin(callback ) {
 export function accessUser() {
   const user = auth.currentUser;
   if (user !== null) {
-  // The user object has basic properties such as display name, email, etc.
     const displayName = user.displayName;
     const email = user.email;
     return user;
     const uid = user.uid;
-    // const photoURL = user.photoURL;
-    // const emailVerified = user.emailVerified;
   } 
 } 
 
+//Editar um post 
 // const editPost = doc(db, "Diário de Viagem");
 // await updateDoc(editPost, {
 //   dataBox: true,
@@ -59,7 +58,6 @@ export function signIn(loginEmail, loginPassword) {
   return signInWithEmailAndPassword(auth, loginEmail, loginPassword);
 }
 
-// const auth = getAuth();
 //Para desconectar um usuário
 export function signOutBtn() {
   return signOut(auth).then(() => {

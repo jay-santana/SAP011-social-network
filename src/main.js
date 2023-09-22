@@ -2,7 +2,7 @@ import cadastro from './pages/register/register.js';
 import feed from './pages/feed/feed.js';
 import login from './pages/login/login.js';
 import sobre from './pages/about/about.js';
-import { verifyUserLogin } from './firebase-auth.js';
+import { verifyUserLogged } from './firebase-auth.js';
 
 const main = document.getElementById('root');
 
@@ -16,7 +16,7 @@ function verifyHash() {
       main.appendChild(cadastro());
       break;
     case '#feed':
-      verifyUserLogin((user) => {
+      verifyUserLogged((user) => {
         if (user) {
           main.appendChild(feed());
         } else {
@@ -36,7 +36,6 @@ function verifyHash() {
 const init = () => {
   window.addEventListener('hashchange', () => {
     verifyHash();
-    // console.log(window.location.hash)
   });
 };
 

@@ -98,6 +98,7 @@ export default () => {
   //   updateUsername(createUserNameLogin);
   // });
 
+  // Botão de sair 
   logoutMobileBtn.addEventListener('click', function (event) {
     event.preventDefault();
     signOutBtn().then(() => {
@@ -106,6 +107,7 @@ export default () => {
     });
   })
 
+  // Modal para escrever as informações da publicação
   const toggleModal = () => {
     [modal, fade].forEach((event) => event.classList.toggle("hide"));
   };
@@ -113,6 +115,27 @@ export default () => {
   [openModal, closeModalButton, fade].forEach((event) => {
     event.addEventListener("click", () => toggleModal());
   });
+
+
+
+
+  //Adicionar dados ao Cloud Firestore
+  // publicationBtn.addEventListener('click', function (event) {
+  //   event.preventDefault();
+  //   const data = {
+  //     dataBox: dataBox.value,
+  //     locationInput: locationInput.value,
+  //     textBox: textBox.value,
+  //     user: user.uid,
+  //     displayName: user.displayName,
+  //   }; console.log(data);
+  //   publication(data);
+
+  //   const posterCollection = collection(db, 'Diário de Viagem');
+
+  //   addDoc(posterCollection, data);
+  // });
+
 
   //Adicionar dados ao Cloud Firestore
   publicationBtn.addEventListener('click', function (event) {
@@ -123,14 +146,28 @@ export default () => {
       textBox: textBox.value,
       user: user.uid,
       displayName: user.displayName,
-    }; console.log(data);
-    publication(data);
+    }; 
+    console.log(data);
 
     const posterCollection = collection(db, 'Diário de Viagem');
 
-    addDoc(posterCollection, data);
+    // Adicione o novo post ao firestore
+    const addDocPromise = addDoc(posterCollection, data);
+
+    addDocPromise.then(() => {
+        // Após adicionar o post com sucesso, adicione-o ao feed
+        addPoster(data);
+      })
+      .catch(error => {
+        console.error('Erro ao adicionar post:', error);
+      });
   });
 
+
+
+
+
+  // Criando a estrutura do post que vai aparecer no feed 
   function addPoster(data) {
     const templatePoster = `
     <section id="poster">
@@ -151,8 +188,9 @@ export default () => {
     publicationPoster.innerHTML += templatePoster;
   }
 
+  // Carregando o poster no feed 
   function loadPoster() {
-    // publicationPoster.innerHTML = 'Carregando...';
+    // publicationPoster.innerHTML = 'Carregando...'; 
     const posterCollection = collection(db, 'Diário de Viagem');
     getDocs(posterCollection).then(onSnapshot => {
       // publicationPoster.innerHTML = '';
