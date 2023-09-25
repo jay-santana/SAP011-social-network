@@ -1,7 +1,7 @@
 import { db, auth } from '../../firebase-conf.js';
 import { signOutBtn, accessUser } from '../../firebase-auth.js';
 import { publication } from '../../firebase-store.js';
-import { collection, addDoc, getDocs,  query, orderBy, QuerySnapshot, onSnapshot, serverTimestamp, updateDoc } from 'firebase/firestore';
+import { collection, addDoc, getDocs,  query, orderBy, QuerySnapshot, onSnapshot, updateDoc, Timestamp } from 'firebase/firestore';
 
 export default () => {
   const container = document.createElement('div');
@@ -67,7 +67,6 @@ export default () => {
   container.innerHTML = template;
 
   const displayName = container.querySelector('#displayName');
-  // const userNamePublication = container.querySelector('#userNamePublication');
   const logoutMobileBtn = container.querySelector('#logoutMobileBtn');
   const openModal = container.querySelector('#feed-container');
   const closeModalButton = container.querySelector('#close-modal');
@@ -80,25 +79,6 @@ export default () => {
   const publicationPoster = container.querySelector('#publicationPoster');
   const user = accessUser();
 
-
-  // Nome do usuário no topo da tela 
-  // function updateUsername(createUserName) {
-  //   displayName.textContent = `Olá, ${createUserName}!`;
-  //   userNamePublication.textContent = `${createUserName}`;
-  // }
-  // Adiciona um ouvinte de eventos personalizados para 'userCreated' e 'userLoggedIn'
-  // window.addEventListener('userCreated', (event) => {
-  //   const createUserNameCreate = event.detail;
-  //   updateUsername(createUserNameCreate);
-  // });
-  //Adiciona um ouvinte de eventos personalizados para 'userLoggedIn'
-  // window.addEventListener('userLoggedIn', (event) => {
-  //   const createUserNameLogin = event.detail;
-  //   updateUsername(createUserNameLogin);
-  // });
-
-
-
   // Botão de sair 
   logoutMobileBtn.addEventListener('click', function (event) {
     event.preventDefault();
@@ -107,8 +87,6 @@ export default () => {
     }).catch((error) => {
     });
   })
-
-
 
   // Modal para escrever as informações da publicação
   const toggleModal = () => {
@@ -119,45 +97,41 @@ export default () => {
     event.addEventListener("click", () => toggleModal());
   });
 
-  // const formatDateTime = (date) => {
-  //   const options = { 
-  //     day: '2-digit',
-  //     month: '2-digit', 
-  //     year: 'numeric',  
-  //     hour: 'numeric', 
-  //     minute: 'numeric' };
-  //   return new Date().toLocaleDateString('pt-BR', options);
-  // };
-  // // Chame a função formatDateTime com a data do seu post
-  // const date = new Date(); // Substitua por sua data real do post
-  // const formattedDateTime = formatDateTime(date);
-  // // Exiba a data e hora formatadas onde você quiser
-  // console.log(`Publicado em: ${formattedDateTime}`);
+  // Criando a estrutura do post que vai aparecer no feed 
+  function addPoster(data) {
+    console.log(data.dataBox);
+    const formattedDate = data.dataBox.toDate().toLocaleString();
 
-
-  // let dataHoraClique;
+    const templatePoster = `
+    <section id="poster-container">
+      <div id="poster">
+        <span class="material-symbols-outlined">account_circle</span><label id="userPoster">${data.displayName}</label>
+        <span id="dataBoxPoster">${formattedDate}</span>
+      </div>
+      <div id="textPoster-container">
+        <span id="textBoxPoster">${data.textBox}</span>
+      </div>
+      <div id="locationPoster">
+        <span class="material-symbols-outlined">location_on</span><span id="locationInputPoster">${data.locationInput}</span>
+      </div>
+    </section>
+    `;
+    publicationPoster.innerHTML += templatePoster;
+  }
 
   //Adicionar dados ao Cloud Firestore
   publicationBtn.addEventListener('click', function (event) {
     event.preventDefault();
-
-    // Obtenha a data e hora atual
-    // dataHoraClique = new Date();
-
     const data = {
-      // dataBox: dataHoraClique,
+      dataBox: Timestamp.now(), // Use serverTimestamp para obter a data e hora atual do servidor
       locationInput: locationInput.value,
       textBox: textBox.value,
       user: user.uid,
       displayName: user.displayName,
-      // timestamp: dataHoraClique,
-      // timestamp: new Date(),
     }; 
     console.log(data);
    
     const posterCollection = collection(db, 'Diário de Viagem');
-
-
 
     // Adicione o novo post ao firestore
     const addDocPromise = addDoc(posterCollection, data);
@@ -175,100 +149,21 @@ export default () => {
       });
   });
 
+  // // Carregando o poster no feed 
+  function loadPoster() { 
+    const posterCollection = collection(db, 'Diário de Viagem');
+    const orderPoster = query(posterCollection, orderBy("dataBox", "desc"));
+    getDocs(orderPoster).then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        const postData = doc.data();
+        addPoster(postData);
+      });
+    }).catch((error) => {
+      console.error('Erro ao carregar postagens ordenadas:', error);
+    });
+  }  
+  loadPoster()
 
+return container;
 
-  // Criando a estrutura do post que vai aparecer no feed 
-  function addPoster(data) {
-    const templatePoster = `
-    <section id="poster-container">
-      <div id="poster">
-        <span class="material-symbols-outlined">account_circle</span><label id="userPoster">${data.displayName}</label>
-        <span id="dataBoxPoster"></span>
-      </div>
-      <div id="textPoster-container">
-        <span id="textBoxPoster">${data.textBox}</span>
-      </div>
-      <div id="locationPoster">
-        <span class="material-symbols-outlined">location_on</span><span id="locationInputPoster">${data.locationInput}</span>
-      </div>
-    </section>
-    `;
-    publicationPoster.innerHTML += templatePoster;
-  }
-
-
-    // Carregando o poster no feed 
-  //   function loadPoster() {
-  //     const posterCollection = collection(db, 'Diário de Viagem');
-  //     getDocs(posterCollection).then(snap => {
-  //       snap.forEach(data => {
-  //         addPoster(data.data());
-  //       })
-  //     })
-  //   } 
-  
-  //   loadPoster();
-  
-  //   return container;
-  // };
-
-
-
-  // Carregando o poster no feed 
-  // function loadPoster() {
-  //   const posterCollection = collection(db, 'Diário de Viagem');
-  //   // const orderByField = 'timestamp'; 
-  //   // const sortOrder = 'desc'; 
-  //   const queryOrdered = query(posterCollection, orderBy('timestamp', 'desc'));
-  //     getDocs(queryOrdered).then(snap => {
-  //       snap.forEach(data => {
-  //         addPoster(data.data());
-  //       })
-  //     })
-  // } 
-
-  // loadPoster();
-
-  //    return container;
-  //  };
-
-
-
-
-    // Carregando o poster no feed 
-    function loadPoster() {
-      const posterCollection = collection(db, 'Diário de Viagem');
-      getDocs(posterCollection).then(snap => {
-        snap.forEach(data => {
-          addPoster(data.data());
-        })
-      })
-    }
-      // if(dataBox === 'alguma coisa aqui' ) {
-      //   orderPosters.sort((a,b) => {
-      //     if(a.dataBox < b.dataBox) {
-      //       return -1;
-      //     } else if () {
-      //       return 1;
-      //     } else {
-      //       return 0;
-      //     }
-      //   });
-      // if(dataBox === 'alguma coisa aqui' ) {
-      //   orderPosters.sort((a,b) => {
-      //     if(a.dataBox < b.dataBox) {
-      //       return -1;
-      //     } else if () {
-      //       return 1;
-      //     } else {
-      //       return 0;
-      //     };
-      //   });
-      // }
-      // return orderPoster; 
-      // } 
-  
-    loadPoster();
-  
-    return container;
-  };
+};

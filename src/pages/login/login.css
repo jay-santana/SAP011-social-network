@@ -1,127 +1,281 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
 }
 
 body {
-    width: 100vw;
-    height: 100vh;
+  width: 100vw;
+  height: 100vh;
 }
 
 main {
-    width: 100vw;
-    height: 100vh;
+  width: 100vw;
+  height: 100vh;
 }
 
 h1 {
-    font-size: 1.5rem;
+  font-size: 1.5rem;
 }
 
 h2 {
-    font-size: 1.1rem;
+  font-size: 1.1rem;
 }
 
 h3 {
-    font-size: 0.85rem;
+  font-size: 0.85rem;
+  font-weight: 500;
 }
 
 h4 {
-    font-size: 0.87rem;
+  font-size: 0.87rem;
 }
 
 p {
-    font-size: 0.8rem;
-    font-weight: 500;
+  font-size: 0.8rem;
+  font-weight: 500;
 }
 
 #welcomeText {
-    display: flex;
-    flex-direction: column;
-    gap: 0.3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
 }
 
 #login-page {
-    width: 100vw;
-    height: 100vh;
-    background-image: url(../../assets-2/mobile_login-e-cadastro.png);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-position: center bottom;
-    background-color: #BEE1E5;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    text-align: center;   
+  width: 100vw;
+  height: 100vh;
+  background-image: url(../../assets-2/mobile_login-e-cadastro.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center bottom;
+  background-color: #BEE1E5;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: center;
 }
 
 #login-container {
-    width: 80vw;
-    height: 70vh;
-    background-color: #85B8BC;
-    padding: 10vw;
-    margin-top: 5vh;
-    border-radius: 29px;
-    /* opacity: 0.8; */
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+  width: 80vw;
+  height: 70vh;
+  background-color: #85B8BC;
+  padding: 10vw;
+  margin-top: 5vh;
+  border-radius: 29px;
+  /* opacity: 0.8; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-#loginEmail, #loginPassword {
-    width: 60vw;
-    height: 5vh;
-    background-color: #E6EAEA;
-    border-radius: 11px;
-    border: none;
-    margin: 0.8vh 0;
-    padding-left: 5vw;
+#loginEmail,
+#loginPassword {
+  width: 60vw;
+  height: 5vh;
+  background-color: #E6EAEA;
+  border-radius: 11px;
+  border: none;
+  margin: 0.8vh 0;
+  padding-left: 5vw;
+}
+
+#loginEmail::placeholder,
+#loginPassword::placeholder {
+  font-weight: 500;
 }
 
 #loginButton a {
-    text-decoration: none;
-    color: black;
+  text-decoration: none;
+  color: black;
 }
 
 #loginButton {
-    width: 30vw;
-    height: 4vh;
-    background-color: #E6EAEA;
-    font-size: 0.8rem;
-    font-weight: 700;
-    color: black;
-    border-radius: 11px;
-    border: none;
-    margin: 0.6vh 0;
+  width: 30vw;
+  height: 4vh;
+  background-color: #E6EAEA;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: black;
+  border-radius: 11px;
+  border: none;
+  margin: 0.6vh 0;
 }
 
 #registerBtn a {
-    text-decoration: none;
-    color: #0048ff;    
+  text-decoration: none;
+  color: #0048ff;
 }
 
 #registerBtn {
-    border: none;
-    background-color: transparent;
+  border: none;
+  background-color: transparent;
 }
 
 #googleIcon {
-    width: 5vh;
+  width: 5vh;
 }
 
-#footerContainer{
-    height: 20vh;
-    display: flex;
-    justify-content: flex-end;
-    align-items: flex-end;
+#footerContainer {
+  width: 80vw;
+  height: 20vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
 }
 
 #loginDevOne,
 #loginDevTwo {
-    color:#0048ff;
+  color: #0048ff;
 }
+
+/* Para tablets */
+@media (min-width: 768px) and (max-width: 1024px) {
+
+  h1 {
+    font-size: 2.0rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  h3 {
+    font-size: 1.2rem;
+    font-weight: 500;
+  }
+
+  h4 {
+    font-size: 1.1rem;
+  }
+
+  p,
+  a {
+    font-size: 1.1rem;
+  }
+
+  #welcomeText {
+    gap: 0.5rem;
+  }
+
+  #login-container {
+    width: 65vw;
+    padding: 7vw;
+  }
+
+  #loginEmail,
+  #loginPassword {
+    width: 50vw;
+    padding-left: 4vw;
+  }
+
+  #loginEmail::placeholder,
+  #loginPassword::placeholder {
+    font-size: 1rem;
+  }
+
+  #loginButton {
+    width: 20vw;
+    font-size: 1rem;
+    margin: 0.8vh 0;
+  }
+
+  #googleIcon {
+    width: 5vh;
+  }
+
+  #footerContainer {
+    width: 65vw;
+    height: 20vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+  }
+}
+
+/* Para telas maiores */
+@media screen and (min-width: 1024px) {
+  
+  h1 {
+    font-size: 1.2rem;
+  }
+  
+  h2 {
+    font-size: 1rem;
+  }
+  
+  h3 {
+    font-size: 0.8rem;
+    font-weight: 500;
+  }
+  
+  h4 {
+    font-size: 0.8rem;
+  }
+  
+  p {
+    font-size: 0.8rem;
+    font-weight: 500;
+  }
+  
+  #welcomeText {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+  
+  #login-page {
+    width: 100vw;
+    height: 100vh;
+    background-image: none;
+    background-color: #BEE1E5;
+    background-image: url(../../assets-2/web_login-cadastro.png);
+    background-position: 0% 50%;
+  }
+
+#login-container-style {
+  width: 62vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  
+  /* border: solid blue; */
+}
+  
+  #login-container {
+    width: 25vw;
+    height: 65vh;
+    padding: 3vw;
+    margin-top: 15vh;
+  }
+  
+  #loginEmail,
+  #loginPassword {
+    width: 20vw;
+    margin: 0.8vh 0;
+    padding-left: 1vw;
+  }
+  
+  #loginButton {
+    width: 8vw;
+  }
+  
+  #footerContainer {
+    width: 25vw;
+    height: 20vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+/* Para Tvs*/
+/* @media (min-width: 1920px) {
+ 
+} */

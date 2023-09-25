@@ -33,7 +33,7 @@ main {
 
 #feed-page {
     width: 100vw;
-    height: 100%;
+    height: 100vh;
     background-image: url(../../assets-2/mobile_bg-telas.png);
     background-size: cover;
     background-repeat: no-repeat;
