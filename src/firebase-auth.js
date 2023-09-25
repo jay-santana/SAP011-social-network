@@ -28,8 +28,8 @@ export function accessUser() {
   if (user !== null) {
     const displayName = user.displayName;
     const email = user.email;
-    return user;
     const uid = user.uid;
+    return user;  
   } 
 } 
 

@@ -43,6 +43,7 @@ main {
     flex-direction: column;
     justify-content: flex-start;
     text-align: center;
+    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.25);
 }
 
 #welcome {
@@ -66,6 +67,7 @@ main {
 
 #gotologin {
     margin-top: 5vh;
+    /* color: #191a1a; */
 }
 
 #loginBtn {
@@ -117,11 +119,13 @@ h3 {
 
 h4 {
     font-size: 0.87rem;
+    font-weight: 500;
 }
 
 p {
     font-size: 0.8rem;
     font-weight: 500;
+    /* color: #8f4132; */
 }
 
 #developedBy {
@@ -133,4 +137,163 @@ p {
 #registerDevOne, 
 #registerDevTwo {
     color:#0048ff;
+}
+
+@media screen and (min-width:768px) and (max-width: 992px) { /* TABLET */
+    main {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
+   
+   
+    #register-container {
+        width: 48vw;
+        height: 75vh;
+        padding: 2vw;
+        margin-top: 8vh;
+        background: #85B8BC;
+        border-radius: 29px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        text-align: center;
+    }
+
+    #welcome {
+        height: 15vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    #gotologin {
+        margin-top: 8vh;
+    }
+    
+    #loginBtn a {
+        text-decoration: none;
+        color: #0048ff;
+    }
+    
+    #createUserName, #createEmail, #createPassword, #confirmPassword {
+        width: 90%;
+        height: 5vh;
+        padding: 2vw;
+        margin: 1.2vh 0;
+        background-color: #E6EAEA;
+        border: none;
+        border-radius: 11px;
+    }
+    
+    #registerButton {
+        width: 20vw;
+        height: 4vh;
+        margin-top: 3vh;
+        background-color: #E6EAEA;
+        border: none;
+        border-radius: 11px;
+    }
+}
+
+
+
+
+
+@media screen and (min-width: 992px) and (max-width: 1200px) { /* DESKTOP */
+    main {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    #register-page {
+        background-image: url(../../assets-2/web_login-cadastro.png);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: center bottom;
+    }
+
+    #register-container {
+        width: 35vw;
+        height: 80vh;
+        padding: 2vw;
+        margin-top: 8vh;
+        margin-left: 49vw;
+        background: #85B8BC;
+        border-radius: 29px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        text-align: center;
+    }
+
+    #welcome {
+        height: 12vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    #gotologin {
+        margin-top: 5vh;
+    }
+    
+    #loginBtn a {
+        text-decoration: none;
+        color: #0048ff;
+    }
+    
+    #createUserName, #createEmail, #createPassword, #confirmPassword {
+        width: 90%;
+        height: 3vh;
+        padding: 2vw;
+        margin: 1.2vh 0;
+        background-color: #E6EAEA;
+        border: none;
+        border-radius: 11px;
+    }
+    
+    #registerButton {
+        width: 20vw;
+        height: 4vh;
+        margin-top: 3vh;
+        background-color: #E6EAEA;
+        border: none;
+        border-radius: 11px;
+    }
+
+    #developedBy {
+        height: 20vh;
+        margin-left: 49vw;
+        display: flex;
+        align-items: center;
+    } 
+
+    h1 {
+        font-size: 1.8rem;
+        color: #054040;
+    }
+    
+    h2 {
+        font-size: 1.3rem;
+    }
+    
+    h3 {
+        font-size: 1rem;
+    }
+
+    h4 {
+        font-size: 1.2rem;
+        font-weight: 400;
+    }
+
+    p {
+        font-size: 1rem;
+        font-weight: 400;
+    }
+
 }

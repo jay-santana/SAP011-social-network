@@ -11,29 +11,49 @@ body {
 
 header {
     width: 100vw;
-    height: 13vh;
+    height: 8vh;
     background-color: #69A7A9;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    position: fixed;
+    z-index: 20;
+}
+
+#title {
+    display: flex;
+    justify-content: space-between;
 }
 
 main {
     width: 100vw;
-    height: 73vh;
+    height: 100vh;
+    padding-bottom: 5vh;
 }
 
 #about-page {
+    width: 100vw;
+    height: 100%;
     background-image: url(../../assets-2/mobile_bg-telas.png);
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center bottom;
     background-color: #BEE1E5;
+    /* position: relative; */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
 }
 
 #about-container {
+    width: 65vw;
+    height: 8vh;
     padding: 10vw;
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
 }
 
 #ul-header {
@@ -56,11 +76,15 @@ main {
 
 footer {
     width: 100vw;
-    height: 14vh;
+    height: 10vh;
     background-color: #69A7A9 ;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    position: fixed;
+    top: 90vh;
+    z-index: 21;
+    /*para as publicações fiquem por baixo*/
 }
 
 #nav-footer a {

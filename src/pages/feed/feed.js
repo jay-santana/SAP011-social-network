@@ -1,4 +1,4 @@
-import { db } from '../../firebase-conf.js';
+import { db, auth } from '../../firebase-conf.js';
 import { signOutBtn, accessUser } from '../../firebase-auth.js';
 import { publication } from '../../firebase-store.js';
 import { collection, addDoc, getDocs,  query, orderBy, QuerySnapshot, onSnapshot, serverTimestamp, updateDoc } from 'firebase/firestore';
@@ -21,9 +21,9 @@ export default () => {
       </nav>
     </header>
     <main id="feed-page">
-    <h2 id="displayName"></h2>
+    <h2 id="displayName">Olá, ${auth.currentUser.displayName}</h2>
     <section id="feed-container">
-      <input id="publication-text" type="text" placeholder="Conte-nos suas novas aventuras..">
+      <p id="open-publication">Conte-nos suas novas aventuras..</p>
     </section>
     <section id="publicationPoster"></section>
     <section id="fade" class="hide"></section>
@@ -33,10 +33,7 @@ export default () => {
       </span>
       <span class="modal-body">
         <div id="userPublication">
-          <span class="material-symbols-outlined">account_circle</span><label id="userNamePublication"></label>
-        </div>
-        <div id="dataPublication">
-          <input id="dataBox" type="text" placeholder="20/09/2023">
+          <span class="material-symbols-outlined">account_circle</span><label id="userNamePublication">${auth.currentUser.displayName}</label>
         </div>
         <div>
           <textarea id="textBox" type="text" placeholder="Digite aqui seu texto"></textarea>
@@ -83,6 +80,8 @@ export default () => {
   const publicationPoster = container.querySelector('#publicationPoster');
   const user = accessUser();
 
+
+  // Nome do usuário no topo da tela 
   // function updateUsername(createUserName) {
   //   displayName.textContent = `Olá, ${createUserName}!`;
   //   userNamePublication.textContent = `${createUserName}`;
@@ -98,6 +97,8 @@ export default () => {
   //   updateUsername(createUserNameLogin);
   // });
 
+
+
   // Botão de sair 
   logoutMobileBtn.addEventListener('click', function (event) {
     event.preventDefault();
@@ -106,6 +107,8 @@ export default () => {
     }).catch((error) => {
     });
   })
+
+
 
   // Modal para escrever as informações da publicação
   const toggleModal = () => {
@@ -116,19 +119,45 @@ export default () => {
     event.addEventListener("click", () => toggleModal());
   });
 
+  // const formatDateTime = (date) => {
+  //   const options = { 
+  //     day: '2-digit',
+  //     month: '2-digit', 
+  //     year: 'numeric',  
+  //     hour: 'numeric', 
+  //     minute: 'numeric' };
+  //   return new Date().toLocaleDateString('pt-BR', options);
+  // };
+  // // Chame a função formatDateTime com a data do seu post
+  // const date = new Date(); // Substitua por sua data real do post
+  // const formattedDateTime = formatDateTime(date);
+  // // Exiba a data e hora formatadas onde você quiser
+  // console.log(`Publicado em: ${formattedDateTime}`);
+
+
+  // let dataHoraClique;
 
   //Adicionar dados ao Cloud Firestore
   publicationBtn.addEventListener('click', function (event) {
     event.preventDefault();
+
+    // Obtenha a data e hora atual
+    // dataHoraClique = new Date();
+
     const data = {
-      dataBox: dataBox.value,
+      // dataBox: dataHoraClique,
       locationInput: locationInput.value,
       textBox: textBox.value,
       user: user.uid,
       displayName: user.displayName,
+      // timestamp: dataHoraClique,
+      // timestamp: new Date(),
     }; 
+    console.log(data);
    
     const posterCollection = collection(db, 'Diário de Viagem');
+
+
 
     // Adicione o novo post ao firestore
     const addDocPromise = addDoc(posterCollection, data);
@@ -137,7 +166,7 @@ export default () => {
         // Após adicionar o post ao firestore com sucesso, adicione-o ao feed
         addPoster(data);
         // Limpa conteúdo do modal de publicação
-        dataBox.value = '';
+        // dataBox.value = '';
         locationInput.value = '';
         textBox.value = '';
       })
@@ -146,27 +175,17 @@ export default () => {
       });
   });
 
-  // const formatDateTime = (date) => {
-  //   const options = { year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric' };
-  //   return new Date(date).toLocaleDateString(undefined, options);
-  // };
-  // // Chame a função formatDateTime com a data do seu post
-  // const date = new Date(); // Substitua por sua data real do post
-  // const formattedDateTime = formatDateTime(date);
-  // // Exiba a data e hora formatadas onde você quiser
-  // console.log(`Publicado em: ${formattedDateTime}`);
+
 
   // Criando a estrutura do post que vai aparecer no feed 
   function addPoster(data) {
     const templatePoster = `
-    <section id="poster">
-      <div id="userPoster">
-        <span class="material-symbols-outlined">account_circle</span><label >${data.displayName}</label>
-      </div>
-      <div id="dataPoster">
+    <section id="poster-container">
+      <div id="poster">
+        <span class="material-symbols-outlined">account_circle</span><label id="userPoster">${data.displayName}</label>
         <span id="dataBoxPoster"></span>
       </div>
-      <div>
+      <div id="textPoster-container">
         <span id="textBoxPoster">${data.textBox}</span>
       </div>
       <div id="locationPoster">
@@ -178,21 +197,78 @@ export default () => {
   }
 
 
+    // Carregando o poster no feed 
+  //   function loadPoster() {
+  //     const posterCollection = collection(db, 'Diário de Viagem');
+  //     getDocs(posterCollection).then(snap => {
+  //       snap.forEach(data => {
+  //         addPoster(data.data());
+  //       })
+  //     })
+  //   } 
+  
+  //   loadPoster();
+  
+  //   return container;
+  // };
 
-  // // Carregando o poster no feed 
-  function loadPoster() { 
-    const posterCollection = collection(db, 'Diário de Viagem');
-    const orderPoster = query(posterCollection, orderBy("dataBox", "desc"));
-    getDocs(orderPoster).then((querySnapshot) => {
-      querySnapshot.forEach((doc) => {
-        addPoster(doc.data());
-      });
-    }).catch((error) => {
-      console.error('Erro ao carregar postagens ordenadas:', error);
-    });
-  }
-  loadPoster();
 
 
-  return container;
-};
+  // Carregando o poster no feed 
+  // function loadPoster() {
+  //   const posterCollection = collection(db, 'Diário de Viagem');
+  //   // const orderByField = 'timestamp'; 
+  //   // const sortOrder = 'desc'; 
+  //   const queryOrdered = query(posterCollection, orderBy('timestamp', 'desc'));
+  //     getDocs(queryOrdered).then(snap => {
+  //       snap.forEach(data => {
+  //         addPoster(data.data());
+  //       })
+  //     })
+  // } 
+
+  // loadPoster();
+
+  //    return container;
+  //  };
+
+
+
+
+    // Carregando o poster no feed 
+    function loadPoster() {
+      const posterCollection = collection(db, 'Diário de Viagem');
+      getDocs(posterCollection).then(snap => {
+        snap.forEach(data => {
+          addPoster(data.data());
+        })
+      })
+    }
+      // if(dataBox === 'alguma coisa aqui' ) {
+      //   orderPosters.sort((a,b) => {
+      //     if(a.dataBox < b.dataBox) {
+      //       return -1;
+      //     } else if () {
+      //       return 1;
+      //     } else {
+      //       return 0;
+      //     }
+      //   });
+      // if(dataBox === 'alguma coisa aqui' ) {
+      //   orderPosters.sort((a,b) => {
+      //     if(a.dataBox < b.dataBox) {
+      //       return -1;
+      //     } else if () {
+      //       return 1;
+      //     } else {
+      //       return 0;
+      //     };
+      //   });
+      // }
+      // return orderPoster; 
+      // } 
+  
+    loadPoster();
+  
+    return container;
+  };

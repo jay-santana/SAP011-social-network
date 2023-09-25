@@ -11,19 +11,29 @@ body {
 
 header {
     width: 100vw;
-    height: 13vh;
+    height: 8vh;
     background-color: #69A7A9;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    position: fixed;
+    z-index: 20;
+}
+
+#title {
+    display: flex;
     justify-content: center;
 }
 
 main {
     width: 100vw;
-    height: 73vh;
+    height: 100vh;
+    padding-bottom: 5vh;
 }
 
 #feed-page {
+    width: 100vw;
+    height: 100%;
     background-image: url(../../assets-2/mobile_bg-telas.png);
     background-size: cover;
     background-repeat: no-repeat;
@@ -36,20 +46,139 @@ main {
     align-items: center;
 }
 
-#feed-container{
-    width: 70%;
-    height: 5vh;
-    background-color: #85B8BC;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 #displayName {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 4vw;
+    padding: 1vw;
+    margin-top: 9vh;
+}
+
+#open-publication {
+    width: 70vw;
+    height: 7vh;
+    padding: 3vw;
+    border-radius: 0.5rem;
+    background: #E6EAEA;
+    box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.20);
+}
+
+#publicationPoster {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 5vh;
+}
+
+#feed-container{
+    width: 80vw; 
+    height: 13vh; 
+    margin-top: 2vh;
+    border-radius: 0.4rem;
+    background-color: #85B8BC;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    opacity: 0.9;
+    box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.20);
+    position: relative;
+}
+
+#feed-container:hover {
+    opacity: 1;
+}
+
+#poster-container {
+    width: 80vw;
+    height: 20vh;
+    margin-top: 20px;
+    margin-bottom: 2vh;
+    border-radius: 10px;
+    padding: 10px;
+    background: #DB9F8F;
+    opacity: 0.9;
+    display: flex;
+    flex-direction: column;
+    /* 
+    display: grid;
+    grid-template-columns: 20vw 20vw 20vw 20vw; 
+    grid-template-rows: auto;
+    grid-template-areas: 
+      "userPoster userPoster dataBoxPoster dataBoxPoster"
+      "textBoxPoster textBoxPoster textBoxPoster textBoxPoster"
+      "locationPoster locationPoster locationPoster locationPoster"; 
+    */
+    /* border: solid #c54522; */
+    box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.20);
+}
+
+#poster {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    padding: 2px;
+    /* 
+    display: grid;
+    grid-column-start: 1;
+    grid-column-end: 2; 
+    */
+    /* border: solid #637b02; */
+}
+
+#userPoster {
+    width: 28vw;
+    height: 4vh;
+    padding: 0.2rem;
+    /* border: solid #55078a; */
+}
+
+#dataBoxPoster {
+    width: 40vw;
+    height: 4vh;
+    padding: 0.2rem;
+    /* 
+    display: grid;
+    justify-self: center;
+    grid-column-start: 2;
+    grid-column-end: 4; 
+    */
+    /* border: solid #9b0543; */
+}
+
+#textPoster-container {
+    width: 75vw;
+    height: 100vh;
+    /* border: #c24502; */
+}
+
+#textBoxPoster {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    padding: 2px;
+    background: #F6E7E3;
+    /* 
+    display: grid;
+    grid-row-start: 1;
+    grid-row-end: 4; 
+    */
+    /* border: solid #05649b; */
+}
+
+#locationPoster {
+    width: 35.2vh;
+    height: 4vh;
+    display: flex;
+    padding: 0.2rem;
+    /* 
+    display: grid;
+    grid-column-start: 1;
+    grid-column-end: 4; 
+    */
+    /* border: solid #62059b; */
 }
 
 #dataPublication {
@@ -82,11 +211,15 @@ main {
 
 footer {
     width: 100vw;
-    height: 14vh;
+    height: 10vh;
     background-color: #69A7A9 ;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    position: fixed;
+    top: 90vh;
+    z-index: 21; 
+    /* para as publicações fiquem por baixo */
 }
 
 #nav-footer a {
@@ -113,15 +246,6 @@ footer {
     background-color: transparent;
 }
 
-#feed-container {
-    cursor: pointer;
-    opacity: 0.9;
-}
-
-/* #feed-container:hover {
-    opacity: 1;
-} */
-
 #fade, #modal {
     transition: .5s;
     opacity: 1;
@@ -143,12 +267,13 @@ footer {
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    background-color: #fff;
+    background-color: #69A7A9;
     z-index: 10;
     width: 500px;
     max-width: 90%;
     padding: 1.2rem;
     border-radius: 0.5rem;
+    box-shadow: 3px 3px 8px 0px rgba(0, 0, 0, 0.25);    ;
 }
 
 #modal.hide, 
@@ -195,6 +320,9 @@ footer {
     width: 80vw;
     height: 7vh;
     padding: 2vw;
+    background-color: #E6EAEA;
+    border: none;
+    border-radius: 0.4rem;
 }
 
 #textBox::placeholder, #locationInput::placeholder{
@@ -206,6 +334,9 @@ footer {
     width: 60vw;
     height: 3vh;
     padding: 2vw;
+    background-color: #E6EAEA;
+    border: none;
+    border-radius: 0.4rem;
 }
 
 #publication {
@@ -217,5 +348,7 @@ footer {
     width: 30vw;
     height: 3vh;
     cursor: pointer;
+    background-color: #E6EAEA;
+    border: none;
+    border-radius: 0.4rem;
 }
-
