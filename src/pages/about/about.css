@@ -22,7 +22,7 @@ header {
 
 #title {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
 }
 
 main {
@@ -40,7 +40,6 @@ main {
     background-attachment: fixed;
     background-position: center bottom;
     background-color: #BEE1E5;
-    /* position: relative; */
     display: flex;
     flex-direction: column;
     justify-content: flex-start;

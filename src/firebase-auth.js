@@ -41,6 +41,7 @@ export function accessUser() {
 //   locationInput: true,
 // });
 
+
 //Login de usuários existentes
 export function signIn(loginEmail, loginPassword) {
   signInWithEmailAndPassword(auth, loginEmail, loginPassword)

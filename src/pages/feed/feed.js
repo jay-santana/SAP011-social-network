@@ -97,11 +97,11 @@ export default () => {
     event.addEventListener("click", () => toggleModal());
   });
 
+
   // Criando a estrutura do post que vai aparecer no feed 
   function addPoster(data) {
     console.log(data.dataBox);
     const formattedDate = data.dataBox.toDate().toLocaleString();
-
     const templatePoster = `
     <section id="poster-container">
       <div id="poster">
@@ -114,10 +114,25 @@ export default () => {
       <div id="locationPoster">
         <span class="material-symbols-outlined">location_on</span><span id="locationInputPoster">${data.locationInput}</span>
       </div>
+      <div id="container-icons">
+        <span class="material-symbols-outlined" id="like">favorite</span>
+        <div id="edit-delete">
+          <span class="material-symbols-outlined" id="edit">edit_square</span>
+          <span class="material-symbols-outlined" id="delete">delete</span>
+        </div>
+      </div> 
     </section>
     `;
     publicationPoster.innerHTML += templatePoster;
+
+    // Dentro da função addPoster
+    const editButton = container.querySelector('#edit');
+    editButton.addEventListener('click', () => {
+      editPoster(data);
+    });
+
   }
+
 
   //Adicionar dados ao Cloud Firestore
   publicationBtn.addEventListener('click', function (event) {
@@ -138,9 +153,8 @@ export default () => {
 
     addDocPromise.then(() => {
         // Após adicionar o post ao firestore com sucesso, adicione-o ao feed
-        addPoster(data);
+        loadPoster();
         // Limpa conteúdo do modal de publicação
-        // dataBox.value = '';
         locationInput.value = '';
         textBox.value = '';
       })
@@ -151,6 +165,7 @@ export default () => {
 
   // // Carregando o poster no feed 
   function loadPoster() { 
+    publicationPoster.innerHTML = '';
     const posterCollection = collection(db, 'Diário de Viagem');
     const orderPoster = query(posterCollection, orderBy("dataBox", "desc"));
     getDocs(orderPoster).then((querySnapshot) => {
@@ -163,6 +178,81 @@ export default () => {
     });
   }  
   loadPoster()
+
+
+//Função Editar
+function editPoster(data) {
+  const modalEditContainer = document.createElement('div');
+  const templateEdit = `
+  <section id="containerEdit">
+  <section id="fadeEdit" class="hide"></section>
+  <section id="modalEdit" class="hide">
+    <span class="modal-header-edit">
+      <span class="material-symbols-outlined" id="close-modal-edit">disabled_by_default</span>
+    </span>
+    <span class="modal-body-edit">
+      <div id="userPublicationEdit">
+        <span class="material-symbols-outlined">account_circle</span><label id="userNamePublication">${auth.currentUser.displayName}</label>
+      </div>
+      <div>
+        <textarea id="textBox" type="text">${data.textBox}</textarea>
+      </div>
+      <div id="location">
+        <span class="material-symbols-outlined">location_on</span><input id="locationInput" type="text" value="${data.locationInput}">
+      </div>
+      <div id="publication">
+        <button id="editBtnCancel">Cancelar</button>
+        <button id="editBtnSave">Salvar</button>
+      <div>
+    </section>
+  `;
+  modalEditContainer.innerHTML = templateEdit;
+
+  const openModalEdit = container.querySelector('#edit');
+  const closeModalButtonEdit = modalEditContainer.querySelector('#close-modal-edit');
+  const modalEdit = modalEditContainer.querySelector('#modalEdit');
+  const fadeEdit = modalEditContainer.querySelector('#fadeEdit');
+  const editBtnSave = modalEditContainer.querySelector('#editBtnSave');
+  const editBtnCancel = modalEditContainer.querySelector('#editBtnCancel');// Modal para editar as informações da publicação
+
+  const toggleModalEdit = () => {
+  [modalEdit, fadeEdit].forEach((event) => event.classList.toggle("hide"));
+  };
+
+  [openModalEdit].forEach((event) => {
+    event.addEventListener("click", () => toggleModalEdit());
+  });
+
+  [closeModalButtonEdit, fadeEdit, editBtnSave, editBtnCancel].forEach((event) => {
+    event.addEventListener("click", () => modalEditContainer.remove());
+  });
+
+  container.appendChild(modalEditContainer);
+
+}
+
+
+
+
+
+
+  // const edit = container.querySelector('#edit');
+  // // const editIt = edit.getAttribute('#')
+  // edit.addEventListener('click', (event) => {
+  //   console.log(event.target.parentNode);
+  // });
+
+
+  // event.target.parentNode 
+
+  // mostra onde a pessoa clicou, e ainda retorna o id da publicação 
+  // se clicou na lixeira, mostra modal excluir
+  // se for editar, mostra modal editar 
+  // se for curtir, faz o like ou o deslike 
+
+
+
+
 
 return container;
 

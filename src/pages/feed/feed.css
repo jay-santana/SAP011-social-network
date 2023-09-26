@@ -33,7 +33,7 @@ main {
 
 #feed-page {
     width: 100vw;
-    height: 100vh;
+    height: 100%;
     background-image: url(../../assets-2/mobile_bg-telas.png);
     background-size: cover;
     background-repeat: no-repeat;
@@ -129,16 +129,16 @@ main {
 }
 
 #userPoster {
-    width: 28vw;
+    width: 25vw;
     height: 4vh;
     padding: 0.2rem;
     /* border: solid #55078a; */
 }
 
 #dataBoxPoster {
-    width: 40vw;
+    width: 70vw;
     height: 4vh;
-    padding: 0.2rem;
+    padding: 0.1rem;
     /* 
     display: grid;
     justify-self: center;
@@ -179,6 +179,23 @@ main {
     grid-column-end: 4; 
     */
     /* border: solid #62059b; */
+}
+
+#container-icons {
+    display: flex;
+    justify-content: space-between;
+    /* border: solid #9b0543; */
+}
+
+#edit-delete {
+    display: flex;
+    /* border: solid #0b7e6b; */
+}
+
+#like {
+    display: flex;
+    justify-content: flex-start;
+    /* border: solid #9b0543; */
 }
 
 #dataPublication {
@@ -352,3 +369,70 @@ footer {
     border: none;
     border-radius: 0.4rem;
 }
+
+
+
+#edit {
+    cursor: pointer;
+}
+
+#edit:hover {
+    opacity: 0.8;
+}
+
+#fadeEdit, #modalEdit {
+    transition: .5s;
+    opacity: 1;
+    pointer-events: all;
+}
+
+#fadeEdit {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 5;
+}
+
+#modalEdit {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #69A7A9;
+    z-index: 10;
+    width: 500px;
+    max-width: 90%;
+    padding: 1.2rem;
+    border-radius: 0.5rem;
+    box-shadow: 3px 3px 8px 0px rgba(0, 0, 0, 0.25);    ;
+}
+
+#modalEdit.hide,
+#fadeEdit.hide {
+  opacity: 0;
+  pointer-events: none;
+}
+
+#modalEdit.hide {
+  top:0;
+}
+
+#close-modal-edit {
+    display: flex;
+    justify-content: flex-end;
+    /* border-bottom: 1px solid #ccc; */
+    margin-bottom: 0.5rem;
+    padding-bottom: 0.5rem;
+    position: relative;
+    cursor: pointer;
+}
+
+.modal-body-edit {
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+}
+
