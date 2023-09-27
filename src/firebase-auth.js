@@ -33,15 +33,6 @@ export function accessUser() {
   } 
 } 
 
-//Editar um post 
-// const editPost = doc(db, "Diário de Viagem");
-// await updateDoc(editPost, {
-//   dataBox: true,
-//   textBox: true,
-//   locationInput: true,
-// });
-
-
 //Login de usuários existentes
 export function signIn(loginEmail, loginPassword) {
   signInWithEmailAndPassword(auth, loginEmail, loginPassword)

@@ -1,7 +1,7 @@
 import { db, auth } from '../../firebase-conf.js';
 import { signOutBtn, accessUser } from '../../firebase-auth.js';
-import { publication } from '../../firebase-store.js';
-import { collection, addDoc, getDocs,  query, orderBy, QuerySnapshot, onSnapshot, updateDoc, Timestamp } from 'firebase/firestore';
+import { editPoster } from '../../firebase-store.js';
+import { collection, doc, addDoc, getDocs,  query, orderBy, updateDoc, Timestamp } from 'firebase/firestore';
 
 export default () => {
   const container = document.createElement('div');
@@ -78,6 +78,7 @@ export default () => {
   const textBox = container.querySelector('#textBox');
   const publicationPoster = container.querySelector('#publicationPoster');
   const user = accessUser();
+  let newDocID;
 
   // Botão de sair 
   logoutMobileBtn.addEventListener('click', function (event) {
@@ -98,6 +99,59 @@ export default () => {
   });
 
 
+//Função Editar
+function modalEditPoster(data, newPost) {
+  console.log(data);
+  const modalEditContainer = document.createElement('div');
+  const templateEdit = `
+  <section id="containerEdit">
+  <section id="fadeEdit" class="hide"></section>
+  <section id="modalEdit">
+    <span class="modal-header-edit">
+      <span class="material-symbols-outlined" id="close-modal-edit">disabled_by_default</span>
+    </span>
+    <span class="modal-body-edit">
+      <div id="userPublicationEdit">
+        <span class="material-symbols-outlined">account_circle</span><label id="userNamePublication">${auth.currentUser.displayName}</label>
+      </div>
+      <div>
+        <textarea id="textBoxEdit" type="text">${data.textBox}</textarea>
+      </div>
+      <div id="location">
+        <span class="material-symbols-outlined">location_on</span><input id="locationInputEdit" type="text" value="${data.locationInput}">
+      </div>
+      <div id="publication">
+        <button id="editBtnCancel">Cancelar</button>
+        ${newPost ? '<button id="publicationBtn">Publicar</button>' : '<button id="editBtnSave">Salvar</button>'}
+      <div>
+    </section>
+  `;
+  modalEditContainer.innerHTML = templateEdit;
+
+  const openModalEdit = container.querySelector('.edit');
+  const closeModalButtonEdit = modalEditContainer.querySelector('#close-modal-edit');
+  const modalEdit = modalEditContainer.querySelector('#modalEdit');
+  const fadeEdit = modalEditContainer.querySelector('#fadeEdit');
+  const editBtnSave = modalEditContainer.querySelector('#editBtnSave');
+  const editBtnCancel = modalEditContainer.querySelector('#editBtnCancel');// Modal para editar as informações da publicação
+
+  const toggleModalEdit = () => {
+  [modalEdit, fadeEdit].forEach((event) => event.classList.toggle("hide"));
+  };
+  console.log(openModalEdit);
+  [openModalEdit].forEach((event) => {
+    event.addEventListener("click", () => toggleModalEdit());
+  });
+
+  [closeModalButtonEdit, fadeEdit, editBtnSave, editBtnCancel].forEach((event) => {
+    event.addEventListener("click", () => modalEditContainer.remove());
+  });
+
+  container.appendChild(modalEditContainer);
+
+}
+
+
   // Criando a estrutura do post que vai aparecer no feed 
   function addPoster(data) {
     console.log(data.dataBox);
@@ -115,23 +169,39 @@ export default () => {
         <span class="material-symbols-outlined">location_on</span><span id="locationInputPoster">${data.locationInput}</span>
       </div>
       <div id="container-icons">
-        <span class="material-symbols-outlined" id="like">favorite</span>
+        <span class="material-symbols-outlined like">favorite</span>
         <div id="edit-delete">
-          <span class="material-symbols-outlined" id="edit">edit_square</span>
-          <span class="material-symbols-outlined" id="delete">delete</span>
+          <span class="material-symbols-outlined edit">edit_square</span>
+          <span class="material-symbols-outlined delete">delete</span>
         </div>
       </div> 
     </section>
     `;
     publicationPoster.innerHTML += templatePoster;
 
-    // Dentro da função addPoster
-    const editButton = container.querySelector('#edit');
-    editButton.addEventListener('click', () => {
-      editPoster(data);
-    });
 
+    // Icone Editar - dentro da função addPoster
+    const editButtons = container.querySelectorAll('.edit');
+    editButtons.forEach((editButton) => {
+      editButton.addEventListener('click', function (event) {
+        event.preventDefault();
+        console.log(event.target);
+        modalEditPoster(data);
+        newDocID = docRef.id;
+        console.log(newDocID);
+      });
+    })
+
+    // Botão Salvar Modal Editar 
+    // const editButtonSave = container.querySelector('#editBtnSave');
+    // editButtonSave.addEventListener('click', function (event) {
+    //   event.preventDefault();
+    //   console.log(newDocID);
+    // })
   }
+
+
+  const posterCollection = collection(db, 'Diário de Viagem');
 
 
   //Adicionar dados ao Cloud Firestore
@@ -146,13 +216,14 @@ export default () => {
     }; 
     console.log(data);
    
-    const posterCollection = collection(db, 'Diário de Viagem');
-
+   
     // Adicione o novo post ao firestore
     const addDocPromise = addDoc(posterCollection, data);
 
     addDocPromise.then(() => {
         // Após adicionar o post ao firestore com sucesso, adicione-o ao feed
+        // newDocID = docRef.id;
+        // console.log('ID: ', newDocID);
         loadPoster();
         // Limpa conteúdo do modal de publicação
         locationInput.value = '';
@@ -178,81 +249,6 @@ export default () => {
     });
   }  
   loadPoster()
-
-
-//Função Editar
-function editPoster(data) {
-  const modalEditContainer = document.createElement('div');
-  const templateEdit = `
-  <section id="containerEdit">
-  <section id="fadeEdit" class="hide"></section>
-  <section id="modalEdit" class="hide">
-    <span class="modal-header-edit">
-      <span class="material-symbols-outlined" id="close-modal-edit">disabled_by_default</span>
-    </span>
-    <span class="modal-body-edit">
-      <div id="userPublicationEdit">
-        <span class="material-symbols-outlined">account_circle</span><label id="userNamePublication">${auth.currentUser.displayName}</label>
-      </div>
-      <div>
-        <textarea id="textBox" type="text">${data.textBox}</textarea>
-      </div>
-      <div id="location">
-        <span class="material-symbols-outlined">location_on</span><input id="locationInput" type="text" value="${data.locationInput}">
-      </div>
-      <div id="publication">
-        <button id="editBtnCancel">Cancelar</button>
-        <button id="editBtnSave">Salvar</button>
-      <div>
-    </section>
-  `;
-  modalEditContainer.innerHTML = templateEdit;
-
-  const openModalEdit = container.querySelector('#edit');
-  const closeModalButtonEdit = modalEditContainer.querySelector('#close-modal-edit');
-  const modalEdit = modalEditContainer.querySelector('#modalEdit');
-  const fadeEdit = modalEditContainer.querySelector('#fadeEdit');
-  const editBtnSave = modalEditContainer.querySelector('#editBtnSave');
-  const editBtnCancel = modalEditContainer.querySelector('#editBtnCancel');// Modal para editar as informações da publicação
-
-  const toggleModalEdit = () => {
-  [modalEdit, fadeEdit].forEach((event) => event.classList.toggle("hide"));
-  };
-
-  [openModalEdit].forEach((event) => {
-    event.addEventListener("click", () => toggleModalEdit());
-  });
-
-  [closeModalButtonEdit, fadeEdit, editBtnSave, editBtnCancel].forEach((event) => {
-    event.addEventListener("click", () => modalEditContainer.remove());
-  });
-
-  container.appendChild(modalEditContainer);
-
-}
-
-
-
-
-
-
-  // const edit = container.querySelector('#edit');
-  // // const editIt = edit.getAttribute('#')
-  // edit.addEventListener('click', (event) => {
-  //   console.log(event.target.parentNode);
-  // });
-
-
-  // event.target.parentNode 
-
-  // mostra onde a pessoa clicou, e ainda retorna o id da publicação 
-  // se clicou na lixeira, mostra modal excluir
-  // se for editar, mostra modal editar 
-  // se for curtir, faz o like ou o deslike 
-
-
-
-
 
 return container;
 
