@@ -19,7 +19,8 @@ export function editPoster(posterCollection, newtextBox) {
   });
 }
 
-
-//Ler dados
-//Atualizar um dado
 //Excluir dados
+export function deletePoster(posterCollection) {
+  deleteDoc(doc(db, "Diário de Viagem", posterCollection));
+}
+
