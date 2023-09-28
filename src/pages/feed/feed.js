@@ -1,7 +1,7 @@
 import { db, auth } from '../../firebase-conf.js';
 import { signOutBtn, accessUser } from '../../firebase-auth.js';
 import { editPoster } from '../../firebase-store.js';
-import { collection, doc, addDoc, getDocs,  query, orderBy, updateDoc, Timestamp } from 'firebase/firestore';
+import { collection, doc, addDoc, getDocs,  query, orderBy, updateDoc, Timestamp, getDoc } from 'firebase/firestore';
 
 export default () => {
   const container = document.createElement('div');
@@ -78,7 +78,6 @@ export default () => {
   const textBox = container.querySelector('#textBox');
   const publicationPoster = container.querySelector('#publicationPoster');
   const user = accessUser();
-  let newDocID;
 
   // Botão de sair 
   logoutMobileBtn.addEventListener('click', function (event) {
@@ -97,7 +96,6 @@ export default () => {
   [openModal, closeModalButton, fade, publicationBtn].forEach((event) => {
     event.addEventListener("click", () => toggleModal());
   });
-
 
 //Função Editar
 function modalEditPoster(data, newPost) {
@@ -148,9 +146,7 @@ function modalEditPoster(data, newPost) {
   });
 
   container.appendChild(modalEditContainer);
-
 }
-
 
   // Criando a estrutura do post que vai aparecer no feed 
   function addPoster(data) {
@@ -171,26 +167,36 @@ function modalEditPoster(data, newPost) {
       <div id="container-icons">
         <span class="material-symbols-outlined like">favorite</span>
         <div id="edit-delete">
-          <span class="material-symbols-outlined edit">edit_square</span>
-          <span class="material-symbols-outlined delete">delete</span>
+        ${data.user === auth.currentUser.uid ? `<span class="material-symbols-outlined edit" data-postId="${data.postId}">edit_square</span>` : ''}
+        ${data.user === auth.currentUser.uid ? `<span class="material-symbols-outlined delete">delete</span>` : ''}
         </div>
       </div> 
     </section>
     `;
     publicationPoster.innerHTML += templatePoster;
 
-
     // Icone Editar - dentro da função addPoster
     const editButtons = container.querySelectorAll('.edit');
+    
     editButtons.forEach((editButton) => {
-      editButton.addEventListener('click', function (event) {
+      editButton.addEventListener('click', async function (event) {
         event.preventDefault();
-        console.log(event.target);
-        modalEditPoster(data);
-        newDocID = docRef.id;
-        console.log(newDocID);
-      });
-    })
+        const docRef = doc(db, "Diário de Viagem", editButton.dataset.postid);
+        const docSnap = await getDoc(docRef);
+        console.log(editButton.dataset.postid);
+        modalEditPoster(docSnap.data());
+       // Verifica se o usuário logado é o mesmo que criou a publicação
+    if (docSnap.exists() && docSnap.data().user === auth.currentUser.uid) {
+      console.log("Usuário pode editar esta publicação");
+      modalEditPoster(docSnap.data());
+    } else {
+      console.log("Usuário não pode editar esta publicação");
+      // Aqui você pode tomar alguma ação, como não exibir o ícone de edição.
+      // editButton.style.display = "none";
+
+    }
+  });
+});
 
     // Botão Salvar Modal Editar 
     // const editButtonSave = container.querySelector('#editBtnSave');
@@ -200,9 +206,7 @@ function modalEditPoster(data, newPost) {
     // })
   }
 
-
   const posterCollection = collection(db, 'Diário de Viagem');
-
 
   //Adicionar dados ao Cloud Firestore
   publicationBtn.addEventListener('click', function (event) {
@@ -215,15 +219,12 @@ function modalEditPoster(data, newPost) {
       displayName: user.displayName,
     }; 
     console.log(data);
-   
-   
+    
     // Adicione o novo post ao firestore
     const addDocPromise = addDoc(posterCollection, data);
 
     addDocPromise.then(() => {
         // Após adicionar o post ao firestore com sucesso, adicione-o ao feed
-        // newDocID = docRef.id;
-        // console.log('ID: ', newDocID);
         loadPoster();
         // Limpa conteúdo do modal de publicação
         locationInput.value = '';
@@ -242,6 +243,7 @@ function modalEditPoster(data, newPost) {
     getDocs(orderPoster).then((querySnapshot) => {
       querySnapshot.forEach((doc) => {
         const postData = doc.data();
+        postData.postId = doc.id;
         addPoster(postData);
       });
     }).catch((error) => {
@@ -251,5 +253,4 @@ function modalEditPoster(data, newPost) {
   loadPoster()
 
 return container;
-
 };
