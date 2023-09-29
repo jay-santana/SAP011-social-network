@@ -1,7 +1,7 @@
 import { db, auth } from '../../firebase-conf.js';
 import { signOutBtn, accessUser } from '../../firebase-auth.js';
-import { editPoster } from '../../firebase-store.js';
-import { collection, doc, addDoc, getDocs,  query, orderBy, updateDoc, Timestamp, getDoc, deleteDoc } from 'firebase/firestore';
+import { editPoster, deletePoster } from '../../firebase-store.js';
+import { collection, doc, addDoc, getDocs, query, orderBy, updateDoc, Timestamp, getDoc, deleteDoc } from 'firebase/firestore';
 
 export default () => {
   const container = document.createElement('div');
@@ -97,11 +97,11 @@ export default () => {
     event.addEventListener("click", () => toggleModal());
   });
 
-//Função Editar
-function modalEditPoster(data, newPost) {
-  console.log(data);
-  const modalEditContainer = document.createElement('div');
-  const templateEdit = `
+  //Função Editar
+  function modalEditPoster(data, postId, newPost) {
+    console.log(data);
+    const modalEditContainer = document.createElement('div');
+    const templateEdit = `
   <section id="containerEdit">
     <section id="fadeEdit" class="hide"></section>
     <section id="modalEdit">
@@ -118,42 +118,78 @@ function modalEditPoster(data, newPost) {
         <div id="location">
           <span class="material-symbols-outlined">location_on</span><input id="locationInputEdit" type="text" value="${data.locationInput}">
         </div>
-        <div id="publication">
+        <div id="publicationEdit">
           <button id="editBtnCancel">Cancelar</button>
-          ${newPost ? '<button id="publicationBtn">Publicar</button>' : '<button id="editBtnSave">Salvar</button>'}
+          <button id="editBtnSave"data-postId="${data.postId}">Salvar</button>
         </div>
       </span>  
     </section>  
   </section>
   `;
-  modalEditContainer.innerHTML = templateEdit;
+    modalEditContainer.innerHTML = templateEdit;
 
-  const openModalEdit = container.querySelector('.edit');
-  const closeModalButtonEdit = modalEditContainer.querySelector('#close-modal-edit');
-  const modalEdit = modalEditContainer.querySelector('#modalEdit');
-  const fadeEdit = modalEditContainer.querySelector('#fadeEdit');
-  const editBtnSave = modalEditContainer.querySelector('#editBtnSave');
-  const editBtnCancel = modalEditContainer.querySelector('#editBtnCancel');// Modal para editar as informações da publicação
+    const openModalEdit = container.querySelector('.edit');
+    const closeModalButtonEdit = modalEditContainer.querySelector('#close-modal-edit');
+    const modalEdit = modalEditContainer.querySelector('#modalEdit');
+    const fadeEdit = modalEditContainer.querySelector('#fadeEdit');
+    const editBtnSave = modalEditContainer.querySelector('#editBtnSave');
+    const editBtnCancel = modalEditContainer.querySelector('#editBtnCancel');// Modal para editar as informações da publicação
+    const textBoxEdit = modalEditContainer.querySelector('#textBoxEdit');
+    const locationInputEdit = modalEditContainer.querySelector('#locationInputEdit');
 
-  const toggleModalEdit = () => {
-  [modalEdit, fadeEdit].forEach((event) => event.classList.toggle("hide"));
-  };
-  console.log(openModalEdit);
-  [openModalEdit].forEach((event) => {
-    event.addEventListener("click", () => toggleModalEdit());
-  });
+    // textBoxEdit.value = data.textBox;
+    // locationInputEdit.value = data.locationInput;
 
-  [closeModalButtonEdit, fadeEdit, editBtnSave, editBtnCancel].forEach((event) => {
-    event.addEventListener("click", () => modalEditContainer.remove());
-  });
+    const toggleModalEdit = () => {
+      [modalEdit, fadeEdit].forEach((event) => event.classList.toggle("hide"));
+    };
+    console.log(openModalEdit);
+    [openModalEdit].forEach((event) => {
+      event.addEventListener("click", () => toggleModalEdit());
+    });
 
-  container.appendChild(modalEditContainer);
-}
+    [closeModalButtonEdit, fadeEdit, editBtnSave, editBtnCancel].forEach((event) => {
+      event.addEventListener("click", () => modalEditContainer.remove());
+    });
+
+    container.appendChild(modalEditContainer);
+
+    editBtnSave.addEventListener('click', async function (event) {
+      event.preventDefault();
+      // if (newPost) {
+      //   // Cria uma nova publicação no Firestore
+      // } else {
+        // Atualiza a publicação existente no Firestore usando o ID da publicação
+        const updatedData = {
+          textBox: textBoxEdit.value, // Atualiza o campo textBox com o valor do input
+          locationInput: locationInputEdit.value, // Atualiza o campo locationInput com o valor do input
+        };
+        // Usa updateDoc para atualizar os dados no Firestore
+        const docRef = doc(db, 'Diário de Viagem', editBtnSave.dataset.postid);
+        const docSnap = await getDoc(docRef);
+        console.log(editBtnSave.dataset.postid);
+        modalEditPoster(docSnap.data());
+        updateDoc(docRef, updatedData)
+          .then(() => {
+            // Atualização bem-sucedida
+            // Atualiza o feed para refletir as alterações
+            loadPoster();
+            // Fecha o modal de edição
+            toggleModalEdit();
+
+          })
+          .catch((error) => {
+            console.error('Erro ao atualizar a publicação:', error);
+          });
+      // }
+    });
+
+  }
 
 
   // Criando a estrutura do post que vai aparecer no feed 
   function addPoster(data) {
-    console.log(data.dataBox);
+    console.log('addPoster');
     const formattedDate = data.dataBox.toDate().toLocaleString();
     const templatePoster = `
     <section id="poster-container">
@@ -171,7 +207,7 @@ function modalEditPoster(data, newPost) {
         <span class="material-symbols-outlined like">favorite</span>
         <div id="edit-delete">
           ${data.user === auth.currentUser.uid ? `<span class="material-symbols-outlined edit" data-postId="${data.postId}">edit_square</span>` : ''}
-          ${data.user === auth.currentUser.uid ? `<span class="material-symbols-outlined delete">delete</span>` : ''}
+          ${data.user === auth.currentUser.uid ? `<span class="material-symbols-outlined delete" data-postId="${data.postId}">delete</span>` : ''}
         </div>
       </div> 
     </section>
@@ -180,7 +216,7 @@ function modalEditPoster(data, newPost) {
 
     // Icone Editar - dentro da função addPoster
     const editButtons = container.querySelectorAll('.edit');
-    
+
     editButtons.forEach((editButton) => {
       editButton.addEventListener('click', async function (event) {
         event.preventDefault();
@@ -188,26 +224,37 @@ function modalEditPoster(data, newPost) {
         const docSnap = await getDoc(docRef);
         console.log(editButton.dataset.postid);
         modalEditPoster(docSnap.data());
-       // Verifica se o usuário logado é o mesmo que criou a publicação
-      if (docSnap.exists() && docSnap.data().user === auth.currentUser.uid) {
-        console.log("Usuário pode editar esta publicação");
-        modalEditPoster(docSnap.data());
-       } else {
-        console.log("Usuário não pode editar esta publicação");
-        // Aqui você pode tomar alguma ação, como não exibir o ícone de edição.
-        // editButton.style.display = "none";
-       }
+        // Verifica se o usuário logado é o mesmo que criou a publicação
+        if (docSnap.exists() && docSnap.data().user === auth.currentUser.uid) {
+          console.log("Usuário pode editar esta publicação");
+          // modalEditPoster(docSnap.data());
+        } else {
+          console.log("Usuário não pode editar esta publicação");
+          // Aqui você pode tomar alguma ação, como não exibir o ícone de edição.
+        }
+      });
+    });
+
+    // Icone Excluir - dentro da função addPoster
+    const deleteButtons = container.querySelectorAll('.delete');
+    console.log("recuperando os botões de delete");
+    deleteButtons.forEach((deleteButton) => {
+      deleteButton.addEventListener('click', function (event) {
+        event.preventDefault();
+        const postId = deleteButton.dataset.postId;
+        deletePosterModal(postId);
       });
     });
   }
 
   // Modal Excluir publicação 
-  function deletePosterModal(data) {
+  function deletePosterModal(postId) {
+    console.log(postId);
     const modalDeleteContainer = document.createElement('div');
     const templateDelete = `
     <section id="containerDelete">
       <section id="fadeDelete" class="hide"></section>
-      <section id="modalDelete" class="hide">
+      <section id="modalDelete">
         <span class="modal-header-delete">
           <span class="material-symbols-outlined" id="close-modal-delete">disabled_by_default</span>
         </span>
@@ -215,9 +262,9 @@ function modalEditPoster(data, newPost) {
           <div>
             <textarea id="textBoxDelete" type="text">"Você tem certeza que deseja excluir essa publicação?"</textarea>
           </div>
-          <div id="publication">
+          <div id="publicationDelete">
             <button id="deleteBtnCancel">Cancelar</button>
-            ${newPost ? '<button id="publicationBtn">Publicar</button>' : '<button id="deleteBtnSave">Salvar</button>'}
+            <button id="deleteBtnSave">Salvar</button>
           </div>
         </span>
       </section>
@@ -225,39 +272,40 @@ function modalEditPoster(data, newPost) {
     `;
     modalDeleteContainer.innerHTML = templateDelete;
 
-    const openModalDelete = container.querySelector('.delete');
+    const openModalDelete = container.querySelectorAll('.delete');
     const closeModalButtonDelete = modalDeleteContainer.querySelector('#close-modal-delete');
     const modalDelete = modalDeleteContainer.querySelector('#modalDelete');
     const fadeDelete = modalDeleteContainer.querySelector('#fadeDelete');
     const deleteBtnSave = modalDeleteContainer.querySelector('#deleteBtnSave');
     const deleteBtnCancel = modalDeleteContainer.querySelector('#deleteBtnCancel'); // Modal para excluir as informações da publicação
 
+    // Modal para escrever as informações da publicação
+    // const toggleModalDelete = () => {
+    //   [modalDelete, fadeDelete].forEach((event) => event.classList.toggle("hide"));
+    // };
+
+    // [openModalDelete, closeModalButtonDelete, fadeDelete, deleteBtnCancel].forEach((event) => {
+    //   event.addEventListener("click", () => {
+    //     console.log('Clique no elemento detectado'); // Adicione este console.log para depuração
+    //   });
+    // });
+
     const toggleModalDelete = () => {
       [modalDelete, fadeDelete].forEach((event) => event.classList.toggle("hide"));
     };
-  
-    [openModalDelete, closeModalButtonDelete, fadeDelete, deleteBtnSave].forEach((event) => {
+    console.log(openModalDelete);
+
+    openModalDelete.forEach((event) => {
       event.addEventListener("click", () => toggleModalDelete());
     });
-  
-    // const toggleModalDelete = () => {
-    // [modalDelete, fadeDelete].forEach((event) => event.classList.toggle("hide"));
-    // };
-    // console.log(openModalDelete);
 
-    // [openModalDelete].forEach((event) => {
-    //   event.addEventListener("click", () => toggleModalDelete());
-    // });
-  
-    // [closeModalButtonDelete, fadeDelete, deleteBtnSave, deleteBtnCancel].forEach((event) => {
-    //   event.addEventListener("click", () => modalDeleteContainer.remove());
-    // });
+    [closeModalButtonDelete, fadeDelete, deleteBtnSave, deleteBtnCancel].forEach((event) => {
+      event.addEventListener("click", () => modalDeleteContainer.remove());
+    });
 
-    // container.appendChild(modalDeleteContainer);
-
+    container.appendChild(modalDeleteContainer);
   }
-
-
+  // console.log(deletePosterModal);
 
 
 
@@ -272,26 +320,26 @@ function modalEditPoster(data, newPost) {
       textBox: textBox.value,
       user: user.uid,
       displayName: user.displayName,
-    }; 
+    };
     console.log(data);
-    
+
     // Adicione o novo post ao firestore
     const addDocPromise = addDoc(posterCollection, data);
 
     addDocPromise.then(() => {
-        // Após adicionar o post ao firestore com sucesso, adicione-o ao feed
-        loadPoster();
-        // Limpa conteúdo do modal de publicação
-        locationInput.value = '';
-        textBox.value = '';
-      })
+      // Após adicionar o post ao firestore com sucesso, adicione-o ao feed
+      loadPoster();
+      // Limpa conteúdo do modal de publicação
+      locationInput.value = '';
+      textBox.value = '';
+    })
       .catch(error => {
         console.error('Erro ao adicionar post:', error);
       });
   });
 
   // // Carregando o poster no feed 
-  function loadPoster() { 
+  function loadPoster() {
     publicationPoster.innerHTML = '';
     const posterCollection = collection(db, 'Diário de Viagem');
     const orderPoster = query(posterCollection, orderBy("dataBox", "desc"));
@@ -304,8 +352,8 @@ function modalEditPoster(data, newPost) {
     }).catch((error) => {
       console.error('Erro ao carregar postagens ordenadas:', error);
     });
-  }  
+  }
   loadPoster()
 
-return container;
+  return container;
 };
