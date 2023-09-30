@@ -1,9 +1,11 @@
 import { db } from './firebase-conf';
-import { collection, addDoc } from 'firebase/firestore';
+import { collection, addDoc, updateDoc } from 'firebase/firestore';
+
+const posts = "posts";
 
 // Adicionar dados
 export function publication(data) {
-  addDoc(collection(db, 'Diário de Viagem'), data)
+  addDoc(collection(db, posts), data)
     .then((docRef) => {
       console.log('Documento adicionado com sucesso:', docRef.id);
     })
@@ -12,15 +14,15 @@ export function publication(data) {
     });
 }
 
-// Edita dados
-export function editPoster(posterCollection, newtextBox) {
-  updateDoc(doc(db, "Diário de Viagem", posterCollection), {
-    textBox: newtextBox,
+// Editar dados
+export function editPoster(postId, textBoxEdit) {
+  updateDoc(doc(db, posts, postId), {
+    textBox: textBoxEdit,
   });
-}
+};
 
 //Excluir dados
 export function deletePoster(posterCollection) {
-  deleteDoc(doc(db, "Diário de Viagem", posterCollection));
+  deleteDoc(doc(db, posts, posterCollection));
 }
 

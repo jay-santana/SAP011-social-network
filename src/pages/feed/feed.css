@@ -94,97 +94,93 @@ main {
     opacity: 1;
 }
 
-#poster-container {
+.poster-container {
     width: 80vw;
     height: 20vh;
     margin-top: 20px;
     margin-bottom: 2vh;
     border-radius: 10px;
-    padding: 10px;
+    /* padding: 5px;
+    padding-left: 12px; */
     background: #DB9F8F;
     opacity: 0.9;
     display: flex;
     flex-direction: column;
-    /* 
-    display: grid;
-    grid-template-columns: 20vw 20vw 20vw 20vw; 
-    grid-template-rows: auto;
-    grid-template-areas: 
-      "userPoster userPoster dataBoxPoster dataBoxPoster"
-      "textBoxPoster textBoxPoster textBoxPoster textBoxPoster"
-      "locationPoster locationPoster locationPoster locationPoster"; 
-    */
-    /* border: solid #c54522; */
+    justify-content: center;
+    align-items: center;
+    gap: 0.1rem;
     box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.20);
 }
 
 #poster {
-    width: 100%;
+    width: 73vw;
     display: flex;
-    justify-content: flex-start;
-    padding: 2px;
-    /* 
-    display: grid;
-    grid-column-start: 1;
-    grid-column-end: 2; 
-    */
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 0.3vh;
     /* border: solid #637b02; */
 }
 
 #userPoster {
-    width: 25vw;
-    height: 4vh;
-    padding: 0.2rem;
+    width: 57vw;
+    /* padding: 0.2rem; */
+    display: flex;
+    align-items: center;
+    font-size: 0.9rem;
+    font-weight: 400;
     /* border: solid #55078a; */
 }
 
 #dataBoxPoster {
-    width: 70vw;
-    height: 4vh;
-    padding: 0.1rem;
-    /* 
-    display: grid;
-    justify-self: center;
-    grid-column-start: 2;
-    grid-column-end: 4; 
-    */
+    width: 80vw;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    font-size: 0.8rem;
+    font-weight: 400;
     /* border: solid #9b0543; */
 }
 
-#textPoster-container {
+/* #textPoster-container {
     width: 75vw;
     height: 100vh;
-    /* border: #c24502; */
+    border: #18c202;
+} */
+
+#informsPublication {
+    /* width: 70vw;
+    height: 80vh; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* border: solid #10757d; */
 }
 
 #textBoxPoster {
-    width: 100%;
-    height: 100%;
+    width: 73vw;
+    height: 7vh;
     display: flex;
-    padding: 2px;
+    padding: 2.5vw;
+    margin-bottom: 0.7vh;
     background: #F6E7E3;
-    /* 
-    display: grid;
-    grid-row-start: 1;
-    grid-row-end: 4; 
-    */
+    border-radius: 5px;
     /* border: solid #05649b; */
 }
 
 #locationPoster {
-    width: 35.2vh;
-    height: 4vh;
+    width: 73vw;
+    height: 3.4vh;
     display: flex;
-    padding: 0.2rem;
-    /* 
-    display: grid;
-    grid-column-start: 1;
-    grid-column-end: 4; 
-    */
+    align-items: center;
+    padding: 0.1rem;
+    margin-bottom: 0.3vh;
+    background: #F6E7E3;
+    border-radius: 5px;
     /* border: solid #62059b; */
 }
 
 #container-icons {
+    width: 73vw;
     display: flex;
     justify-content: space-between;
     /* border: solid #9b0543; */
@@ -195,10 +191,22 @@ main {
     /* border: solid #0b7e6b; */
 }
 
-#like {
+.like {
     display: flex;
     justify-content: flex-start;
-    /* border: solid #9b0543; */
+    /* border: solid #05489b; */
+}
+
+#container-likes {
+    width: 11.5vw;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    /* border: solid #059b48; */
+}
+
+#likesCount {
+    font-size: 1.1rem;
 }
 
 #dataPublication {
@@ -238,8 +246,7 @@ footer {
     justify-content: center;
     position: fixed;
     top: 90vh;
-    z-index: 21; 
-    /* para as publicações fiquem por baixo */
+    z-index: 21;
 }
 
 #nav-footer a {
@@ -488,18 +495,68 @@ footer {
 }
 
 #close-modal-delete {
+    height: 2vh;
     display: flex;
     justify-content: flex-end;
     /* border-bottom: 1px solid #ccc; */
     margin-bottom: 0.5rem;
-    padding-bottom: 0.5rem;
+    /* padding-bottom: 0.4rem; */
     position: relative;
     cursor: pointer;
+    /* border: solid #c25a3d; */
 }
 
 .modal-body-delete {
+    width: 80vw;
+    height: 12vh;
     display: flex;
     flex-direction: column;
-    gap: 2vh;
+    align-items: center;
+    justify-content: center;
+    gap: 1vh;
+    /* border: solid #DB9F8F; */
 }
 
+#areaTextBoxDelete {
+    width: 85%;
+    height: 7vh;
+    /* margin-top: -2vh; */
+    border-radius: 0.4rem;
+    background-color: #E6EAEA;
+    display: flex;
+    align-items: center;
+    /* border: solid #0a8c42; */
+}
+
+#textBoxDelete {
+    padding: 0.4rem 0 0.5rem 1rem;
+    /* padding-left: 1rem; */
+}
+
+#publicationDelete {
+    display: flex;
+    column-gap: 5vw;
+    /* border: solid #a14cb8; */
+}
+
+#deleteBtnCancel {
+    width: 30vw;
+    height: 3vh;
+    cursor: pointer;
+    background-color: #E6EAEA;
+    border: none;
+    border-radius: 0.4rem;
+}
+
+#deleteBtnSave { 
+    width: 30vw;
+    height: 3vh;
+    cursor: pointer;
+    background-color: #E6EAEA;
+    border: none;
+    border-radius: 0.4rem
+}
+
+span.material-symbols-outlined.filled {
+    font-variation-settings: 'FILL' 1;
+}

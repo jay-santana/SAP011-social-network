@@ -6,27 +6,29 @@ export default () => {
   const template = `
   <body>
     <main id="register-page">
-      <section id="register-container">
-        <section id="inform-register">
-          <h1>DIÁRIO DE VIAGEM</h1>
-          <section id="welcome">  
-            <h2>Bem-vindo(a)!</h2>
-            <h3>Preencha os dados para cadastrar</h3>
+      <div id="container-register-style"> 
+        <section id="register-container">
+          <section id="inform-register">
+            <h1 id="nameApp">DIÁRIO DE VIAGEM</h1>
+            <section id="welcome">  
+              <h2>Bem-vindo(a)!</h2>
+              <h3>Preencha os dados para cadastrar</h3>
+            </section>
+            <form>
+              <input id="createUserName" type="text" placeholder="Nome de usuário">
+              <p id="createUserNameAlert"></p>
+              <input id="createEmail" type="email" placeholder="E-mail">
+              <p id="createEmailAlert"></p>
+              <input id="createPassword" type="password" placeholder="Senha">
+              <p id="createPasswordAlert"></p> 
+              <input id="confirmPassword" type="password" placeholder="Confirmar senha">
+              <p id="confirmPasswordAlert"></p> 
+              <button id="registerButton"><a href="/#feed">Cadastrar</a></button>
+              <p id="gotologin">Já tem uma conta? <button id="loginBtn"><a href="/#login">Faça login</a></button></p>
+            </form>
           </section>
-          <form>
-            <input id="createUserName" type="text" placeholder="Nome de usuário">
-            <p id="createUserNameAlert"></p>
-            <input id="createEmail" type="email" placeholder="E-mail">
-            <p id="createEmailAlert"></p>
-            <input id="createPassword" type="password" placeholder="Senha">
-            <p id="createPasswordAlert"></p> 
-            <input id="confirmPassword" type="password" placeholder="Confirmar senha">
-            <p id="confirmPasswordAlert"></p> 
-            <button id="registerButton"><a href="/#feed">Cadastrar</a></button>
-            <p id="gotologin">Já tem uma conta? <button id="loginBtn"><a href="/#login">Faça login</a></button></p>
-          </form>
         </section>
-      </section>
+      </div>  
       <section id="developedBy">
         <h4>Desenvolvido por <span id="registerDevOne">Jayanny<a href="https://github.com/jay-santana"></span></a> e <span id="registerDevTwo">Sarah<a href="https://github.com/laosarah"></span></a></h4>
       </section>

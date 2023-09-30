@@ -3,26 +3,26 @@ import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, up
 
 import { auth } from './firebase-conf.js';
 
-//Criação de novos usuários
+// Criação de novos usuários
 export function createUser(createUserName, createEmail, createPassword, confirmPassword) {
-    return createUserWithEmailAndPassword(auth, createEmail, createPassword, confirmPassword).then(() => {
-      updateProfile(auth.currentUser, {
-        displayName: createUserName,
-      }).then(() => {
-        const eventCreate = new CustomEvent('userCreated', { detail: createUserName });
-        window.dispatchEvent(eventCreate);
-        const eventNamePublication = new CustomEvent('userPublication', { detail: createUserName });
-        window.dispatchEvent(eventNamePublication);
-      });
+  return createUserWithEmailAndPassword(auth, createEmail, createPassword, confirmPassword).then(() => {
+    updateProfile(auth.currentUser, {
+      displayName: createUserName,
+    }).then(() => {
+      const eventCreate = new CustomEvent('userCreated', { detail: createUserName });
+      window.dispatchEvent(eventCreate);
+      const eventNamePublication = new CustomEvent('userPublication', { detail: createUserName });
+      window.dispatchEvent(eventNamePublication);
     });
+  });
 }
 
-//Verificar se usuário está logado
+// Verificar se usuário está logado
 export function verifyUserLogged(callback ) {
   onAuthStateChanged(auth, callback);
 }
 
-//Acessar informação do usuários 
+// Acessar informação do usuários 
 export function accessUser() {
   const user = auth.currentUser;
   if (user !== null) {
@@ -33,7 +33,7 @@ export function accessUser() {
   } 
 } 
 
-//Login de usuários existentes
+// Login de usuários existentes
 export function signIn(loginEmail, loginPassword) {
   signInWithEmailAndPassword(auth, loginEmail, loginPassword)
     .then((userCredential) => {
@@ -50,7 +50,7 @@ export function signIn(loginEmail, loginPassword) {
   return signInWithEmailAndPassword(auth, loginEmail, loginPassword);
 }
 
-//Para desconectar um usuário
+// Para desconectar um usuário
 export function signOutBtn() {
   return signOut(auth).then(() => {
   // Sign-out successful.

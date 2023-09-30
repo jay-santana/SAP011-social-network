@@ -90,9 +90,14 @@ main {
     border-radius: 11px;
 }
 
+#createUserName::placeholder, #createEmail::placeholder, #createPassword::placeholder, #confirmPassword::placeholder  {
+    font-size: 17px;
+    padding: 0.4vw;
+}
+
 #registerButton {
-    width: 30vw;
-    height: 4vh;
+    width: 25vw;
+    height: 4.5vh;
     margin-top: 5px;
     background-color: #E6EAEA;
     border: none;
@@ -139,6 +144,8 @@ p {
     color:#0048ff;
 }
 
+
+
 /* Para tablets */
 @media (min-width: 768px) and (max-width: 1024px) {
     main {
@@ -148,10 +155,9 @@ p {
         flex-direction: column;
     }
    
-   
     #register-container {
-        width: 48vw;
-        height: 75vh;
+        width: 55vw;
+        height: 60vh;
         padding: 2vw;
         margin-top: 8vh;
         background: #85B8BC;
@@ -162,15 +168,21 @@ p {
         text-align: center;
     }
 
+    #nameApp {
+        font-size: 2.2rem;
+        margin-top: 3vh;
+    }
+
     #welcome {
-        height: 15vh;
+        height: 8vh;
         display: flex;
         flex-direction: column;
         justify-content: center;
     }
 
     #gotologin {
-        margin-top: 8vh;
+        margin-top: 2.5vh;
+        font-size: 1rem;
     }
     
     #loginBtn a {
@@ -179,7 +191,7 @@ p {
     }
     
     #createUserName, #createEmail, #createPassword, #confirmPassword {
-        width: 90%;
+        width: 80%;
         height: 5vh;
         padding: 2vw;
         margin: 1.2vh 0;
@@ -189,12 +201,28 @@ p {
     }
     
     #registerButton {
-        width: 20vw;
+        width: 15vw;
         height: 4vh;
         margin-top: 3vh;
         background-color: #E6EAEA;
         border: none;
         border-radius: 11px;
+    }
+
+    #createUserName::placeholder, #createEmail::placeholder, #createPassword::placeholder, #confirmPassword::placeholder  {
+        font-size: 17px;
+        padding: 0.4vw;
+    }
+
+    #developedBy {
+        margin-bottom: 18vh;
+        display: flex;
+        align-items: center;
+    } 
+
+    h4 {
+        font-size: 1.4rem;
+        font-weight: 500;
     }
 }
 
@@ -202,7 +230,7 @@ p {
 
 
 
-/* Para telas maiores */
+/* Para telas desktop */
 @media screen and (min-width: 1024px) {
     main {
         width: 100vw;
@@ -220,59 +248,77 @@ p {
     }
 
     #register-container {
-        width: 35vw;
+        width: 32vw;
         height: 80vh;
         padding: 2vw;
-        margin-top: 8vh;
-        margin-left: 49vw;
+        /* margin-top: 8vh;
+        margin-left: 45vw; */
         background: #85B8BC;
         border-radius: 29px;
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
         text-align: center;
+        border: solid #054040;
+    }
+
+    #container-register-style {
+        
+    }
+
+    #nameApp {
+        font-size: 32px;
+        margin-top: 3vh;
     }
 
     #welcome {
-        height: 12vh;
+        height: 14vh;
         display: flex;
         flex-direction: column;
         justify-content: center;
     }
 
     #gotologin {
-        margin-top: 5vh;
+        margin-top: 6vh;
     }
     
     #loginBtn a {
         text-decoration: none;
         color: #0048ff;
+        font-size: 1.2rem;
     }
     
     #createUserName, #createEmail, #createPassword, #confirmPassword {
         width: 90%;
-        height: 3vh;
+        height: 6vh;
         padding: 2vw;
         margin: 1.2vh 0;
         background-color: #E6EAEA;
         border: none;
         border-radius: 11px;
     }
+
+    #createUserName::placeholder, #createEmail::placeholder, #createPassword::placeholder, #confirmPassword::placeholder  {
+        font-size: 18px;
+        padding: 0.4vw;
+    }
     
     #registerButton {
-        width: 20vw;
-        height: 4vh;
+        width: 15vw;
+        height: 4.5vh;
         margin-top: 3vh;
         background-color: #E6EAEA;
         border: none;
         border-radius: 11px;
+        font-size: 1.2rem;
     }
 
     #developedBy {
-        height: 20vh;
-        margin-left: 49vw;
+        height: 10vh;
+        margin-left: 40vw;
         display: flex;
         align-items: center;
+        font-size: rem;
     } 
 
     h1 {
@@ -281,20 +327,20 @@ p {
     }
     
     h2 {
-        font-size: 1.3rem;
+        font-size: 1.5rem;
     }
     
     h3 {
-        font-size: 1rem;
+        font-size: 1.2rem;
     }
 
     h4 {
-        font-size: 1.2rem;
-        font-weight: 400;
+        font-size: 1.4rem;
+        font-weight: 500;
     }
 
     p {
-        font-size: 1rem;
+        font-size: 1.3rem;
         font-weight: 400;
     }
 

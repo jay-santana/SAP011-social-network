@@ -1,11 +1,11 @@
-// Import the functions you need from the SDKs you need
+// Importe as funções necessárias dos SDKs
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from 'firebase/firestore';
-// TODO: Add SDKs for Firebase products that you want to use
+// TODO:  Adicionar SDKs para produtos Firebase que você deseja usar
 // https://firebase.google.com/docs/web/setup#available-libraries
 
-// Your web app's Firebase configuration
+// Configuração do Firebase do seu aplicativo da web
 const firebaseConfig = {
   apiKey: "AIzaSyCjFYQm1nXgXC_NFIbjM2qUFWKBl2HzLyE",
   authDomain: "social-network-c87de.firebaseapp.com",
@@ -15,12 +15,11 @@ const firebaseConfig = {
   appId: "1:721577973977:web:4e3d0bacedc068459986c8"
 };
 
-// Initialize Firebase
+// Inicializar Firebase
 export const app = initializeApp(firebaseConfig);
 
-// Initialize Firebase Authentication and get a reference to the service
+// Inicialize o Firebase Authentication e obtenha uma referência ao serviço
 export const auth = getAuth(app);
 
-// Initialize Firestore
+// Inicializar Firestore
 export const db = getFirestore(app);
-// dataBase não pode ser esse nome, tem que ser db porque é do faristore
