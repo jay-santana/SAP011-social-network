@@ -21,6 +21,29 @@ main {
     align-items: center;
 }
 
+h1 {
+    font-size: 1.5rem;
+    color: #054040;
+}
+
+h2 {
+    font-size: 1.1rem;
+}
+
+h3 {
+    font-size: 0.85rem;
+}
+
+h4 {
+    font-size: 0.87rem;
+    font-weight: 500;
+}
+
+p {
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
 #register-page {
     width: 100vw;
     height: 100vh;
@@ -65,11 +88,6 @@ main {
     opacity: 1;
 } */
 
-#gotologin {
-    margin-top: 5vh;
-    /* color: #191a1a; */
-}
-
 #loginBtn {
     border: none;
     background-color: transparent;
@@ -80,28 +98,36 @@ main {
     color: #0048ff;
 }
 
-#createUserName, #createEmail, #createPassword, #confirmPassword {
+#createUserName,
+#createEmail,
+#createPassword,
+#confirmPassword {
     width: 100%;
     height: 5vh;
-    padding: 5vw;
-    margin: 0.8vh 0;
     background-color: #E6EAEA;
     border: none;
     border-radius: 11px;
+    padding-left: 5vw;
+    margin: 0.8vh 0;
 }
 
-#createUserName::placeholder, #createEmail::placeholder, #createPassword::placeholder, #confirmPassword::placeholder  {
-    font-size: 17px;
-    padding: 0.4vw;
+#createUserName::placeholder,
+#createEmail::placeholder,
+#createPassword::placeholder,
+#confirmPassword::placeholder {
+    font-weight: 500;
 }
 
 #registerButton {
-    width: 25vw;
-    height: 4.5vh;
+    width: 30vw;
+    height: 4vh;
     margin-top: 5px;
     background-color: #E6EAEA;
     border: none;
     border-radius: 11px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: black;
 }
 
 #registerButton a {
@@ -109,42 +135,23 @@ main {
     color: black;
 }
 
-h1 {
-    font-size: 1.5rem;
-    color: #054040;
+#gotologin {
+    margin-top: 8vh;
+    /* color: #191a1a; */
 }
 
-h2 {
-    font-size: 1.1rem;
-}
-
-h3 {
-    font-size: 0.85rem;
-}
-
-h4 {
-    font-size: 0.87rem;
-    font-weight: 500;
-}
-
-p {
-    font-size: 0.8rem;
-    font-weight: 500;
-    /* color: #8f4132; */
-}
-
-#developedBy {
-    height: 10vh;
+#footerContainerRegister {
+    width: 80vw;
+    height: 20vh;
     display: flex;
-    align-items: center;
+    justify-content: center;
+    align-items: flex-end;
 }
 
-#registerDevOne, 
+#registerDevOne,
 #registerDevTwo {
-    color:#0048ff;
+    color: #0048ff;
 }
-
-
 
 /* Para tablets */
 @media (min-width: 768px) and (max-width: 1024px) {
@@ -154,7 +161,12 @@ p {
         display: flex;
         flex-direction: column;
     }
-   
+
+    h4 {
+        font-size: 1.4rem;
+        font-weight: 500;
+    }
+
     #register-container {
         width: 55vw;
         height: 60vh;
@@ -184,13 +196,16 @@ p {
         margin-top: 2.5vh;
         font-size: 1rem;
     }
-    
+
     #loginBtn a {
         text-decoration: none;
         color: #0048ff;
     }
-    
-    #createUserName, #createEmail, #createPassword, #confirmPassword {
+
+    #createUserName,
+    #createEmail,
+    #createPassword,
+    #confirmPassword {
         width: 80%;
         height: 5vh;
         padding: 2vw;
@@ -199,7 +214,7 @@ p {
         border: none;
         border-radius: 11px;
     }
-    
+
     #registerButton {
         width: 15vw;
         height: 4vh;
@@ -209,26 +224,20 @@ p {
         border-radius: 11px;
     }
 
-    #createUserName::placeholder, #createEmail::placeholder, #createPassword::placeholder, #confirmPassword::placeholder  {
+    #createUserName::placeholder,
+    #createEmail::placeholder,
+    #createPassword::placeholder,
+    #confirmPassword::placeholder {
         font-size: 17px;
         padding: 0.4vw;
     }
 
-    #developedBy {
+    #footerContainerRegister {
         margin-bottom: 18vh;
         display: flex;
         align-items: center;
-    } 
-
-    h4 {
-        font-size: 1.4rem;
-        font-weight: 500;
     }
 }
-
-
-
-
 
 /* Para telas desktop */
 @media screen and (min-width: 1024px) {
@@ -238,7 +247,30 @@ p {
         display: flex;
         flex-direction: column;
     }
-    
+
+    h1 {
+        font-size: 1.6rem;
+        color: #054040;
+    }
+
+    h2 {
+        font-size: 1.2rem;
+    }
+
+    h3 {
+        font-size: 1rem;
+    }
+
+    h4 {
+        font-size: 1.1rem;
+        font-weight: 500;
+    }
+
+    p, a {
+        font-size: 1rem;
+        font-weight: 500;
+    }
+
     #register-page {
         background-image: url(../../assets-2/web_login-cadastro.png);
         background-size: cover;
@@ -262,9 +294,7 @@ p {
         border: solid #054040;
     }
 
-    #container-register-style {
-        
-    }
+    #container-register-style {}
 
     #nameApp {
         font-size: 32px;
@@ -281,14 +311,17 @@ p {
     #gotologin {
         margin-top: 6vh;
     }
-    
+
     #loginBtn a {
         text-decoration: none;
         color: #0048ff;
         font-size: 1.2rem;
     }
-    
-    #createUserName, #createEmail, #createPassword, #confirmPassword {
+
+    #createUserName,
+    #createEmail,
+    #createPassword,
+    #confirmPassword {
         width: 90%;
         height: 6vh;
         padding: 2vw;
@@ -298,11 +331,14 @@ p {
         border-radius: 11px;
     }
 
-    #createUserName::placeholder, #createEmail::placeholder, #createPassword::placeholder, #confirmPassword::placeholder  {
+    #createUserName::placeholder,
+    #createEmail::placeholder,
+    #createPassword::placeholder,
+    #confirmPassword::placeholder {
         font-size: 18px;
         padding: 0.4vw;
     }
-    
+
     #registerButton {
         width: 15vw;
         height: 4.5vh;
@@ -313,35 +349,10 @@ p {
         font-size: 1.2rem;
     }
 
-    #developedBy {
+    #footerContainerRegister {
         height: 10vh;
         margin-left: 40vw;
         display: flex;
         align-items: center;
-        font-size: rem;
-    } 
-
-    h1 {
-        font-size: 1.8rem;
-        color: #054040;
     }
-    
-    h2 {
-        font-size: 1.5rem;
-    }
-    
-    h3 {
-        font-size: 1.2rem;
-    }
-
-    h4 {
-        font-size: 1.4rem;
-        font-weight: 500;
-    }
-
-    p {
-        font-size: 1.3rem;
-        font-weight: 400;
-    }
-
 }

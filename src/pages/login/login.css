@@ -39,6 +39,10 @@ p {
   font-weight: 500;
 }
 
+#textApp {
+  display: none;
+}
+
 #welcomeText {
   display: flex;
   flex-direction: column;
@@ -72,6 +76,7 @@ p {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.25);
 }
 
 #loginEmail,
@@ -87,6 +92,7 @@ p {
 
 #loginEmail::placeholder,
 #loginPassword::placeholder {
+  font-size: 0.8rem;
   font-weight: 500;
 }
 
@@ -121,7 +127,7 @@ p {
   width: 5vh;
 }
 
-#footerContainer {
+#footerContainerLogin {
   width: 80vw;
   height: 20vh;
   display: flex;
@@ -189,7 +195,7 @@ p {
     width: 5vh;
   }
 
-  #footerContainer {
+  #footerContainerLogin {
     width: 65vw;
     height: 20vh;
     display: flex;
@@ -200,35 +206,36 @@ p {
 
 /* Para telas maiores */
 @media screen and (min-width: 1024px) {
-  
+
   h1 {
+    font-size: 1.6rem;
+    color: #054040;
+  }
+
+  h2 {
     font-size: 1.2rem;
   }
-  
-  h2 {
-    font-size: 1rem;
-  }
-  
+
   h3 {
-    font-size: 0.8rem;
+    font-size: 1rem;
     font-weight: 500;
   }
-  
+
   h4 {
-    font-size: 0.8rem;
+    font-size: 1.1rem;
   }
-  
-  p {
-    font-size: 0.8rem;
+
+  p, a {
+    font-size: 1rem;
     font-weight: 500;
   }
-  
+
   #welcomeText {
     display: flex;
     flex-direction: column;
     gap: 0.3rem;
   }
-  
+
   #login-page {
     width: 100vw;
     height: 100vh;
@@ -236,38 +243,52 @@ p {
     background-color: #BEE1E5;
     background-image: url(../../assets-2/web_login-cadastro.png);
     background-position: 0% 50%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
   }
 
-#login-container-style {
-  width: 62vw;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
+  #textApp {
+    width: 30vw;
+    height: 50vh;
+    font-size: 1.3rem;
+    margin-left: 5vw;
+    display: flex;
+    align-self: flex-start;
+    justify-self: center;
+    align-items: center;
+    /* border: solid #0048ff; */
+  } 
   
-  /* border: solid blue; */
-}
-  
-  #login-container {
-    width: 25vw;
-    height: 65vh;
-    padding: 3vw;
-    margin-top: 15vh;
+  #login-container-style {
+    width: 37vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* border: solid blue; */
   }
-  
+
+  #login-container {
+    width: 26vw;
+    height: 82vh;
+    padding: 3vw;
+    margin-top: 5vh;
+    gap: 1rem;
+  }
+
   #loginEmail,
   #loginPassword {
     width: 20vw;
     margin: 0.8vh 0;
     padding-left: 1vw;
   }
-  
+
   #loginButton {
     width: 8vw;
   }
-  
-  #footerContainer {
-    width: 25vw;
+
+  #footerContainerLogin {
+    width: 26vw;
     height: 20vh;
     display: flex;
     justify-content: center;

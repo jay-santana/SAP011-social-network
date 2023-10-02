@@ -23,6 +23,19 @@ header {
     z-index: 20;
 }
 
+#ul-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    list-style: none;
+    align-items: center;
+}
+
+.li-header {
+    display: flex;
+    flex-direction: column;
+}
+
 #title {
     display: flex;
     justify-content: center;
@@ -31,7 +44,6 @@ header {
 main {
     width: 100vw;
     height: 100vh;
-    padding-bottom: 5vh;
 }
 
 #about-page {
@@ -50,12 +62,78 @@ main {
 }
 
 #about-container {
-    width: 65vw;
-    height: 8vh;
-    padding: 10vw;
-    /* display: flex;
-    justify-content: center;
-    align-items: center; */
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 3vh;
+}
+
+#textInform {
+    width: 80vw;
+    height: 42vh;
+    background-color: #85B8BC;
+    font-size: 0.9rem;
+    font-weight: 400;
+    text-align: justify;
+    border-radius: 15px;
+    padding: 1.5rem;
+    margin-top: 10vh;
+    display: flex;
+    align-items: center;
+}
+
+#containerInforms {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin-top: 5vh;
+    gap: 5vh;
+}
+
+#titleDev {
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+#containerDevs {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#devOne,
+#devTwo {
+    width: 30vw;
+    height: 16vh;
+    background-color: #85B8BC;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+    padding-top: 0.5rem;
+}
+
+#containerDevOne,
+#containerDevTwo {
+    display: flex;
+    gap: 0.5rem;
+}
+
+#faceIconOne,
+#faceIconTwo {
+    font-size: 2.5rem;
+}
+
+.textName {
+    font-size: 1rem;
+}
+
+.imgIcons {
+    width: 7vw;
+    height: 5vh;
 }
 
 #ul-header {
@@ -71,15 +149,17 @@ main {
     flex-direction: column;
 }
 
-#btnLogoutMobile {
+#logoutMobileBtn {
     border: none;
     background-color: transparent;
+    font-size: 0.9rem;
+    font-weight: 700;
 }
 
 footer {
     width: 100vw;
     height: 10vh;
-    background-color: #69A7A9 ;
+    background-color: #69A7A9;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -100,6 +180,8 @@ footer {
     justify-content: space-around;
     list-style: none;
     text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 700;
 }
 
 #li-footer {
@@ -111,5 +193,179 @@ footer {
 #btnTopMobile {
     border: none;
     background-color: transparent;
+    font-size: 0.9rem;
+    font-weight: 700;
 }
 
+/* Para tablets */
+@media (min-width: 768px) and (max-width: 1024px) {
+
+    #title {
+        font-size: 2.2rem;
+    }
+
+    #textInform {
+        width: 70vw;
+        height: 48vh;
+        font-size: 1.5rem;
+    }
+
+    #containerInforms {
+        margin-top: 4vh;
+        gap: 4vh;
+    }
+
+    #titleDev {
+        font-size: 1.6rem;
+    }
+
+    #containerDevs {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    #devOne,
+    #devTwo {
+        width: 22vw;
+        height: 17vh;
+        gap: 0.5rem;
+        padding-top: 1rem;
+    }
+
+    #containerDevOne,
+    #containerDevTwo {
+        gap: 1rem;
+    }
+
+    #faceIconOne,
+    #faceIconTwo {
+        font-size: 3.6rem;
+    }
+
+    .textName {
+        font-size: 1.5rem;
+    }
+
+    .imgIcons {
+        width: 4vw;
+        height: 4vh;
+    }
+
+    #logoutMobileBtn {
+        font-size: 1.1rem;
+        font-weight: 600;
+    }
+
+    #nav-footer a {
+        font-size: 1.2rem;
+        font-weight: 600;
+    }
+
+    #ul-footer {
+        font-size: 1.1rem;
+        font-weight: 600;
+    }
+
+    #btnTopMobile {
+        font-size: 1.1rem;
+        font-weight: 600;
+    }
+
+
+    #logoutHeaderOne,
+    #homeFooterOne,
+    #infoFooterOne,
+    #arrowUpFooterOne {
+        font-size: 2.3rem;
+        font-weight: 600;
+    }
+}
+
+/* Para telas maiores */
+@media screen and (min-width: 1024px) {
+
+    header {
+        height: 12vh;
+    }
+    
+    #title {
+        font-size: 2rem;   
+    }
+
+    #about-page {
+        width: 100vw;
+        height: 100vh;
+        background-image: url(../../assets-2/web_bg-telas.png);
+        background-size: cover;
+        background-position: 0% 45%;
+    }
+
+    #about-container {
+        margin-top: 10vh;
+    }
+
+    #textInform {
+        width: 42vw;
+        height: 37vh;
+        font-size: 1.1rem;
+    }
+
+    #containerInforms {
+        margin-top: 5vh;
+        gap: 5vh;
+    }
+
+    #titleDev {
+        font-size: 1.5rem;
+    }
+
+    #containerDevs {
+        gap: 2rem;
+    }
+
+    #devOne,
+    #devTwo {
+        width: 10vw;
+        height: 20vh;
+        gap: 0.4rem;
+        padding-top: 1rem;
+    }
+
+    #containerDevOne,
+    #containerDevTwo {
+        gap: 0rem;
+    }
+
+    #faceIconOne,
+    #faceIconTwo {
+        font-size: 3rem;
+    }
+
+    .textName {
+        font-size: 1.3rem;
+    }
+
+    .imgIcons {
+        width: 2.5vw;
+        height: 4vh;
+    }
+
+    #logoutMobileBtn {
+        font-size: 0.9rem;
+    }
+
+    #nav-footer a {
+        font-size: 0.9rem;
+    }
+
+    #btnTopMobile {
+        font-size: 0.9rem;
+    }
+
+    #logoutHeaderOne,
+    #homeFooterOne,
+    #infoFooterOne,
+    #arrowUpFooterOne {
+        font-size: 1.6rem;
+    }
+}

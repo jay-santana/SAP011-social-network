@@ -23,6 +23,19 @@ header {
     z-index: 20;
 }
 
+#ul-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    list-style: none;
+    align-items: center;
+}
+
+.li-header {
+    display: flex;
+    flex-direction: column;
+}
+
 #title {
     display: flex;
     justify-content: center;
@@ -31,7 +44,6 @@ header {
 main {
     width: 100vw;
     height: 100vh;
-    padding-bottom: 5vh;
 }
 
 #feed-page {
@@ -54,32 +66,32 @@ main {
     justify-content: center;
     align-items: center;
     padding: 1vw;
-    margin-top: 9vh;
+    margin-top: 12vh;
 }
 
 #open-publication {
     width: 70vw;
     height: 7vh;
     padding: 3vw;
-    border-radius: 0.5rem;
+    border-radius: 0.3rem;
     background: #E6EAEA;
     box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.20);
 }
 
-#publicationPoster {
+/* #publicationPoster {
     width: 100%;
     height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-bottom: 5vh;
-}
+} */
 
-#feed-container{
-    width: 80vw; 
-    height: 13vh; 
+#feed-container {
+    width: 80vw;
+    height: 13vh;
     margin-top: 2vh;
-    border-radius: 0.4rem;
+    border-radius: 0.3rem;
     background-color: #85B8BC;
     display: flex;
     justify-content: center;
@@ -99,7 +111,7 @@ main {
     height: 20vh;
     margin-top: 20px;
     margin-bottom: 2vh;
-    border-radius: 10px;
+    border-radius: 0.3rem;
     /* padding: 5px;
     padding-left: 12px; */
     background: #DB9F8F;
@@ -123,11 +135,11 @@ main {
 
 #userPoster {
     width: 57vw;
-    /* padding: 0.2rem; */
+    padding: 0.2rem;
     display: flex;
     align-items: center;
     font-size: 0.9rem;
-    font-weight: 400;
+    font-weight: 600;
     /* border: solid #55078a; */
 }
 
@@ -137,7 +149,7 @@ main {
     align-items: center;
     justify-content: flex-end;
     font-size: 0.8rem;
-    font-weight: 400;
+    font-weight: 500;
     /* border: solid #9b0543; */
 }
 
@@ -163,7 +175,9 @@ main {
     padding: 2.5vw;
     margin-bottom: 0.7vh;
     background: #F6E7E3;
-    border-radius: 5px;
+    border-radius: 0.3rem;
+    font-size: 0.9rem;
+    font-weight: 400;
     /* border: solid #05649b; */
 }
 
@@ -175,7 +189,9 @@ main {
     padding: 0.1rem;
     margin-bottom: 0.3vh;
     background: #F6E7E3;
-    border-radius: 5px;
+    border-radius: 0.3rem;
+    font-size: 0.9rem;
+    font-weight: 400;
     /* border: solid #62059b; */
 }
 
@@ -219,28 +235,17 @@ main {
     width: 26vw;
 }
 
-#ul-header {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    list-style: none;
-    align-items: center;
-}
-
-#li-header {
-    display: flex;
-    flex-direction: column;
-}
-
 #logoutMobileBtn {
     border: none;
     background-color: transparent;
+    font-size: 0.9rem;
+    font-weight: 700;
 }
 
 footer {
     width: 100vw;
     height: 10vh;
-    background-color: #69A7A9 ;
+    background-color: #69A7A9;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -260,6 +265,8 @@ footer {
     justify-content: space-around;
     list-style: none;
     text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 700;
 }
 
 #li-footer {
@@ -271,14 +278,17 @@ footer {
 #btnTopMobile {
     border: none;
     background-color: transparent;
+    font-size: 0.9rem;
+    font-weight: 700;
 }
 
-#fade, #modal {
+#fade,
+#modal {
     transition: .5s;
     opacity: 1;
     pointer-events: all;
 }
-  
+
 #fade {
     position: fixed;
     top: 0;
@@ -288,9 +298,9 @@ footer {
     background-color: rgba(0, 0, 0, 0.6);
     z-index: 5;
 }
-  
+
 #modal {
-    position: fixed; 
+    position: fixed;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
@@ -298,19 +308,20 @@ footer {
     z-index: 10;
     width: 500px;
     max-width: 90%;
-    padding: 1.2rem;
+    padding: 1.2rem 1.5rem;
     border-radius: 0.5rem;
-    box-shadow: 3px 3px 8px 0px rgba(0, 0, 0, 0.25);    ;
+    box-shadow: 3px 3px 8px 0px rgba(0, 0, 0, 0.25);
+    ;
 }
 
-#modal.hide, 
+#modal.hide,
 #fade.hide {
-  opacity: 0;
-  pointer-events: none;
+    opacity: 0;
+    pointer-events: none;
 }
 
 #modal.hide {
-  top:0;
+    top: 0;
 }
 
 #close-modal {
@@ -328,42 +339,51 @@ footer {
     align-items: center;
     gap: 3vw;
     position: absolute;
-    bottom: 22vh;
+    bottom: 21vh;
+    font-size: 1rem;
+    font-weight: 500;
 }
 
 .modal-body {
     display: flex;
     flex-direction: column;
-    gap: 2vh;
+    gap: 0.7rem;
 }
 
 #location {
     display: flex;
     align-items: center;
-    gap: 3vw;
+    gap: 2vw;
 }
 
 #textBox {
-    width: 80vw;
+    width: 77vw;
     height: 7vh;
     padding: 2vw;
     background-color: #E6EAEA;
     border: none;
-    border-radius: 0.4rem;
+    border-radius: 0.2rem;
+    font-size: 1rem;
+    font-weight: 400;
 }
 
-#textBox::placeholder, #locationInput::placeholder{
+#textBox::placeholder,
+#locationInput::placeholder {
     display: flex;
     text-align: left;
+    font-size: 0.9rem;
+    font-weight: 400;
 }
 
 #locationInput {
     width: 60vw;
-    height: 3vh;
+    height: 3.5vh;
     padding: 2vw;
     background-color: #E6EAEA;
     border: none;
-    border-radius: 0.4rem;
+    border-radius: 0.2rem;
+    font-size: 0.9rem;
+    font-weight: 400;
 }
 
 #publication {
@@ -372,13 +392,36 @@ footer {
 }
 
 #publicationBtn {
-    width: 30vw;
+    width: 25vw;
     height: 3vh;
     cursor: pointer;
     background-color: #E6EAEA;
     border: none;
-    border-radius: 0.4rem;
+    border-radius: 0.2rem;
+    font-size: 0.8rem;
+    font-weight: 600;
 }
+
+#close-modal,
+#iconLocationPublication {
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+#iconUserPublication {
+    font-size: 2rem;
+    font-weight: 500;
+}
+
+
+/* #containerEdit {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 5vh;
+} */
 
 .edit {
     cursor: pointer;
@@ -388,7 +431,8 @@ footer {
     opacity: 0.8;
 }
 
-#fadeEdit, #modalEdit {
+#fadeEdit,
+#modalEdit {
     transition: .5s;
     opacity: 1;
     pointer-events: all;
@@ -413,38 +457,116 @@ footer {
     z-index: 10;
     width: 500px;
     max-width: 90%;
-    padding: 1.2rem;
+    padding: 1.2rem 1.5rem;
     border-radius: 0.5rem;
-    box-shadow: 3px 3px 8px 0px rgba(0, 0, 0, 0.25);    ;
+    box-shadow: 3px 3px 8px 0px rgba(0, 0, 0, 0.25);
 }
 
 #modalEdit.hide,
 #fadeEdit.hide {
-  opacity: 0;
-  pointer-events: none;
+    opacity: 0;
+    pointer-events: none;
 }
 
 #modalEdit.hide {
-  top:0;
+    top: 0;
 }
 
-#close-modal-edit {
+.modal-header-edit {
+    width: 77vw;
     display: flex;
-    justify-content: flex-end;
-    /* border-bottom: 1px solid #ccc; */
-    margin-bottom: 0.5rem;
+    justify-content: space-between;
+    align-items: center;
     padding-bottom: 0.5rem;
-    position: relative;
+    /* border: solid #637b02; */
+}
+
+#userPublicationEdit {
+    width: 57vw;
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+    font-weight: 600;
+    gap: 0.4rem; 
+    /* border: solid #55078a; */
+}
+
+#closeEdit {
+    width: 8vw;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    font-size: 0.8rem;
+    font-weight: 500;
     cursor: pointer;
+    /* border: solid #9b0543; */
 }
 
 .modal-body-edit {
     display: flex;
     flex-direction: column;
-    gap: 2vh;
+    gap: 0.7rem;
+    /* border: solid red; */
 }
 
+#textBoxEdit {
+    width: 75vw;
+    height: 7vh;
+    padding: 2vw;
+    background-color: #E6EAEA;
+    border: none;
+    border-radius: 0.2rem;
+}
 
+#textBoxEdit::placeholder,
+#locationInputEdit::placeholder {
+    display: flex;
+    text-align: left;
+}
+
+#locationEdit {
+    display: flex;
+    align-items: center;
+    gap: 2vw;
+}
+
+#locationInputEdit {
+    width: 60vw;
+    height: 3.5vh;
+    padding: 2vw;
+    background-color: #E6EAEA;
+    border: none;
+    border-radius: 0.2rem;
+}
+
+#publicationEdit {
+    display: flex;
+    justify-content: center;
+    gap: 3vw;
+}
+
+#editBtnCancel,
+#editBtnSave {
+    width: 22vw;
+    height: 3vh;
+    cursor: pointer;
+    background-color: #E6EAEA;
+    border: none;
+    border-radius: 0.2rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+#close-modal-edit,
+#iconLocationEdit {
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+#iconUserEdit {
+    font-size: 2rem;
+    font-weight: 500;
+}
 
 .delete {
     cursor: pointer;
@@ -454,7 +576,8 @@ footer {
     opacity: 0.8;
 }
 
-#fadeDelete, #modalDelete {
+#fadeDelete,
+#modalDelete {
     transition: .5s;
     opacity: 1;
     pointer-events: all;
@@ -481,17 +604,17 @@ footer {
     max-width: 90%;
     padding: 1.2rem;
     border-radius: 0.5rem;
-    box-shadow: 3px 3px 8px 0px rgba(0, 0, 0, 0.25);    ;
+    box-shadow: 3px 3px 8px 0px rgba(0, 0, 0, 0.25);
 }
 
 #modalDelete.hide,
 #fadeDelete.hide {
-  opacity: 0;
-  pointer-events: none;
+    opacity: 0;
+    pointer-events: none;
 }
 
 #modalDelete.hide {
-  top:0;
+    top: 0;
 }
 
 #close-modal-delete {
@@ -548,7 +671,7 @@ footer {
     border-radius: 0.4rem;
 }
 
-#deleteBtnSave { 
+#deleteBtnSave {
     width: 30vw;
     height: 3vh;
     cursor: pointer;
@@ -560,3 +683,227 @@ footer {
 span.material-symbols-outlined.filled {
     font-variation-settings: 'FILL' 1;
 }
+
+/* Para tablets */
+@media (min-width: 768px) and (max-width: 1024px) {
+
+    #title {
+        font-size: 2.2rem;
+    }
+
+    #logoutMobileBtn {
+        font-size: 1.1rem;
+        font-weight: 600;
+    }
+
+    #nav-footer a {
+        font-size: 1.2rem;
+        font-weight: 600;
+    }
+
+    #ul-footer {
+        font-size: 1.1rem;
+        font-weight: 600;
+    }
+
+    #btnTopMobile {
+        font-size: 1.1rem;
+        font-weight: 600;
+    }
+
+    #logoutHeaderTwo,
+    #homeFooterTwo,
+    #infoFooterTwo,
+    #arrowUpFooterTwo {
+        font-size: 2.3rem;
+        font-weight: 600;
+    }
+
+    .modal-body-edit {
+        gap: 1.2rem;
+    }
+
+    #modalEdit {
+        padding: 1.2rem 2rem;
+    }
+
+    .modal-header-edit {
+        width: 57vw;
+        padding-bottom: 0.5rem;
+        /* border: solid #637b02; */
+    }
+    
+    #userPublicationEdit {
+        width: 57vw;
+        font-size: 1.4rem;
+        padding: 0.1rem;
+        /* border: solid #55078a; */
+    }
+    
+    #closeEdit {
+        width: 5vw;
+        /* border: solid #9b0543; */
+    }
+    
+    .modal-body-edit {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        /* border: solid red; */
+    }
+
+    #textBoxEdit {
+        width: 56vw;
+        font-size: 1.3rem;
+        font-weight: 400;
+    }
+
+    #locationEdit {
+        gap: 2vw;
+    }
+
+    #locationInputEdit {
+        width: 45vw;
+        height: 3.5vh;
+        font-size: 1.2rem;
+        font-weight: 400;
+    }
+
+    #publicationEdit {
+        display: flex;
+        justify-content: center;
+        gap: 2vw;
+    }
+
+    #editBtnCancel,
+    #editBtnSave {
+        width: 16vw;
+        font-size: 1.2rem;
+        font-weight: 600;
+    }
+
+    #close-modal-edit,
+    #iconLocationEdit {
+        font-size: 2.1rem;
+        font-weight: 500;
+    }
+
+    #iconUserEdit {
+        font-size: 2.8rem;
+        font-weight: 500;
+    }
+}
+
+/* Para telas maiores */
+@media screen and (min-width: 1024px) {
+
+    header {
+        height: 12vh;
+    }
+
+    #title {
+        font-size: 2rem;
+    }
+
+    #logoutMobileBtn {
+        font-size: 0.9rem;
+    }
+
+    #nav-footer a {
+        font-size: 0.9rem;
+    }
+
+    #btnTopMobile {
+        font-size: 0.9rem;
+    }
+
+    #logoutHeaderOne,
+    #homeFooterOne,
+    #infoFooterOne,
+    #arrowUpFooterOne {
+        font-size: 1.6rem;
+    }
+
+    .modal-body-edit {
+        gap: 1rem;
+    }
+
+    #modalEdit {
+        padding: 1.2rem 2rem;
+    }
+
+    .modal-header-edit {
+        width: 32vw;
+        border: solid #637b02;
+    }
+    
+    #userPublicationEdit {
+        font-size: 1.2rem;
+        border: solid #55078a;
+    }
+    
+    #closeEdit {
+        width: 4vw;
+        border: solid #9b0543;
+    }
+    
+    #textBoxEdit {
+        width: 32vw;
+        height: 12vh;
+        font-size: 1.2rem;
+        padding: 0.7rem;
+    }
+
+    #locationEdit {
+        gap: 0.8rem;
+    }
+
+    #locationInputEdit {
+        width: 25vw;
+        height: 5vh;
+        font-size: 1.1rem;
+        padding: 0.7rem;
+    }
+
+    #publicationEdit {
+        gap: 1vw;
+    }
+
+    #editBtnCancel,
+    #editBtnSave {
+        width: 8vw;
+        height: 4vh;
+        font-size: 1rem;
+        font-weight: 600;
+    }
+
+    #close-modal-edit,
+    #iconLocationEdit {
+        font-size: 1.7rem;
+        font-weight: 500;
+    }
+
+    #iconUserEdit {
+        font-size: 2.5rem;
+        font-weight: 500;
+    }
+
+    #iconLocationFeed,
+    #iconEditFeed,
+    #iconDeleteFeed,
+    #iconLikeFeed {
+        font-size: 1.5rem;
+        font-weight: 500;
+    }
+
+    #userPoster {
+        font-size: 2.2rem;
+        font-weight: 500;
+    }
+}
+
+/* Para Tvs*/
+/* @media (min-width: 1920px) {
+
+   
+} */

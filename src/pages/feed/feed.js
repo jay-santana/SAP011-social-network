@@ -13,11 +13,11 @@ export default () => {
     <header id="menu-header">
       <nav id="nav-header">
         <ul id="ul-header">
-          <li id="li-header">
+          <li class="li-header">
             <h1 id="title">Diário de Viagem</h1>
           </li>
-          <li id="li-header">
-            <span id="logout" class="material-symbols-outlined">logout</span><button id="logoutMobileBtn">Sair</button>
+          <li class="li-header">
+            <span id="logoutHeaderTwo" class="material-symbols-outlined">logout</span><button id="logoutMobileBtn">Sair</button>
           </li>
         </ul>
       </nav>
@@ -31,17 +31,17 @@ export default () => {
     <section id="fade" class="hide"></section>
     <section id="modal" class="hide">
       <span class="modal-header">
-        <span class="material-symbols-outlined" id="close-modal">disabled_by_default</span>
+        <span id="close-modal" class="material-symbols-outlined">disabled_by_default</span>
       </span>
       <span class="modal-body">
         <div id="userPublication">
-          <span class="material-symbols-outlined">account_circle</span><label id="userNamePublication">${auth.currentUser.displayName}</label>
+          <span id="iconUserPublication" class="material-symbols-outlined">account_circle</span><label id="userNamePublication">${auth.currentUser.displayName}</label>
         </div>
         <div>
           <textarea id="textBox" type="text" placeholder="Digite aqui seu texto"></textarea>
         </div>
         <div id="location">
-          <span class="material-symbols-outlined">location_on</span><input id="locationInput" type="text" placeholder="Localização">
+          <span id="iconLocationPublication" class="material-symbols-outlined">location_on</span><input id="locationInput" type="text" placeholder="Localização">
         </div>
         <div id="publication">
           <button id="publicationBtn">Publicar</button>
@@ -53,13 +53,13 @@ export default () => {
       <nav id="nav-footer">
         <ul id="ul-footer">
           <li id="li-footer">
-            <span class="material-symbols-outlined">home</span><a href="/#feed">Feed</a>
+            <span id="homeFooterTwo" class="material-symbols-outlined">home</span><a href="/#feed">Feed</a>
           </li>
           <li id="li-footer">
-            <span class="material-symbols-outlined">info</span><a href="/#sobre">Sobre</a>
+            <span id="infoFooterTwo"class="material-symbols-outlined">info</span><a href="/#sobre">Sobre</a>
           </li>
           <li id="li-footer">
-            <span class="material-symbols-outlined">keyboard_double_arrow_up</span><button id="btnTopMobile">Topo</button>
+            <span id="arrowUpFooterTwo" class="material-symbols-outlined">keyboard_double_arrow_up</span><button id="btnTopMobile">Topo</button>
           </li>
         </ul>
       </nav>
@@ -106,19 +106,21 @@ export default () => {
     const templateEdit = `
     <section id="containerEdit">
       <section id="fadeEdit" class="hide"></section>
-      <section id="modalEdit">
-        <span class="modal-header-edit">
-          <span class="material-symbols-outlined" id="close-modal-edit">disabled_by_default</span>
-        </span>
-        <span class="modal-body-edit">
+      <section id="modalEdit" class="hide">
+        <section class="modal-header-edit">
           <div id="userPublicationEdit">
-            <span class="material-symbols-outlined">account_circle</span><label id="userNamePublication">${auth.currentUser.displayName}</label>
+            <span id="iconUserEdit" class="material-symbols-outlined">account_circle</span><label id="userNamePublication">${auth.currentUser.displayName}</label>
           </div>
+          <div id="closeEdit">
+            <span id="close-modal-edit" class="material-symbols-outlined">disabled_by_default</span>
+          </div>
+        </section>
+        <span class="modal-body-edit">
           <div>
             <textarea id="textBoxEdit" type="text">${data.textBox}</textarea>
           </div>
-          <div id="location">
-            <span class="material-symbols-outlined">location_on</span><input id="locationInputEdit" type="text" value="${data.locationInput}">
+          <div id="locationEdit">
+            <span id="iconLocationEdit"class="material-symbols-outlined">location_on</span><input id="locationInputEdit" type="text" value="${data.locationInput}">
           </div>
           <div id="publicationEdit">
             <button id="editBtnCancel">Cancelar</button>
@@ -171,21 +173,20 @@ export default () => {
   
       // Recarregue o feed para refletir as alterações
       loadPoster();
-  
+
       // Feche o modal de edição
       toggleModalEdit();
-    })
-    
+    }) 
   }
 
   // Criando a estrutura do post que vai aparecer no feed 
   function addPoster(data) {
     console.log('addPoster');
-    const formattedDate = data.dataBox.toDate().toLocaleString();
+    const formattedDate = data.dataBox.toDate().toLocaleString('pt-br');
     const templatePoster = `
     <section id="_${data.postId}" class="poster-container">
       <div id="poster">
-        <span class="material-symbols-outlined">account_circle</span><label id="userPoster">${data.displayName}</label>
+        <span id="userPoster" class="material-symbols-outlined">account_circle</span><label>${data.displayName}</label>
         <span id="dataBoxPoster">${formattedDate}</span>
       </div>
       <div id="informsPublication">
@@ -193,17 +194,17 @@ export default () => {
           <span id="textBoxPoster">${data.textBox}</span>
         </div>
         <div id="locationPoster">
-          <span class="material-symbols-outlined">location_on</span><span id="locationInputPoster">${data.locationInput}</span>
+          <span id="iconLocationFeed" class="material-symbols-outlined">location_on</span><span id="locationInputPoster">${data.locationInput}</span>
         </div>
       </div>  
       <div id="container-icons">
         <div id="container-likes">
-          <span class="like material-symbols-outlined" data-postId="${data.postId}">favorite</span>
+          <span id= "iconLikeFeed" class="like material-symbols-outlined" data-postId="${data.postId}">favorite</span>
           <p id="likesCount">${data.likes.length}</p>
         </div>  
         <div id="edit-delete">
-          ${data.user === auth.currentUser.uid ? `<span class="material-symbols-outlined edit" data-postId="${data.postId}">edit_square</span>` : ''}
-          ${data.user === auth.currentUser.uid ? `<span class="material-symbols-outlined delete" data-postId="${data.postId}">delete</span>` : ''}
+          ${data.user === auth.currentUser.uid ? `<span id="iconEditFeed" class="material-symbols-outlined edit" data-postId="${data.postId}">edit_square</span>` : ''}
+          ${data.user === auth.currentUser.uid ? `<span id="iconDeleteFeed" class="material-symbols-outlined delete" data-postId="${data.postId}">delete</span>` : ''}
         </div>
       </div> 
     </section>
@@ -219,7 +220,7 @@ export default () => {
     const templateDelete = `
     <section id="containerDelete">
       <section id="fadeDelete" class="hide"></section>
-      <section id="modalDelete">
+      <section id="modalDelete" class="hide">
         <span class="modal-header-delete">
           <span class="material-symbols-outlined" id="close-modal-delete">disabled_by_default</span>
         </span>

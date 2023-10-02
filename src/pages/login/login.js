@@ -6,7 +6,10 @@ export default () => {
   const template = `
   <body>
   <main id="login-page">
-      <div id=login-container-style>
+      <h3 id=textApp>Registre sensações, compartilhe 
+      experiências e eterniza momentos 
+      das suas viagens com a gente!</h3>
+      <div id="login-container-style">
         <section id="login-container">
           <h1>DIÁRIO DE VIAGEM</h1>
           <h3>Registre sensações, compartilhe 
@@ -32,7 +35,7 @@ export default () => {
             <p>Não tem uma conta? <button id="registerBtn"><a href="/#cadastro">Cadastre-se</a></button></p>
           </section> 
         </section>
-        <section id="footerContainer">
+        <section id="footerContainerLogin">
           <h4 id="footerInformation">Desenvolvido por <span id="loginDevOne">Jayanny<a href="https://github.com/jay-santana"></span></a> e <span id="loginDevTwo">Sarah<a href="https://github.com/laosarah"></span></a></h4>
         </section>
       </div>

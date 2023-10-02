@@ -29,7 +29,7 @@ export default () => {
           </section>
         </section>
       </div>  
-      <section id="developedBy">
+      <section id="footerContainerRegister">
         <h4>Desenvolvido por <span id="registerDevOne">Jayanny<a href="https://github.com/jay-santana"></span></a> e <span id="registerDevTwo">Sarah<a href="https://github.com/laosarah"></span></a></h4>
       </section>
     </main>
