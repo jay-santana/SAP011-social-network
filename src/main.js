@@ -21,9 +21,9 @@ function verifyHash() {
           main.appendChild(feed());
         } else {
           main.appendChild(login());
-          window.location.hash = '#login'
+          window.location.hash = '#login';
         }
-      })
+      });
       break;
     case '#sobre':
       main.appendChild(sobre());

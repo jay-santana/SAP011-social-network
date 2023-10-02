@@ -1,13 +1,23 @@
-import { db, auth } from '../../firebase-conf.js';
+import {
+  collection,
+  doc,
+  addDoc,
+  getDocs,
+  query,
+  orderBy,
+  updateDoc,
+  Timestamp,
+  getDoc,
+  deleteDoc,
+} from 'firebase/firestore';
 import { signOutBtn, accessUser } from '../../firebase-auth.js';
-import { editPoster, deletePoster } from '../../firebase-store.js';
-import { collection, doc, addDoc, getDocs, query, orderBy, updateDoc, Timestamp, getDoc, deleteDoc } from 'firebase/firestore';
-import { async } from 'regenerator-runtime';
+// import { editPoster, deletePoster } from '../../firebase-store.js';
+// import { async } from 'regenerator-runtime';
+import { db, auth } from '../../firebase-conf.js';
 
-const posts = "posts";
+const posts = 'posts';
 export default () => {
   const container = document.createElement('div');
-
   const template = `
   <body>
     <header id="menu-header">
@@ -67,39 +77,33 @@ export default () => {
   </body>
   `;
   container.innerHTML = template;
-
-  const displayName = container.querySelector('#displayName');
   const logoutMobileBtn = container.querySelector('#logoutMobileBtn');
   const openModal = container.querySelector('#feed-container');
   const closeModalButton = container.querySelector('#close-modal');
   const modal = container.querySelector('#modal');
   const fade = container.querySelector('#fade');
   const publicationBtn = container.querySelector('#publicationBtn');
-  const dataBox = container.querySelector('#dataBox');
   const locationInput = container.querySelector('#locationInput');
   const textBox = container.querySelector('#textBox');
   const publicationPoster = container.querySelector('#publicationPoster');
   const user = accessUser();
-
-  // Botão de sair 
-  logoutMobileBtn.addEventListener('click', function (event) {
+  // Botão de sair
+  logoutMobileBtn.addEventListener('click', (event) => {
     event.preventDefault();
     signOutBtn().then(() => {
       window.location.hash = '#login';
     }).catch((error) => {
+      console.log(error);
     });
-  })
-
+  });
   // Modal para escrever as informações da publicação
   const toggleModal = () => {
-    [modal, fade].forEach((event) => event.classList.toggle("hide"));
+    [modal, fade].forEach((event) => event.classList.toggle('hide'));
   };
-
   [openModal, closeModalButton, fade, publicationBtn].forEach((event) => {
-    event.addEventListener("click", () => toggleModal());
+    event.addEventListener('click', () => toggleModal());
   });
-
-  //Função Editar
+  // Função Editar
   function modalEditPoster(data, postId) {
     console.log(data);
     const modalEditContainer = document.createElement('div');
@@ -131,55 +135,44 @@ export default () => {
     </section>
     `;
     modalEditContainer.innerHTML = templateEdit;
-
     const openModalEdit = container.querySelector('.edit');
     const closeModalButtonEdit = modalEditContainer.querySelector('#close-modal-edit');
     const modalEdit = modalEditContainer.querySelector('#modalEdit');
     const fadeEdit = modalEditContainer.querySelector('#fadeEdit');
     const editBtnSave = modalEditContainer.querySelector('#editBtnSave');
     const editBtnCancel = modalEditContainer.querySelector('#editBtnCancel'); // Modal para editar as informações da publicação
-
     const toggleModalEdit = () => {
-      [modalEdit, fadeEdit].forEach((event) => event.classList.toggle("hide"));
+      [modalEdit, fadeEdit].forEach((event) => event.classList.toggle('hide'));
     };
     console.log(openModalEdit);
-
     [openModalEdit].forEach((event) => {
-      event.addEventListener("click", () => toggleModalEdit());
+      event.addEventListener('click', () => toggleModalEdit());
     });
-
     [closeModalButtonEdit, fadeEdit, editBtnSave, editBtnCancel].forEach((event) => {
-      event.addEventListener("click", () => modalEditContainer.remove());
+      event.addEventListener('click', () => modalEditContainer.remove());
     });
-
     container.appendChild(modalEditContainer);
-
-    // Botão editar 
-    editBtnSave.addEventListener('click', function (event) {
+    // Botão editar
+    editBtnSave.addEventListener('click', (event) => {
       event.preventDefault();
-    
       // Obtenha os valores dos campos de edição
       const textBoxEditValue = modalEditContainer.querySelector('#textBoxEdit').value;
       const locationInputEditValue = modalEditContainer.querySelector('#locationInputEdit').value;
       const postIdSave = editBtnSave.dataset.postid; // Obtenha o postId da publicação a ser editada
-
       // Use updateDoc para atualizar os dados no Firestore
-      const docRef = doc(db, posts, postIdSave)
+      const docRef = doc(db, posts, postIdSave);
       updateDoc(docRef, {
         textBox: textBoxEditValue,
         locationInput: locationInputEditValue,
       });
       console.log('Publicação editada com sucesso');
-  
       // Recarregue o feed para refletir as alterações
       loadPoster();
-
       // Feche o modal de edição
       toggleModalEdit();
-    }) 
+    });
   }
-
-  // Criando a estrutura do post que vai aparecer no feed 
+  // Criando a estrutura do post que vai aparecer no feed
   function addPoster(data) {
     console.log('addPoster');
     const formattedDate = data.dataBox.toDate().toLocaleString('pt-br');
@@ -211,11 +204,9 @@ export default () => {
     `;
     publicationPoster.innerHTML += templatePoster;
   }
-
-
-  // Modal Excluir publicação 
+  // Modal Excluir publicação
   function deletePosterModal(postId) {
-    console.log("postId: ", postId);
+    console.log('postId: ', postId);
     const modalDeleteContainer = document.createElement('div');
     const templateDelete = `
     <section id="containerDelete">
@@ -237,56 +228,42 @@ export default () => {
     </section>
     `;
     modalDeleteContainer.innerHTML = templateDelete;
-
     const openModalDelete = container.querySelectorAll('.delete');
     const closeModalButtonDelete = modalDeleteContainer.querySelector('#close-modal-delete');
     const modalDelete = modalDeleteContainer.querySelector('#modalDelete');
     const fadeDelete = modalDeleteContainer.querySelector('#fadeDelete');
     const deleteBtnSave = modalDeleteContainer.querySelector('#deleteBtnSave');
     const deleteBtnCancel = modalDeleteContainer.querySelector('#deleteBtnCancel'); // Modal para excluir as informações da publicação
-
     const toggleModalDelete = () => {
-      [modalDelete, fadeDelete].forEach((event) => event.classList.toggle("hide"));
+      [modalDelete, fadeDelete].forEach((event) => event.classList.toggle('hide'));
     };
     console.log(openModalDelete);
-
     openModalDelete.forEach((event) => {
-      event.addEventListener("click", () => toggleModalDelete());
+      event.addEventListener('click', () => toggleModalDelete());
     });
-
     [closeModalButtonDelete, fadeDelete, deleteBtnSave, deleteBtnCancel].forEach((event) => {
-      event.addEventListener("click", () => modalDeleteContainer.remove());
+      event.addEventListener('click', () => modalDeleteContainer.remove());
     });
-
     container.appendChild(modalDeleteContainer);
-
-
-    // Botão Salvar Modal Delete 
-    deleteBtnSave.addEventListener('click', async function (event) {
+    // Botão Salvar Modal Delete
+    deleteBtnSave.addEventListener('click', async (event) => {
       event.preventDefault();
-    
-      // Obtenha o postId da publicação a ser excluida 
-      const postIdDelete = deleteBtnSave.dataset.postid; 
+      // Obtenha o postId da publicação a ser excluida
+      const postIdDelete = deleteBtnSave.dataset.postid;
       console.log(postIdDelete);
-
       // Use updateDoc para atualizar os dados no Firestore
       await deleteDoc(doc(db, posts, postIdDelete));
-        console.log(deleteDoc);
-        console.log('Publicação excluida com sucesso');
-    
-        // Recarregue o feed para refletir as alterações
-        loadPoster();
-    
-        // Feche o modal Delete 
-        toggleModalDelete();
-    })
+      console.log(deleteDoc);
+      console.log('Publicação excluida com sucesso');
+      // Recarregue o feed para refletir as alterações
+      loadPoster();
+      // Feche o modal Delete
+      toggleModalDelete();
+    });
   }
-  
-
   const posterCollection = collection(db, posts);
-
-  //Adicionar dados ao Cloud Firestore
-  publicationBtn.addEventListener('click', function (event) {
+  // Adicionar dados ao Cloud Firestore
+  publicationBtn.addEventListener('click', (event) => {
     event.preventDefault();
     const data = {
       dataBox: Timestamp.now(), // Use serverTimestamp para obter a data e hora atual do servidor
@@ -297,10 +274,8 @@ export default () => {
       likes: [],
     };
     console.log(data);
-
     // Adicione o novo post ao firestore
     const addDocPromise = addDoc(posterCollection, data);
-
     addDocPromise.then(() => {
       // Após adicionar o post ao firestore com sucesso, adicione-o ao feed
       loadPoster();
@@ -308,113 +283,96 @@ export default () => {
       locationInput.value = '';
       textBox.value = '';
     })
-      .catch(error => {
+      .catch((error) => {
         console.error('Erro ao adicionar post:', error);
       });
   });
-
   // Adicionar função para dar like nos posts
-  function attachLikeOnPosts() {
+  async function attachLikeOnPosts() {
     const likeButtons = container.querySelectorAll('.like');
-    console.log("recuperando os botões para dar like", likeButtons);
-
-    let atualizarLike = async (btn, likes = undefined) => {
-      if (likes == undefined) {
-        const docRef = doc(db, posts, btn.dataset.postid);
-        const docSnap = await getDoc(docRef);
-        likes = docSnap.data().likes;
-      }
-
-      console.log("atualizarLike: ", btn, likes);
+    console.log('recuperando os botões para dar like', likeButtons);
+    const atualizarLike = async (btn) => {
+      const docRef = doc(db, posts, btn.dataset.postid);
+      const docSnap = await getDoc(docRef);
+      const likes = docSnap.data().likes || [];
+      console.log('atualizarLike: ', btn, likes);
       if (likes.length > 0) {
-        btn.classList.add("filled");
+        btn.classList.add('filled');
       } else {
-        btn.classList.remove("filled");
+        btn.classList.remove('filled');
       }
     };
-
     likeButtons.forEach((likeButton) => {
       atualizarLike(likeButton);
-      likeButton.addEventListener('click', async function (event) {
+      likeButton.addEventListener('click', async (event) => {
         event.preventDefault();
-        console.log("clique botão");
-        let uid = auth.currentUser.uid;
+        console.log('clique botão');
+        const uid = auth.currentUser.uid;
         console.log(uid);
         const docRef = doc(db, posts, likeButton.dataset.postid);
         const docSnap = await getDoc(docRef);
-        let likes = docSnap.data().likes;
-        console.log("Like button: ", likes);
-        if (likes.length > 0 && likes.includes(uid)) {
-          likes = likes.filter(o => o != uid);
+        const likes = docSnap.data().likes || [];
+        if (likes.includes(uid)) {
+          const updatedLikes = likes.filter((o) => o !== uid);
+          await updateDoc(docRef, { likes: updatedLikes });
         } else {
           likes.push(uid);
+          await updateDoc(docRef, { likes });
         }
-        updateDoc(docRef, {
-          likes: likes
-        });
-        atualizarLike(likeButton, likes);
+        atualizarLike(likeButton);
         loadPoster();
       });
     });
   }
-
   // Adicionar função para editar posts
   function attachEditOnPosts() {
     // Icone Editar - dentro da função addPoster
-    const editButtons = container.querySelectorAll(`.edit`);
-    console.log("recuperando os botões de editar", editButtons);
-    
+    const editButtons = container.querySelectorAll('.edit');
+    console.log('recuperando os botões de editar', editButtons);
     editButtons.forEach((editButton) => {
-      editButton.addEventListener('click', async function (event) {
+      editButton.addEventListener('click', async (event) => {
         event.preventDefault();
-        console.log("Edit button clicked");
-
+        console.log('Edit button clicked');
         const docRef = doc(db, posts, editButton.dataset.postid);
         const docSnap = await getDoc(docRef);
         console.log(editButton.dataset.postid);
-        
         // Verifica se o usuário logado é o mesmo que criou a publicação
         if (docSnap.exists() && docSnap.data().user === auth.currentUser.uid) {
           modalEditPoster(docSnap.data(), editButton.dataset.postid, 'textBoxEdit');
-          console.log("Usuário pode editar esta publicação");
+          console.log('Usuário pode editar esta publicação');
         } else {
-          console.log("Usuário não pode editar esta publicação");
+          console.log('Usuário não pode editar esta publicação');
         }
-      });   
-    }); 
+      });
+    });
   }
-
   // Adicionar função para excluir posts
-  function  attachDeleteOnPosts() {
+  function attachDeleteOnPosts() {
     const deleteButtons = container.querySelectorAll('.delete');
-    console.log("recuperando os botões de delete");
-
+    console.log('recuperando os botões de delete');
     deleteButtons.forEach((deleteButton) => {
-      deleteButton.addEventListener('click', async function (event) {
+      deleteButton.addEventListener('click', async (event) => {
         event.preventDefault();
-        // Teste para descobrir o erro no elemento 
+        // Teste para descobrir o erro no elemento
         // debugger;
         // const docRef = doc(db, posts, deleteButton.dataset.postId);
         const docRef = doc(db, posts, deleteButton.dataset.postid);
         console.log(deleteButton.dataset.postid);
         const docSnap = await getDoc(docRef);
-        
         // Verifica se o usuário logado é o mesmo que criou a publicação
         if (docSnap.exists() && docSnap.data().user === auth.currentUser.uid) {
-          console.log("Usuário pode excluir esta publicação");
+          console.log('Usuário pode excluir esta publicação');
           deletePosterModal(deleteButton.dataset.postid);
         } else {
-          console.log("Usuário não pode excluir esta publicação");
+          console.log('Usuário não pode excluir esta publicação');
         }
       });
     });
   }
-
-  // Carregando o poster no feed 
+  // Carregando o poster no feed
   function loadPoster() {
     publicationPoster.innerHTML = '';
-    const posterCollection = collection(db, posts);
-    const orderPoster = query(posterCollection, orderBy("dataBox", "desc"));
+    const orderPoster = query(posterCollection, orderBy('dataBox', 'desc'));
     getDocs(orderPoster).then((querySnapshot) => {
       querySnapshot.forEach((doc) => {
         const postData = doc.data();
@@ -428,7 +386,6 @@ export default () => {
       console.error('Erro ao carregar postagens ordenadas:', error);
     });
   }
-  loadPoster()
-
+  loadPoster();
   return container;
 };

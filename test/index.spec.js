@@ -1,41 +1,74 @@
-// importamos la funcion que vamos a testear
-// import { default } from '../src/pages/cadastro/index.js';
-import { init } from '../src/index.js';
+import { createUser, signIn, loginGoogle } from '../src/firebase-auth.js';
 
-// describe('default', () => {
-//   it('is a function', () => {
-//     expect(typeof default).toBe('function');
-//   });
-// });
+// Informando para o jest a biblioteca 
+jest.mock('firebase/auth');
+jest.mock('firebase/firestore');
 
-describe('init', () => {
+const createUserForm = [
+  {
+    name: 'Maria',
+    email: 'maria@email.com',
+    password: '123456',
+    confirmPassword: '123456',
+  },
+];
+const loginUserGoogle = [
+  {
+    email: 'maria@gmail.com',
+    password: '654321',
+  },
+];
+// Teste Cadastro de Usuário 
+describe('createUser', () => {
   it('is a function', () => {
-    expect(typeof init).toBe('function');
+    expect(typeof createUser).toBe('function');
+  });
+  it('É esperado que o input do nome receba um nome valido', () => {
+    createUser.mockResolvedValue();
+    expect(createUser(createUserForm, 'name')).toStrictEqual([{
+      name: 'Maria', email: 'maria@email.com', password: '123456', confirmPassword: '123456',
+    }]);
+  });
+  it('É esperado que o input do email receba um email valido', () => {
+    expect(createUser(createUserForm, 'email')).toStrictEqual([{
+      name: 'Maria', email: 'maria@email.com', password: '123456', confirmPassword: '123456',
+    }]);
+  });
+  it('É esperado que o input de senha receba uma senha valida', () => {
+    expect(createUser(createUserForm, 'password')).toStrictEqual([{
+      name: 'Maria', email: 'maria@email.com', password: '123456', confirmPassword: '123456',
+    }]);
+  });
+  it('É esperado que o input de confirmação de senha receba o mesmo valor do input de senha', () => {
+    expect(createUser(createUserForm, 'confirmPassword')).toStrictEqual([{
+      name: 'Maria', email: 'maria@email.com', password: '123456', confirmPassword: '123456',
+    }]);
   });
 });
-
-
-// variavel abrirFechar = exemplos de locais 
-
-// ex1 = localLogin;
-// ex2 = localCadastro;
-// ex3 = localFeed;
-// ex4 = localSobre; 
-// ex5 = localDefault
-
-// testando mudança no hash - local 
-
-// teste login: 
-// é esperado que quando clique em login seja ex1 
-
-// teste cadastro: 
-// é esperado que quando clique em cadastro seja ex2
-
-// teste feed: 
-// é esperado que quando clique em feed seja ex3 
-
-// teste sobre: 
-// é esperado que quando clique em sobre seja ex4 
-
-// teste default: 
-// é esperado que quando clique em ' ' seja ex5 
+// Teste Login de Usuário 
+describe('signIn', () => {
+  it('is a function', () => {
+    expect(typeof signIn).toBe('function');
+  });
+  it('É esperado que o usuário cadastrado consiga logar com o mesmo email cadastrado', () => {
+    expect(signIn(createUserForm, 'maria@email.com')).toStrictEqual([{
+      name: 'Maria', email: 'maria@email.com', password: '123456', confirmPassword: '123456',
+    }]);
+  });
+  it('É esperado que o usuário cadastrado consiga logar com a mesma senha cadastrada', () => {
+    expect(signIn(createUserForm, '123456')).toStrictEqual([{
+      name: 'Maria', email: 'maria@email.com', password: '123456', confirmPassword: '123456',
+    }]);
+  });
+});
+// Teste Login de Usuário com Google
+describe('loginGoogle', () => {
+  it('is a function', () => {
+    expect(typeof loginGoogle).toBe('function');
+  });
+  it('É esperado que o usuário consiga logar com uma conta google', () => {
+    expect(loginGoogle(loginUserGoogle, 'maria@gmail.com')).toStrictEqual([{
+      name: 'Maria', email: 'maria@email.com', password: '123456', confirmPassword: '123456',
+    }]);
+  });
+  });

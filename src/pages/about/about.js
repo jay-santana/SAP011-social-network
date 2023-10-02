@@ -1,4 +1,4 @@
-import { signOutBtn } from "../../firebase-auth.js";
+import { signOutBtn } from '../../firebase-auth.js';
 
 export default () => {
   const container = document.createElement('div');
@@ -71,14 +71,13 @@ export default () => {
 
   const logoutMobileBtn = container.querySelector('#logoutMobileBtn');
 
-  logoutMobileBtn.addEventListener('click', function(event) {
+  logoutMobileBtn.addEventListener('click', (event) => {
     event.preventDefault();
-  
     signOutBtn().then(() => {
       window.location.hash = '#login';
-      }).catch((error) => {
-      });
-  })
-
+    }).catch((error) => {
+      console.log(error);
+    });
+  });
   return container;
 };

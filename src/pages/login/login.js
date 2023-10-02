@@ -1,4 +1,4 @@
-import { signIn } from "../../firebase-auth.js"
+import { signIn, loginGoogle } from '../../firebase-auth.js';
 
 export default () => {
   const container = document.createElement('div');
@@ -47,44 +47,57 @@ export default () => {
   const loginEmail = container.querySelector('#loginEmail');
   const loginPassword = container.querySelector('#loginPassword');
   const loginButton = container.querySelector('#loginButton');
+  const googleIconBtn = container.querySelector('#googleIcon');
 
-  loginButton.addEventListener('click', function(event) {
+  loginButton.addEventListener('click', (event) => {
     event.preventDefault();
-    if(loginEmail.value === '') {
-      container.querySelector('#loginEmailAlert').innerHTML = 'E-mail obrigatório'
-    } 
-    if(loginPassword.value === '') {
-      container.querySelector('#loginPasswordAlert').innerHTML = 'Senha obrigatória'
+    if (loginEmail.value === '') {
+      container.querySelector('#loginEmailAlert').innerHTML = 'E-mail obrigatório';
+    }
+    if (loginPassword.value === '') {
+      container.querySelector('#loginPasswordAlert').innerHTML = 'Senha obrigatória';
     } else {
-    signIn(loginEmail.value, loginPassword.value)
-    .then((userCredential) => { 
-      window.location.hash = "#feed";
-      const user = userCredential.user;
-    }) 
-    .catch((error) => {
-      console.log(error);
-      const errorCode = error.code;
-      const errorMessage = error.message;
-     
-      if (errorCode === 'auth/user-not-found') {
-        container.querySelector('#loginEmailAlert').textContent = 'E-mail não cadastrado!'
-      }
-      if (errorCode === 'auth/email-already-in-use') {
-        container.querySelector('#loginEmailAlert').textContent = 'E-mail já cadastrado!'
-      }
-      if (errorCode === 'auth/wrong-password') {
-        container.querySelector('#loginEmailAlert').textContent = 'Senha incorreta!'
-      }
-    });
-    } 
+      signIn(loginEmail.value, loginPassword.value)
+        .then((userCredential) => {
+          window.location.hash = '#feed';
+          const user = userCredential.user;
+          console.log(user);
+        })
+        .catch((error) => {
+          console.log(error);
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          console.log(errorMessage);
+          if (errorCode === 'auth/user-not-found') {
+            container.querySelector('#loginEmailAlert').textContent = 'E-mail não cadastrado!';
+          }
+          if (errorCode === 'auth/email-already-in-use') {
+            container.querySelector('#loginEmailAlert').textContent = 'E-mail já cadastrado!';
+          }
+          if (errorCode === 'auth/wrong-password') {
+            container.querySelector('#loginEmailAlert').textContent = 'Senha incorreta!';
+          }
+        });
+    }
+  });
+  googleIconBtn.addEventListener('click', (event) => {
+    event.preventDefault();
+    loginGoogle()
+      .then((result) => {
+        // The signed-in user info.
+        window.location.hash = '#feed';
+        const user = result.user;
+        console.log(user);
+      }).catch((error) => {
+        // Handle Errors here.
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // The email of the user's account used.
+        const email = error.customData.email;
+        // The AuthCredential type that was used.
+        // const credential = GoogleAuthProvider.credentialFromError(error);
+        console.log(errorCode, errorMessage, email);
+      });
   });
   return container;
 };
-  
-     //Import function signIn
-     //Executar a função 
-     //Repassar e-mail e senha (firebase)
-
-  // container.querySelector(#idDoInput); exemplo de como vai ficar mais ou menos
-  // manipulação de dom 
-  // click de botão  

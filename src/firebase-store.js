@@ -1,7 +1,13 @@
+import {
+  collection,
+  addDoc,
+  updateDoc,
+  doc,
+  deleteDoc,
+} from 'firebase/firestore';
 import { db } from './firebase-conf';
-import { collection, addDoc, updateDoc } from 'firebase/firestore';
 
-const posts = "posts";
+const posts = 'posts';
 
 // Adicionar dados
 export function publication(data) {
@@ -19,10 +25,9 @@ export function editPoster(postId, textBoxEdit) {
   updateDoc(doc(db, posts, postId), {
     textBox: textBoxEdit,
   });
-};
+}
 
-//Excluir dados
+// Excluir dados
 export function deletePoster(posterCollection) {
   deleteDoc(doc(db, posts, posterCollection));
 }
-
