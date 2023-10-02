@@ -87,7 +87,7 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 5vh;
+    margin-bottom: 10vh;
 }
 
 #feed-container {
@@ -103,6 +103,7 @@ main {
     opacity: 0.9;
     box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.20);
     position: relative;
+    /* border: solid #9b0543; */
 }
 
 #feed-container:hover {
@@ -115,8 +116,6 @@ main {
     margin-top: 20px;
     margin-bottom: 2vh;
     border-radius: 0.3rem;
-    /* padding: 5px;
-    padding-left: 12px; */
     background: #DB9F8F;
     opacity: 0.9;
     display: flex;
@@ -129,30 +128,32 @@ main {
 }
 
 #poster {
-    width: 74vw;
+    width: 75vw;
     display: flex;
-    justify-content: center;
-    align-items: center;
     margin-top: 0.5vh;
     margin-bottom: 0.5vh;
     /* border: solid #637b02; */
 }
 
+
 #userPoster {
-    width: 45%;
-    padding: 0.1rem;
+    width: 8%;
     display: flex;
-    align-items: center;
-    font-size: 0.9rem;
-    font-weight: 600;
+    font-size: 1.1rem;
     /* border: solid #55078a; */
 }
 
-#dataBoxPoster {
-    width: 55%;
+#userName {
+    width: 42%;
+    font-size: 0.9rem;
     display: flex;
-    align-items: center;
-    justify-content: flex-end;
+    /* border: solid #9b0543; */
+}
+
+
+#dataBoxPoster {
+    width: 50%;
+    display: flex;
     font-size: 0.8rem;
     font-weight: 500;
     /* border: solid #9b0543; */
@@ -868,7 +869,7 @@ span.material-symbols-outlined.filled {
         display: flex;
         flex-direction: column;
         align-items: center;
-        /* border: solid #053664; */
+        border: solid #053664;
     }
 
     .poster-container {
@@ -1113,9 +1114,9 @@ span.material-symbols-outlined.filled {
         font-weight: 500;
     }
 
-    #userPoster {
+    /* #userPoster {
         font-size: 2.2rem;
         font-weight: 500;
-    }
+    } */
 }
 

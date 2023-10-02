@@ -106,7 +106,7 @@ export default () => {
     const templateEdit = `
     <section id="containerEdit">
       <section id="fadeEdit" class="hide"></section>
-      <section id="modalEdit" class="hide">
+      <section id="modalEdit">
         <section class="modal-header-edit">
           <div id="userPublicationEdit">
             <span id="iconUserEdit" class="material-symbols-outlined">account_circle</span><label id="userNamePublication">${auth.currentUser.displayName}</label>
@@ -186,7 +186,7 @@ export default () => {
     const templatePoster = `
     <section id="_${data.postId}" class="poster-container">
       <div id="poster">
-        <span id="userPoster" class="material-symbols-outlined">account_circle</span><label>${data.displayName}</label>
+        <span id="userPoster" class="material-symbols-outlined">account_circle</span><label id="userName">${data.displayName}</label>
         <span id="dataBoxPoster">${formattedDate}</span>
       </div>
       <div id="informsPublication">
@@ -203,8 +203,8 @@ export default () => {
           <p id="likesCount">${data.likes.length}</p>
         </div>  
         <div id="edit-delete">
-          ${data.user === auth.currentUser.uid ? `<span id="iconEditFeed" class="material-symbols-outlined edit" data-postId="${data.postId}">edit_square</span>` : ''}
-          ${data.user === auth.currentUser.uid ? `<span id="iconDeleteFeed" class="material-symbols-outlined delete" data-postId="${data.postId}">delete</span>` : ''}
+          ${data.user === auth.currentUser.uid ? `<span class="material-symbols-outlined edit" data-postId="${data.postId}">edit_square</span>` : ''}
+          ${data.user === auth.currentUser.uid ? `<span class="material-symbols-outlined delete" data-postId="${data.postId}">delete</span>` : ''}
         </div>
       </div> 
     </section>
@@ -220,7 +220,7 @@ export default () => {
     const templateDelete = `
     <section id="containerDelete">
       <section id="fadeDelete" class="hide"></section>
-      <section id="modalDelete" class="hide">
+      <section id="modalDelete">
         <span class="modal-header-delete">
           <span class="material-symbols-outlined" id="close-modal-delete">disabled_by_default</span>
         </span>
