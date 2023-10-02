@@ -284,8 +284,8 @@ footer {
 /* Para telas maiores */
 @media screen and (min-width: 1024px) {
 
-    header {
-        height: 12vh;
+    header, footer {
+        display: none;
     }
     
     #title {
@@ -294,7 +294,7 @@ footer {
 
     #about-page {
         width: 100vw;
-        height: 100vh;
+        height: 100%;
         background-image: url(../../assets-2/web_bg-telas.png);
         background-size: cover;
         background-position: 0% 45%;

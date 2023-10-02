@@ -57,36 +57,46 @@ p {
 
 #register-container {
     width: 80vw;
-    height: 70vh;
+    height: 65vh;
     padding: 10vw;
-    margin-top: 5vh;
+    margin-top: -10vh;
     background: #85B8BC;
     border-radius: 29px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     text-align: center;
-    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.25);
+    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.30);
+    /* border: solid #7e0660; */
+}
+
+#gotologin {
+    margin-top: 5vh;
+    /* color: #191a1a; */
+}
+
+#container-register-style {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: static;
+    /* border: solid #054040; */
+}
+
+#nameApp {
+    font-size: 1.4rem;
+    margin-top: 1vh;
 }
 
 #welcome {
-    height: 15vh;
+    height: 10vh;
+    margin-top: 2vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
-
-/* #inform-register {
-    width: 80vw;
-    height: 60vh;
-    padding: 5vh;
-    background: #85B8BC;
-    border-radius: 20px;
-    display: flex;
-    text-align: center;
-    display: inline-block;
-    opacity: 1;
-} */
 
 #loginBtn {
     border: none;
@@ -103,25 +113,26 @@ p {
 #createPassword,
 #confirmPassword {
     width: 100%;
-    height: 5vh;
+    height: 4vh;
+    padding: 5vw;
+    margin: 1vh 0 ;
     background-color: #E6EAEA;
     border: none;
-    border-radius: 11px;
-    padding-left: 5vw;
-    margin: 0.8vh 0;
+    border-radius: 10px;
 }
 
-#createUserName::placeholder,
-#createEmail::placeholder,
-#createPassword::placeholder,
-#confirmPassword::placeholder {
-    font-weight: 500;
+#createUserName::placeholder, 
+#createEmail::placeholder, 
+#createPassword::placeholder, 
+#confirmPassword::placeholder  {
+    font-size: 0.8rem;
+    padding: 0.4vw;
 }
 
 #registerButton {
-    width: 30vw;
+    width: 25vw;
     height: 4vh;
-    margin-top: 5px;
+    margin-top: 15px;
     background-color: #E6EAEA;
     border: none;
     border-radius: 11px;
@@ -141,10 +152,8 @@ p {
 }
 
 #footerContainerRegister {
-    width: 80vw;
-    height: 20vh;
+    height: 10vh;
     display: flex;
-    justify-content: center;
     align-items: flex-end;
 }
 
@@ -168,45 +177,55 @@ p {
     }
 
     #register-container {
-        width: 55vw;
-        height: 60vh;
+        width: 60vw;
+        height: 65vh;
         padding: 2vw;
-        margin-top: 8vh;
         background: #85B8BC;
         border-radius: 29px;
         display: flex;
         flex-direction: column;
-        justify-content: flex-start;
         text-align: center;
     }
 
     #nameApp {
-        font-size: 2.2rem;
+        font-size: 2.5rem;
         margin-top: 3vh;
     }
 
     #welcome {
-        height: 8vh;
+        height: 10vh;
         display: flex;
         flex-direction: column;
         justify-content: center;
     }
 
-    #gotologin {
-        margin-top: 2.5vh;
-        font-size: 1rem;
+    #welcome > h2 {
+        font-size: 1.8rem;
+        font-weight: 400;
     }
 
-    #loginBtn a {
+    #welcome > h3 {
+        font-size: 1.2rem;
+        font-weight: 400;
+    }
+
+    #gotologin {
+        margin-top: 3vh;
+        font-size: 1.3rem;
+        font-weight: 400;
+    }
+    
+    #loginBtn > a {
         text-decoration: none;
         color: #0048ff;
+        font-size: 1.3rem;
     }
-
-    #createUserName,
-    #createEmail,
-    #createPassword,
+    
+    #createUserName, 
+    #createEmail, 
+    #createPassword, 
     #confirmPassword {
-        width: 80%;
+        width: 82%;
         height: 5vh;
         padding: 2vw;
         margin: 1.2vh 0;
@@ -215,6 +234,14 @@ p {
         border-radius: 11px;
     }
 
+    #createUserName::placeholder, 
+    #createEmail::placeholder, 
+    #createPassword::placeholder, 
+    #confirmPassword::placeholder  {
+        font-size: 1.4rem;
+        padding: 1vw;
+    }
+    
     #registerButton {
         width: 15vw;
         height: 4vh;
@@ -224,18 +251,15 @@ p {
         border-radius: 11px;
     }
 
-    #createUserName::placeholder,
-    #createEmail::placeholder,
-    #createPassword::placeholder,
-    #confirmPassword::placeholder {
-        font-size: 17px;
-        padding: 0.4vw;
+    #footerContainerRegister {
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
     }
 
-    #footerContainerRegister {
-        margin-bottom: 18vh;
-        display: flex;
-        align-items: center;
+    h4 {
+        font-size: 1.4rem;
+        font-weight: 500;
     }
 }
 
@@ -280,36 +304,43 @@ p {
     }
 
     #register-container {
-        width: 32vw;
-        height: 80vh;
-        padding: 2vw;
-        /* margin-top: 8vh;
-        margin-left: 45vw; */
+        width: 34vw;
+        height: 82vh;
+        padding: 1vw;
+        margin-top: 5vh;
+        margin-left: 45vw;
         background: #85B8BC;
         border-radius: 29px;
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
         text-align: center;
-        border: solid #054040;
+        opacity: 0.9;
+        /* border: solid #054040; */
     }
 
-    #container-register-style {}
+    #container-register-style {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        /* border: solid #054040; */
+    }
 
     #nameApp {
-        font-size: 32px;
-        margin-top: 3vh;
+        font-size: 2.2rem;
+        margin-top: 4vh;
     }
 
     #welcome {
-        height: 14vh;
+        height: 13vh;
+        margin-top: 3vh;
         display: flex;
         flex-direction: column;
         justify-content: center;
     }
 
     #gotologin {
-        margin-top: 6vh;
+        margin-top: 5vh;
     }
 
     #loginBtn a {
@@ -324,35 +355,59 @@ p {
     #confirmPassword {
         width: 90%;
         height: 6vh;
-        padding: 2vw;
-        margin: 1.2vh 0;
+        padding: 1vw;
+        margin: 1.5vh 0;
         background-color: #E6EAEA;
         border: none;
         border-radius: 11px;
     }
 
-    #createUserName::placeholder,
-    #createEmail::placeholder,
-    #createPassword::placeholder,
-    #confirmPassword::placeholder {
-        font-size: 18px;
+    #createUserName::placeholder, 
+    #createEmail::placeholder, 
+    #createPassword::placeholder, 
+    #confirmPassword::placeholder  {
+        font-size: 1rem;
         padding: 0.4vw;
     }
 
     #registerButton {
         width: 15vw;
         height: 4.5vh;
-        margin-top: 3vh;
+        margin-top: 5vh;
         background-color: #E6EAEA;
         border: none;
         border-radius: 11px;
-        font-size: 1.2rem;
+        font-size: 1.3rem;
+        font-weight: 400;
     }
 
     #footerContainerRegister {
-        height: 10vh;
+        margin-top: 3vh;
         margin-left: 40vw;
         display: flex;
         align-items: center;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+        color: #054040;
+    }
+    
+    h2 {
+        font-size: 1.5rem;
+    }
+    
+    h3 {
+        font-size: 1.2rem;
+    }
+
+    h4 {
+        font-size: 1.4rem;
+        font-weight: 400;
+    }
+
+    p {
+        font-size: 1.3rem;
+        font-weight: 400;
     }
 }
