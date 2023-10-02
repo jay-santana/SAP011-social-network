@@ -21,6 +21,7 @@ header {
     justify-content: center;
     position: fixed;
     z-index: 20;
+    color: #054040;
 }
 
 #title {
@@ -55,6 +56,8 @@ main {
     align-items: center;
     padding: 1vw;
     margin-top: 9vh;
+    color: #054040;
+    font-size: 1.3rem;
 }
 
 #open-publication {
@@ -96,7 +99,7 @@ main {
 
 .poster-container {
     width: 80vw;
-    height: 20vh;
+    height: 100%;
     margin-top: 20px;
     margin-bottom: 2vh;
     border-radius: 10px;
@@ -110,20 +113,22 @@ main {
     align-items: center;
     gap: 0.1rem;
     box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.20);
+    /* border: solid #054040; */
 }
 
 #poster {
-    width: 73vw;
+    width: 74vw;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 0.3vh;
+    margin-top: 0.5vh;
+    margin-bottom: 0.5vh;
     /* border: solid #637b02; */
 }
 
 #userPoster {
-    width: 57vw;
-    /* padding: 0.2rem; */
+    width: 45%;
+    padding: 0.1rem;
     display: flex;
     align-items: center;
     font-size: 0.9rem;
@@ -132,7 +137,7 @@ main {
 }
 
 #dataBoxPoster {
-    width: 80vw;
+    width: 55%;
     display: flex;
     align-items: center;
     justify-content: flex-end;
@@ -141,15 +146,7 @@ main {
     /* border: solid #9b0543; */
 }
 
-/* #textPoster-container {
-    width: 75vw;
-    height: 100vh;
-    border: #18c202;
-} */
-
 #informsPublication {
-    /* width: 70vw;
-    height: 80vh; */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -158,10 +155,10 @@ main {
 
 #textBoxPoster {
     width: 73vw;
-    height: 7vh;
+    height: 100%;
     display: flex;
     padding: 2.5vw;
-    margin-bottom: 0.7vh;
+    margin-bottom: 1vh;
     background: #F6E7E3;
     border-radius: 5px;
     /* border: solid #05649b; */
@@ -169,18 +166,24 @@ main {
 
 #locationPoster {
     width: 73vw;
-    height: 3.4vh;
+    height: 3vh;
     display: flex;
     align-items: center;
     padding: 0.1rem;
-    margin-bottom: 0.3vh;
+    margin-top: 0.5vh;
+    margin-bottom: 0.5vh;
     background: #F6E7E3;
     border-radius: 5px;
     /* border: solid #62059b; */
 }
 
+#locationInputPoster {
+    font-size: 0.9rem;
+}
+
 #container-icons {
     width: 73vw;
+    margin-bottom: 0.3vh;
     display: flex;
     justify-content: space-between;
     /* border: solid #9b0543; */
@@ -235,6 +238,7 @@ main {
 #logoutMobileBtn {
     border: none;
     background-color: transparent;
+    color: #054040;
 }
 
 footer {
@@ -266,11 +270,19 @@ footer {
     display: flex;
     flex-direction: column;
     align-items: center;
+    color: #054040;
+}
+
+#li-footer > a {
+    color: #032e2e;
+    font-weight: 400;
 }
 
 #btnTopMobile {
     border: none;
     background-color: transparent;
+    color: #032e2e;
+    font-weight: 600;
 }
 
 #fade, #modal {
@@ -560,3 +572,234 @@ footer {
 span.material-symbols-outlined.filled {
     font-variation-settings: 'FILL' 1;
 }
+
+
+/* Para tablets */
+@media (min-width: 768px) and (max-width: 1024px) {
+
+}
+
+
+
+/* Para telas desktop */
+@media screen and (min-width: 1024px) {
+
+    #displayName {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        padding: 1vw;
+        margin-top: 5vh;
+        /* margin-right: 25vw; */
+        position: relative;
+        font-size: 1.8rem;
+        color: #054040;;
+    }
+
+    header {
+        display: none;
+    }
+
+    #feed-page {
+        background-image: url(../../assets-2/web_bg-telas.png);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: center bottom;
+    }
+    
+    #open-publication {
+        width: 35vw;
+        height: 4vh;
+        padding: 2vw;
+        display: flex;
+        align-items: center;
+        border-radius: 0.5rem;
+        background: #E6EAEA;
+        box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.20);
+        /* border: solid #05642e; */
+    }
+
+    #feed-container{
+        width: 38vw; 
+        height: 14vh; 
+        margin-top: 2vh;
+        border-radius: 0.4rem;
+        background-color: #85B8BC;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        opacity: 0.9;
+        box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.20);
+        position: relative;
+    }
+    
+    #feed-container:hover {
+        opacity: 1;
+    }
+    
+    #publicationPoster {
+        width: 52%;
+        height: 100%;
+        margin-top: 2vh;
+        margin-bottom: -2vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        /* border: solid #053664; */
+    }
+
+    .poster-container {
+        width: 50vw;
+        height: 100%;
+        margin-top: 20px;
+        margin-bottom: 2vh;
+        border-radius: 10px;
+        /* padding: 5px;
+        padding-left: 12px; */
+        background: #DB9F8F;
+        opacity: 0.9;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        /* gap: 0.1rem; */
+        box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.20);
+        /* border: solid #55078a; */
+    }
+
+    #poster {
+        width: 45vw;
+        margin-top: 1vh;
+        margin-bottom: 1vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        /* border: solid #637b02; */
+    }
+
+    #userPoster {
+        width: 22vw;
+        padding: 0.2rem;
+        display: flex;
+        align-items: center;
+        justify-self: flex-start;
+        font-size: 1.2rem;
+        font-weight: 400;
+        /* border: solid #55078a; */
+    }
+
+    #dataBoxPoster {
+        width: 22vw;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        font-size: 1.2rem;
+        /* font-weight: 400; */
+        /* border: solid #9b0543; */
+    }
+
+    #informsPublication {
+        width: 45vw;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-start;
+        /* border: solid #10757d; */
+    }
+
+    #textBoxPoster {
+        width: 45vw;
+        height: 100%;
+        padding: 1rem;
+        margin-bottom: 1vh;
+        display: flex;
+        justify-content: flex-start;
+        text-align: justify;
+        background: #F6E7E3;
+        border-radius: 5px;
+        /* border: solid #05649b; */
+    }
+
+    #locationPoster {
+        width: 45vw;
+        height: 3.3vh;
+        margin-top: 1vh;
+        display: flex;
+        align-items: center;
+        background: #F6E7E3;
+        border-radius: 5px;
+        /* border: solid #62059b; */
+    }
+
+    #container-icons {
+        width: 45vw;
+        margin: 0.5vh;
+        display: flex;
+        justify-content: space-between;
+        /* border: solid #9b0543; */
+    }
+
+    #edit-delete {
+        display: flex;
+        /* border: solid #0b7e6b; */
+    }
+
+    .like {
+        display: flex;
+        justify-content: flex-start;
+        /* border: solid #05489b; */
+    }
+
+    #container-likes {
+        width: 3vw;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        /* border: solid #059b48; */
+    }
+
+    #likesCount {
+        font-size: 1.2rem;
+    }
+
+    footer {
+        display: none;
+    }
+
+    .modal-body-delete {
+        width: 100%;
+        height: 20vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 1vh;
+        /* border: solid #DB9F8F; */
+    }
+
+    #areaTextBoxDelete {
+        width: 95%;
+        height: 9vh;
+        /* padding: 0.2vw; */
+        /* margin-top: -2vh; */
+        border-radius: 0.4rem;
+        background-color: #E6EAEA;
+        display: flex;
+        justify-content: center;
+        /* border: solid #0a8c42; */
+    }
+
+    #deleteBtnCancel, #deleteBtnSave {
+        width: 10vw;
+        height: 4vh;
+        margin-top: 2vh;
+        cursor: pointer;
+        background-color: #E6EAEA;
+        border: none;
+        border-radius: 0.4rem;
+    } 
+
+
+    }
