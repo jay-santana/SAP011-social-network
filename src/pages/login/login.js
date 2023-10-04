@@ -5,7 +5,7 @@ export default () => {
 
   const template = `
   <body>
-  <main id="login-page">
+    <main id="login-page">
       <h3 id=textApp>Registre sensações, compartilhe 
       experiências e eterniza momentos 
       das suas viagens com a gente!</h3>
@@ -26,7 +26,7 @@ export default () => {
             <p id="loginPasswordAlert"></p> 
             <button id="loginButton"><a href="/#login">Login</a></button>
           </form>
-          <p>-------------------- ou --------------------</p>
+          <p>---------- ou ----------</p>
           <p>Fazer login com o Google</p>
           <section> 
             <img id="googleIcon"src="../../assets-2/google_icon.png" alt="ícone Goggle">
@@ -39,9 +39,9 @@ export default () => {
           <h4 id="footerInformation">Desenvolvido por <span id="loginDevOne">Jayanny<a href="https://github.com/jay-santana"></span></a> e <span id="loginDevTwo">Sarah<a href="https://github.com/laosarah"></span></a></h4>
         </section>
       </div>
-  </main> 
-</body>
-`;
+    </main> 
+  </body>
+  `;
   container.innerHTML = template;
 
   const loginEmail = container.querySelector('#loginEmail');

@@ -14,7 +14,7 @@ body {
 
 main {
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
 }
 
 h1 {
@@ -26,16 +26,17 @@ h2 {
 }
 
 h3 {
-  font-size: 0.85rem;
-  font-weight: 500;
+  font-size: 0.88rem;
+  font-weight: 400;
 }
 
 h4 {
-  font-size: 0.87rem;
+  font-size: 0.9rem;
 }
 
-p {
-  font-size: 0.8rem;
+p,
+a {
+  font-size: 0.88rem;
   font-weight: 500;
 }
 
@@ -76,7 +77,7 @@ p {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.25);
+  box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.30);
 }
 
 #loginEmail,
@@ -129,7 +130,7 @@ p {
 
 #footerContainerLogin {
   width: 80vw;
-  height: 20vh;
+  height: 15vh;
   display: flex;
   justify-content: center;
   align-items: flex-end;
@@ -140,29 +141,65 @@ p {
   color: #0048ff;
 }
 
-/* Para tablets */
-@media (min-width: 768px) and (max-width: 1024px) {
-
+/* Para tablet, telas menores e laptops */
+@media (min-width: 480px) {
   h1 {
-    font-size: 2.0rem;
+    font-size: 2.5rem;
   }
 
   h2 {
-    font-size: 1.5rem;
+    font-size: 1.7rem;
   }
 
   h3 {
-    font-size: 1.2rem;
-    font-weight: 500;
+    font-size: 1.35rem;
+    font-weight: 400;
   }
 
   h4 {
-    font-size: 1.1rem;
+    font-size: 1.4rem;
   }
 
   p,
   a {
-    font-size: 1.1rem;
+    font-size: 1.35rem;
+  }
+
+  #loginEmail::placeholder,
+  #loginPassword::placeholder {
+    font-size: 1rem;
+  }
+
+  #loginButton {
+    width: 20vw;
+    font-size: 0.8rem;
+    margin: 0.8vh 0;
+  }
+}
+
+/* Para tablets */
+@media (min-width: 768px) and (max-width: 1024px) {
+
+  h1 {
+    font-size: 2.5rem;
+  }
+
+  h2 {
+    font-size: 1.7rem;
+  }
+
+  h3 {
+    font-size: 1.35rem;
+    font-weight: 400;
+  }
+
+  h4 {
+    font-size: 1.4rem;
+  }
+
+  p,
+  a {
+    font-size: 1.35rem;
   }
 
   #welcomeText {
@@ -182,7 +219,7 @@ p {
 
   #loginEmail::placeholder,
   #loginPassword::placeholder {
-    font-size: 1rem;
+    font-size: 1.2rem;
   }
 
   #loginButton {
@@ -197,7 +234,7 @@ p {
 
   #footerContainerLogin {
     width: 65vw;
-    height: 20vh;
+    height: 15vh;
     display: flex;
     justify-content: center;
     align-items: flex-end;
@@ -225,7 +262,8 @@ p {
     font-size: 1.1rem;
   }
 
-  p, a {
+  p,
+  a {
     font-size: 1rem;
     font-weight: 500;
   }
@@ -257,10 +295,10 @@ p {
     justify-self: center;
     align-items: center;
     /* border: solid #0048ff; */
-  } 
-  
+  }
+
   #login-container-style {
-    width: 37vw;
+    width: 39vw;
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -269,10 +307,10 @@ p {
   }
 
   #login-container {
-    width: 26vw;
-    height: 82vh;
+    width: 28vw;
+    height: 81.9vh;
     padding: 3vw;
-    margin-top: 5vh;
+    margin-top: 8vh;
     gap: 1rem;
   }
 
@@ -283,8 +321,15 @@ p {
     padding-left: 1vw;
   }
 
+  #loginEmail::placeholder,
+  #loginPassword::placeholder {
+    font-size: 1rem;
+  }
+
   #loginButton {
     width: 8vw;
+    font-size: 0.5rem;
+    margin: 0.8vh 0;
   }
 
   #footerContainerLogin {
@@ -297,6 +342,6 @@ p {
 }
 
 /* Para Tvs*/
-/* @media (min-width: 1920px) {
+/* @media (min-width: 1200px) {
  
 } */

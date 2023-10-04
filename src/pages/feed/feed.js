@@ -32,43 +32,68 @@ export default () => {
         </ul>
       </nav>
     </header>
-    <main id="feed-page">
-    <h2 id="displayName">Olá, ${auth.currentUser.displayName}</h2>
-    <section id="feed-container">
-      <p id="open-publication">Conte-nos suas novas aventuras..</p>
-    </section>
-    <section id="publicationPoster"></section>
-    <section id="fade" class="hide"></section>
-    <section id="modal" class="hide">
-      <span class="modal-header">
-        <span id="close-modal" class="material-symbols-outlined">disabled_by_default</span>
-      </span>
-      <span class="modal-body">
-        <div id="userPublication">
-          <span id="iconUserPublication" class="material-symbols-outlined">account_circle</span><label id="userNamePublication">${auth.currentUser.displayName}</label>
-        </div>
-        <div>
-          <textarea id="textBox" type="text" placeholder="Digite aqui seu texto"></textarea>
-        </div>
-        <div id="location">
-          <span id="iconLocationPublication" class="material-symbols-outlined">location_on</span><input id="locationInput" type="text" placeholder="Localização">
-        </div>
-        <div id="publication">
-          <button id="publicationBtn">Publicar</button>
-        <div>
-      </span>
-    </section>
-    </main>
+    <section id="containerSidebar">
+      <nav class="sidebar close">
+        <section id="menuHeader">
+          <aside id="textHeader">
+            <span id="aplicationText">DIÁRIO DE VIAGEM</span>
+          </aside>
+          <span class="material-symbols-outlined toggle">chevron_right</span>
+        </section>
+        <section id="menuBar">
+          <div id="menuBody">
+            <ul id="menuLinks">
+              <li class="li-sidebar">
+                <span id="homeSidebarOne" class="material-symbols-outlined">home</span><a href="/#feed">Feed</a>
+              </li>
+              <li class="li-sidebar">
+                <span id="infoSidebarOne" class="material-symbols-outlined">info</span><a href="/#sobre">Sobre</a>
+              </li>
+              <li class="li-sidebar">
+                <span id="logoutSidebarOne" class="material-symbols-outlined">logout</span><button id="logoutSidebarBtn">Sair</button>
+              </li>
+            </ul>
+          </div>
+        </section>
+      </nav>
+      <main id="feed-page">
+        <h2 id="displayName">Olá, ${auth.currentUser.displayName}</h2>
+        <section id="feed-container">
+          <p id="open-publication">Conte-nos suas novas aventuras..</p>
+        </section>
+        <section id="publicationPoster"></section>
+        <section id="fade" class="hide"></section>
+        <section id="modal" class="hide">
+          <span class="modal-header">
+            <span id="close-modal" class="material-symbols-outlined">disabled_by_default</span>
+          </span>
+          <span class="modal-body">
+            <div id="userPublication">
+              <span id="iconUserPublication" class="material-symbols-outlined">account_circle</span><label id="userNamePublication">${auth.currentUser.displayName}</label>
+            </div>
+            <div>
+              <textarea id="textBox" type="text" placeholder="Digite aqui seu texto"></textarea>
+            </div>
+            <div id="location">
+              <span id="iconLocationPublication" class="material-symbols-outlined">location_on</span><input id="locationInput" type="text" placeholder="Localização">
+            </div>
+            <div id="publication">
+              <button id="publicationBtn">Publicar</button>
+            <div>
+          </span>
+        </section>
+      </main>
+    </section>  
     <footer id="menuFooter">
       <nav id="nav-footer">
         <ul id="ul-footer">
-          <li id="li-footer">
+          <li class="li-footer">
             <span id="homeFooterTwo" class="material-symbols-outlined">home</span><a href="/#feed">Feed</a>
           </li>
-          <li id="li-footer">
+          <li class="li-footer">
             <span id="infoFooterTwo"class="material-symbols-outlined">info</span><a href="/#sobre">Sobre</a>
           </li>
-          <li id="li-footer">
+          <li class="li-footer">
             <span id="arrowUpFooterTwo" class="material-symbols-outlined">keyboard_double_arrow_up</span><button id="btnTopMobile">Topo</button>
           </li>
         </ul>
@@ -77,6 +102,17 @@ export default () => {
   </body>
   `;
   container.innerHTML = template;
+
+  // const containerSidebar = container.getElementById('containerSidebar');
+  const sidebar = container.querySelector('.sidebar');
+  const toggle = container.querySelector('.toggle');
+
+  toggle.addEventListener('click', () => {
+    sidebar.classList.toggle('close');
+  })
+
+
+
   const logoutMobileBtn = container.querySelector('#logoutMobileBtn');
   const openModal = container.querySelector('#feed-container');
   const closeModalButton = container.querySelector('#close-modal');
@@ -109,7 +145,7 @@ export default () => {
     const modalEditContainer = document.createElement('div');
     const templateEdit = `
     <section id="containerEdit">
-      <section id="fadeEdit" class="hide"></section>
+      <section id="fadeEdit"></section>
       <section id="modalEdit">
         <section class="modal-header-edit">
           <div id="userPublicationEdit">
@@ -179,7 +215,7 @@ export default () => {
     const templatePoster = `
     <section id="_${data.postId}" class="poster-container">
       <div id="poster">
-        <span id="userPoster" class="material-symbols-outlined">account_circle</span><label id="userName">${data.displayName}</label>
+        <span id="userPosterIcon" class="material-symbols-outlined">account_circle</span><label id="userName">${data.displayName}</label>
         <span id="dataBoxPoster">${formattedDate}</span>
       </div>
       <div id="informsPublication">
@@ -196,8 +232,8 @@ export default () => {
           <p id="likesCount">${data.likes.length}</p>
         </div>  
         <div id="edit-delete">
-          ${data.user === auth.currentUser.uid ? `<span class="material-symbols-outlined edit" data-postId="${data.postId}">edit_square</span>` : ''}
-          ${data.user === auth.currentUser.uid ? `<span class="material-symbols-outlined delete" data-postId="${data.postId}">delete</span>` : ''}
+          ${data.user === auth.currentUser.uid ? `<span id="iconEditFeed" class="material-symbols-outlined edit" data-postId="${data.postId}">edit_square</span>` : ''}
+          ${data.user === auth.currentUser.uid ? `<span id="iconEditFeed" class="material-symbols-outlined delete" data-postId="${data.postId}">delete</span>` : ''}
         </div>
       </div> 
     </section>
@@ -210,7 +246,7 @@ export default () => {
     const modalDeleteContainer = document.createElement('div');
     const templateDelete = `
     <section id="containerDelete">
-      <section id="fadeDelete" class="hide"></section>
+      <section id="fadeDelete"></section>
       <section id="modalDelete">
         <span class="modal-header-delete">
           <span class="material-symbols-outlined" id="close-modal-delete">disabled_by_default</span>
@@ -387,5 +423,11 @@ export default () => {
     });
   }
   loadPoster();
+
+  
+
+
+
+
   return container;
 };

@@ -53,13 +53,13 @@ export default () => {
     <footer id="menuFooter">
       <nav id="nav-footer">
         <ul id="ul-footer">
-          <li id="li-footer">
+          <li class="li-footer">
             <span id="homeFooterOne" class="material-symbols-outlined">home</span><a href="/#feed">Feed</a>
           </li>
-          <li id="li-footer">
+          <li class="li-footer">
             <span id="infoFooterOne" class="material-symbols-outlined">info</span><a href="/#sobre">Sobre</a>
           </li>
-          <li id="li-footer">
+          <li class="li-footer">
             <span id="arrowUpFooterOne" class="material-symbols-outlined">keyboard_double_arrow_up</span><button id="btnTopMobile">Topo</button>
           </li>
         </ul>

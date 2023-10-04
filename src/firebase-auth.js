@@ -14,8 +14,8 @@ import { auth } from './firebase-conf.js';
 // Criação de novos usuários
 export function createUser(createUserName, createEmail, createPassword, confirmPassword) {
   return createUserWithEmailAndPassword(auth, createEmail, createPassword, confirmPassword)
-    .then(() => {
-      updateProfile(auth.currentUser, {
+    .then(async () => {
+      await updateProfile(auth.currentUser, {
         displayName: createUserName,
       })
         .then(() => {
