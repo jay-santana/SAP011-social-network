@@ -23,15 +23,15 @@ export default () => {
               <p id="createPasswordAlert"></p> 
               <input id="confirmPassword" type="password" placeholder="Confirmar senha">
               <p id="confirmPasswordAlert"></p> 
-              <button id="registerButton"><a href="/#feed">Cadastrar</a></button>
+              <button id="registerButton"><a class="registerButtonOne" href="/#feed">Cadastrar</a></button>
             </form>
           </section>
           <section>
-            <p id="gotologin">Já tem uma conta? <button id="loginBtn"><a href="/#login">Faça login</a></button></p>
+            <p id="gotologin">Já tem uma conta? <button id="registerBtn"><a class="registerButtonTwo" href="/#login">Faça login</a></button></p>
           </section>
         </section>
         <section id="footerContainerRegister">
-          <h4>Desenvolvido por <span id="registerDevOne">Jayanny<a href="https://github.com/jay-santana"></span></a> e <span id="registerDevTwo">Sarah<a href="https://github.com/laosarah"></span></a></h4>
+          <h4 id="footerInformation"> Desenvolvido por <span id="registerDevOne"> Jayanny <a href="https://github.com/jay-santana"></span></a> e <span id="registerDevTwo"> Sarah <a href="https://github.com/laosarah"></span></a></h4>
         </section>
       </div> 
     </main>

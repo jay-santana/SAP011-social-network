@@ -32,25 +32,27 @@ export default () => {
         </ul>
       </nav>
     </header>
-    <section id="containerSidebar">
+    <section class="containerSidebar">
       <nav class="sidebar close">
-        <section id="menuHeader">
-          <aside id="textHeader">
-            <span id="aplicationText">DIÁRIO DE VIAGEM</span>
+        <section class="menuHeader">
+          <aside class="logo-text">
+            <div class="logo">
+              <a class="text nav-text"><span id="logoSidebarOne" class="iconsLogo material-symbols-outlined">travel</span></a><p id ="textLogo">DIÁRIO DE VIAGEM</p> 
+            </div>
           </aside>
           <span class="material-symbols-outlined toggle">chevron_right</span>
         </section>
-        <section id="menuBar">
-          <div id="menuBody">
-            <ul id="menuLinks">
-              <li class="li-sidebar">
-                <span id="homeSidebarOne" class="material-symbols-outlined">home</span><a href="/#feed">Feed</a>
+        <section class="menuBar">
+          <div class="menuBody">
+            <ul class="menuLinks">
+              <li class="li-navLinks">
+                <a class="text nav-text" href="/#feed"><span id="homeSidebarOne" class="icons material-symbols-outlined">home</span><p class="textLink">Feed</p></a>
               </li>
-              <li class="li-sidebar">
-                <span id="infoSidebarOne" class="material-symbols-outlined">info</span><a href="/#sobre">Sobre</a>
+              <li class="li-navLinks">
+                <a class="text nav-text" href="/#sobre"><span id="infoSidebarOne" class="icons material-symbols-outlined">info</span><p class="textLink">Sobre</p></a>
               </li>
-              <li class="li-sidebar">
-                <span id="logoutSidebarOne" class="material-symbols-outlined">logout</span><button id="logoutSidebarBtn">Sair</button>
+              <li class="li-navLinks">
+                <button id="logoutSidebarBtn"><span id="logoutSidebarOne" class="icons material-symbols-outlined">logout</span><p class="textLink">Sair</p></button>
               </li>
             </ul>
           </div>
@@ -111,8 +113,6 @@ export default () => {
     sidebar.classList.toggle('close');
   })
 
-
-
   const logoutMobileBtn = container.querySelector('#logoutMobileBtn');
   const openModal = container.querySelector('#feed-container');
   const closeModalButton = container.querySelector('#close-modal');
@@ -125,36 +125,44 @@ export default () => {
   const user = accessUser();
 
   // Criando a estrutura do post que vai aparecer no feed
-  function addPoster(data) {
-    console.log('addPoster');
-    const formattedDate = data.dataBox.toDate().toLocaleString('pt-br');
-    const templatePoster = `
-    <section id="_${data.postId}" class="poster-container">
-      <div id="poster">
-        <span id="userPoster" class="material-symbols-outlined">account_circle</span><label id="userName">${data.displayName}</label>
-        <span id="dataBoxPoster">${formattedDate}</span>
-      </div>
-      <div id="informsPublication">
-        <div id="textPoster-container">
-          <span id="textBoxPoster">${data.textBox}</span>
-        </div>
-        <div id="locationPoster">
-          <span id="iconLocationFeed" class="material-symbols-outlined">location_on</span><span id="locationInputPoster">${data.locationInput}</span>
-        </div>
-      </div>  
-      <div id="container-icons">
-        <div id="container-likes">
-          <span id= "iconLikeFeed" class="like material-symbols-outlined" data-postId="${data.postId}">favorite</span>
-          <p id="_${data.postId}_likesCount" class="likesCount"></p>
-        </div>  
-        <div id="edit-delete">
-          ${data.user === auth.currentUser.uid ? `<span class="material-symbols-outlined edit" data-postId="${data.postId}">edit_square</span>` : ''}
-          ${data.user === auth.currentUser.uid ? `<span class="material-symbols-outlined delete" data-postId="${data.postId}">delete</span>` : ''}
-        </div>
-      </div> 
-    </section>
-    `;
-    publicationPoster.innerHTML += templatePoster;
+  // function addPoster(data) {
+  //   console.log('addPoster');
+  //   const formattedDate = data.dataBox.toDate().toLocaleString('pt-br');
+  //   const templatePoster = `
+  //   <section id="_${data.postId}" class="poster-container">
+  //     <div id="poster">
+  //       <span id="userPoster" class="material-symbols-outlined">account_circle</span><label id="userName">${data.displayName}</label>
+  //       <span id="dataBoxPoster">${formattedDate}</span>
+  //     </div>
+  //     <div id="informsPublication">
+  //       <div id="textPoster-container">
+  //         <span id="textBoxPoster">${data.textBox}</span>
+  //       </div>
+  //       <div id="locationPoster">
+  //         <span id="iconLocationFeed" class="material-symbols-outlined">location_on</span><span id="locationInputPoster">${data.locationInput}</span>
+  //       </div>
+  //     </div>  
+  //     <div id="container-icons">
+  //       <div id="container-likes">
+  //         <span id= "iconLikeFeed" class="like material-symbols-outlined" data-postId="${data.postId}">favorite</span>
+  //         <p id="_${data.postId}_likesCount" class="likesCount"></p>
+  //       </div>  
+  //       <div id="edit-delete">
+  //         ${data.user === auth.currentUser.uid ? `<span class="material-symbols-outlined edit" data-postId="${data.postId}">edit_square</span>` : ''}
+  //         ${data.user === auth.currentUser.uid ? `<span class="material-symbols-outlined delete" data-postId="${data.postId}">delete</span>` : ''}
+  //       </div>
+  //     </div> 
+  //   </section>
+  //   `;
+  //   publicationPoster.innerHTML += templatePoster;
+  // }
+
+  function updatePoster(postIdSave, textBoxEditValue, locationInputEditValue) {
+    // Fazer atualização do poster conforme o ID recebido
+    const postToEdit = publicationPoster.querySelector(`#_${postIdSave}`);
+    postToEdit.querySelector('#textBoxPoster').innerHTML = textBoxEditValue;
+    postToEdit.querySelector('#locationInputPoster').innerHTML = locationInputEditValue;
+    console.log('updatePoster')
   }
 
   // Limpar Tela
@@ -179,30 +187,7 @@ export default () => {
   [openModal, closeModalButton, fade, publicationBtn].forEach((event) => {
     event.addEventListener('click', () => toggleModal());
   });
-
-  // Adicionar função para editar posts
-  function attachEditOnPosts() {
-    // Icone Editar - dentro da função addPoster
-    const editButtons = container.querySelectorAll('.edit');
-    console.log('recuperando os botões de editar', editButtons);
-    editButtons.forEach((editButton) => {
-      editButton.addEventListener('click', async (event) => {
-        event.preventDefault();
-        console.log('Edit button clicked');
-        const docRef = doc(db, posts, editButton.dataset.postid);
-        const docSnap = await getDoc(docRef);
-        console.log(editButton.dataset.postid);
-        // Verifica se o usuário logado é o mesmo que criou a publicação
-        if (docSnap.exists() && docSnap.data().user === auth.currentUser.uid) {
-          modalEditPoster(docSnap.data(), editButton.dataset.postid, 'textBoxEdit');
-          console.log('Usuário pode editar esta publicação');
-        } else {
-          console.log('Usuário não pode editar esta publicação');
-        }
-      });
-    });
-  }
-
+  
   // Modal Editar
   function modalEditPoster(data, postId) {
     console.log(data);
@@ -225,7 +210,7 @@ export default () => {
             <textarea id="textBoxEdit" type="text">${data.textBox}</textarea>
           </div>
           <div id="locationEdit">
-            <span id="iconLocationEdit"class="material-symbols-outlined">location_on</span><input id="locationInputEdit" type="text" value="${data.locationInput}">
+            <span id="iconLocationEdit" class="material-symbols-outlined">location_on</span><input id="locationInputEdit" type="text" value="${data.locationInput}">
           </div>
           <div id="publicationEdit">
             <button id="editBtnCancel">Cancelar</button>
@@ -261,12 +246,38 @@ export default () => {
       const textBoxEditValue = modalEditContainer.querySelector('#textBoxEdit').value;
       const locationInputEditValue = modalEditContainer.querySelector('#locationInputEdit').value;
       const postIdSave = editBtnSave.dataset.postid; // Obtenha o postId da publicação a ser editada
-      loadPoster(addPoster, attachLikeOnPosts, attachEditOnPosts, attachDeleteOnPosts, limparTela);
+      
       // Feche o modal de edição
-      editPoster(postIdSave, textBoxEditValue, locationInputEditValue);
+      editPoster(postIdSave, textBoxEditValue, locationInputEditValue, updatePoster);
       toggleModalEdit();
     });
   }
+  // // Adicionar função para editar posts
+  function attachEditOnPosts() {
+    // Icone Editar - dentro da função addPoster
+    console.log('attachEditOnPosts')
+    console.log(container);
+    const editButtons = container.querySelectorAll('#iconEditFeed');
+    console.log('recuperando os botões de editar', editButtons);
+    editButtons.forEach((editButton) => {
+      editButton.addEventListener('click', async (event) => {
+        event.preventDefault();
+        console.log('Edit button clicked');
+        const docRef = doc(db, posts, editButton.dataset.postid);
+        const docSnap = await getDoc(docRef);
+        console.log(editButton.dataset.postid);
+        // Verifica se o usuário logado é o mesmo que criou a publicação
+        if (docSnap.exists() && docSnap.data().user === auth.currentUser.uid) {
+          modalEditPoster(docSnap.data(), editButton.dataset.postid, 'textBoxEdit');
+          console.log('Usuário pode editar esta publicação');
+        } else {
+          console.log('Usuário não pode editar esta publicação');
+        }
+      });
+    });
+  }
+
+
   // Criando a estrutura do post que vai aparecer no feed
   function addPoster(data) {
     console.log('addPoster');
@@ -292,13 +303,14 @@ export default () => {
         </div>  
         <div id="edit-delete">
           ${data.user === auth.currentUser.uid ? `<span id="iconEditFeed" class="material-symbols-outlined edit" data-postId="${data.postId}">edit_square</span>` : ''}
-          ${data.user === auth.currentUser.uid ? `<span id="iconEditFeed" class="material-symbols-outlined delete" data-postId="${data.postId}">delete</span>` : ''}
+          ${data.user === auth.currentUser.uid ? `<span id="iconDeleteFeed" class="material-symbols-outlined delete" data-postId="${data.postId}">delete</span>` : ''}
         </div>
       </div> 
     </section>
     `;
     publicationPoster.innerHTML += templatePoster;
   }
+
   // Modal Excluir publicação
   function deletePosterModal(postId) {
     console.log('postId: ', postId);
@@ -309,7 +321,7 @@ export default () => {
       <section id="fadeDelete"></section>
       <section id="modalDelete">
         <span class="modal-header-delete">
-          <span class="material-symbols-outlined" id="close-modal-delete">disabled_by_default</span>
+          <span id="close-modal-delete" class="material-symbols-outlined">disabled_by_default</span>
         </span>
         <span class="modal-body-delete">
           <div id="areaTextBoxDelete">
@@ -353,7 +365,10 @@ export default () => {
       console.log('Publicação excluida com sucesso');
       // Recarregue o feed para refletir as alterações
       deletePoster(postIdDelete);
-      loadPoster(addPoster, attachLikeOnPosts, attachEditOnPosts, attachDeleteOnPosts, limparTela);
+      // loadPoster(addPoster, limparTela);
+      // attachLikeOnPosts();
+      // attachEditOnPosts();
+      // attachDeleteOnPosts();
       // Feche o modal Delete
       toggleModalDelete();
     });
@@ -416,13 +431,10 @@ export default () => {
           await updateDoc(docRef, { likes });
         }
         atualizarLike(likeButton);
-        loadPoster(
-          addPoster,
-          attachLikeOnPosts,
-          attachEditOnPosts,
-          attachDeleteOnPosts,
-          limparTela,
-        );
+        // loadPoster(addPoster, limparTela);
+        // attachLikeOnPosts();
+        // attachEditOnPosts();
+        // attachDeleteOnPosts();
       });
     });
   }
@@ -442,7 +454,10 @@ export default () => {
     const addDocPromise = addDoc(posterCollection, data);
     addDocPromise.then(() => {
       // Após adicionar o post ao firestore com sucesso, adicione-o ao feed
-      loadPoster(addPoster, attachLikeOnPosts, attachEditOnPosts, attachDeleteOnPosts, limparTela);
+      // loadPoster(addPoster, limparTela);
+      // attachLikeOnPosts();
+      // attachEditOnPosts();
+      // attachDeleteOnPosts();
       // Limpa conteúdo do modal de publicação
       locationInput.value = '';
       textBox.value = '';
@@ -452,12 +467,7 @@ export default () => {
       });
   });
 
-  loadPoster(addPoster, attachLikeOnPosts, attachEditOnPosts, attachDeleteOnPosts, limparTela);
-
-  
-
-
-
+  loadPoster(addPoster, limparTela, attachLikeOnPosts, attachEditOnPosts, attachDeleteOnPosts);
 
   return container;
 };

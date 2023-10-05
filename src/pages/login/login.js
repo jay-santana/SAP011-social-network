@@ -24,7 +24,7 @@ export default () => {
             <p id="loginEmailAlert"></p>
             <input id="loginPassword" type="password" placeholder="Senha">
             <p id="loginPasswordAlert"></p> 
-            <button id="loginButton"><a href="/#login">Login</a></button>
+            <button id="loginButton"><a class="loginButtonOne" href="/#login">Login</a></button>
           </form>
           <p>---------- ou ----------</p>
           <p>Fazer login com o Google</p>
@@ -32,7 +32,7 @@ export default () => {
             <img id="googleIcon"src="../../assets-2/google_icon.png" alt="ícone Goggle">
           </section> 
           <section> 
-            <p>Não tem uma conta? <button id="registerBtn"><a href="/#cadastro">Cadastre-se</a></button></p>
+            <p>Não tem uma conta? <button id="loginBtn"><a class="loginButtonTwo" href="/#cadastro">Cadastre-se</a></button></p>
           </section> 
         </section>
         <section id="footerContainerLogin">

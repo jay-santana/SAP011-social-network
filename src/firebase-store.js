@@ -32,11 +32,13 @@ const posts = 'posts';
 // }
 
 // Editar dados
-export function editPoster(postIdSave, textBoxEditValue, locationInputEditValue) {
+export function editPoster(postIdSave, textBoxEditValue, locationInputEditValue, updatPoster) {
   updateDoc(doc(db, posts, postIdSave), {
     textBox: textBoxEditValue,
     locationInput: locationInputEditValue,
-  });
+  }).then(
+    updatPoster(textBoxEditValue, locationInputEditValue)
+  );
 }
 
 // Excluir dados
@@ -47,11 +49,12 @@ export function deletePoster(postIdDelete) {
 // Carregando o poster no feed
 export function loadPoster(
   addPoster,
-  attachLikeOnPosts,
-  attachEditOnPosts,
-  attachDeleteOnPosts,
   limparTela,
-) {
+  attachLikeOnPosts, 
+  attachEditOnPosts,
+  attachDeleteOnPosts, 
+) { 
+  console.log('loadPoster')
   limparTela();
   const posterCollection = collection(db, posts);
   const orderPoster = query(posterCollection, orderBy('dataBox', 'desc'));
@@ -60,11 +63,13 @@ export function loadPoster(
       const postData = item.data();
       postData.postId = item.id;
       addPoster(postData);
+      attachLikeOnPosts();
+      attachEditOnPosts();
+      attachDeleteOnPosts();
     });
-    attachLikeOnPosts();
-    attachEditOnPosts();
-    attachDeleteOnPosts();
   }).catch((error) => {
     console.error('Erro ao carregar postagens ordenadas:', error);
   });
 }
+
+ 
