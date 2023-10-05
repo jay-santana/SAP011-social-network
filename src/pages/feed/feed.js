@@ -116,6 +116,7 @@ export default () => {
   });
 
   const logoutMobileBtn = container.querySelector('#logoutMobileBtn');
+  const logoutSidebarBtn = container.querySelector('#logoutSidebarBtn');
   const openModal = container.querySelector('#feed-container');
   const closeModalButton = container.querySelector('#close-modal');
   const modal = container.querySelector('#modal');
@@ -166,8 +167,18 @@ export default () => {
     publicationPoster.innerHTML = '';
   }
 
-  // Botão de sair
+  // Botão de sair mobile
   logoutMobileBtn.addEventListener('click', (event) => {
+    event.preventDefault();
+    signOutBtn().then(() => {
+      window.location.hash = '#login';
+    }).catch((error) => {
+      console.log(error);
+    });
+  });
+
+  // Botão de sair desktop
+  logoutSidebarBtn.addEventListener('click', (event) => {
     event.preventDefault();
     signOutBtn().then(() => {
       window.location.hash = '#login';

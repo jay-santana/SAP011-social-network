@@ -876,6 +876,7 @@ span.material-symbols-outlined.filled {
     background-position: 0% 45%;
     display: flex;
     align-items: center;
+    /* border: solid #fff; */
   }
 
   #displayName {
@@ -894,6 +895,7 @@ span.material-symbols-outlined.filled {
     width: 38vw;
     height: 14vh;
     border-radius: 0.4rem;
+    /* border: solid #fff; */
   }
 
   #feed-container:hover {

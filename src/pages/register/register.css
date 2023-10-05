@@ -355,6 +355,7 @@ a {
     margin: 0.8vh 0;
     display: flex;
     justify-content: center;
+    align-items: center;
   }
 
   form {
