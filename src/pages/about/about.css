@@ -318,6 +318,7 @@ footer {
 
     #about-container {
         margin-top: 10vh;
+        /* border: solid #fff; */
     }
 
     #textInform {
@@ -383,5 +384,193 @@ footer {
     #infoFooterOne,
     #arrowUpFooterOne {
         font-size: 1.6rem;
+    }
+
+    #containerSidebar {
+        width: 100vw;
+        height: 100vh;
+        background-color: #69A7A9;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        /* border: solid #fff; */
+    }
+
+    .sidebar {
+        width: 280px;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        padding: 1rem 1.5rem;
+        background-color: #85B8BC;
+        display: block;
+        transition: 0.5s;
+        white-space: nowrap;
+        /* border: solid #fff; */
+    }
+
+    .sidebar.close {
+        width: 110px;
+    }
+
+    .sidebar .iconsLogo {
+        background-color: #BEE1E5;
+        min-width: 60px;
+        min-height: 50px;
+        font-size: 2.2rem;
+        font-weight: 700;
+        color: #054040;
+        border-radius: 11px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: 0.1s;
+    }
+
+    /* .sidebar .logo{
+        background-color: red;
+        border: solid #fff;
+      } */
+
+    .sidebar .text,
+    .textLink {
+        font-size: 1.5rem;
+        font-weight: 800;
+        color: #054040;
+        text-align: center;
+        transition: 0.4s;
+        white-space: nowrap;
+        visibility: visible;
+    }
+
+    .sidebar.close .textLink {
+        visibility: hidden;
+    }
+
+    .sidebar.close #textLogo {
+        visibility: hidden;
+    }
+
+    #textLogo {
+        font-size: 1.3rem;
+        font-weight: 800;
+        color: #054040;
+    }
+
+    .sidebar .logo-text {
+        position: relative;
+    }
+
+    .sidebar span.material-symbols-outlined.toggle {
+        height: 35px;
+        width: 35px;
+        position: absolute;
+        top: 10%;
+        right: -20px;
+        background-color: #DB9F8F;
+        border-radius: 50%;
+        color: #F6E7E3;
+        font-size: 2rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transform: translateY(-50%) rotate(180deg);
+        transition: 0.3s;
+        cursor: pointer;
+        /* border: solid red; */
+    }
+
+    .sidebar.close span.material-symbols-outlined.toggle {
+        transform: translateY(-50%);
+    }
+
+    .sidebar,
+    .menuLinks {
+        display: flex;
+        flex-direction: column;
+        gap: 5vh;
+    }
+
+    .sidebar li,
+    .logo {
+        height: 50px;
+        margin-top: 10px;
+        list-style: none;
+        display: flex;
+        align-items: center;
+        /* background-color: red; */
+        /* border: solid blue; */
+        gap: 2vh;
+    }
+
+    .sidebar li .icons {
+        min-width: 60px;
+        font-size: 2.2rem;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: 0.1s;
+        /* background-color: #fff; */
+    }
+
+    .sidebar li .text,
+    .icons,
+    #logoutSidebarBtn,
+    .textLink {
+        font-size: 1.3rem;
+        font-weight: 500;
+        transition: 0.1s;
+    }
+
+    .sidebar li .text:hover,
+    .icons:hover,
+    .textLink:hover,
+    #logoutSidebarBtn:hover {
+        color: #DB9F8F;
+    }
+
+    .sidebar li .nav-text,
+    .textLink,
+    .text {
+        width: 100%;
+        height: 100%;
+        text-decoration: none;
+        border-radius: 11px;
+        display: flex;
+        align-items: center;
+        transition: 0.2s;
+    }
+
+    .sidebar .logo {
+        display: flex;
+        flex-direction: column;
+    }
+
+    #logoutSidebarBtn {
+        width: 100%;
+        height: 100%;
+        border: none;
+        color: #054040;
+        background-color: transparent;
+        border-radius: 11px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        transition: 0.2s;
+    }
+
+    .sidebar li .nav-text:hover,
+    #logoutSidebarBtn:hover {
+        background-color: #BEE1E5;
+    }
+
+    .sidebar,
+    .menu-bar {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        padding-top: 10vh;
+        gap: 10vh;
     }
 }

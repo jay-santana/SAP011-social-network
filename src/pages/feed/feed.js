@@ -105,15 +105,16 @@ export default () => {
   `;
   container.innerHTML = template;
 
-  // const containerSidebar = container.getElementById('containerSidebar');
   const sidebar = container.querySelector('.sidebar');
   const toggle = container.querySelector('.toggle');
 
+  // Função para expandir o menu sidebar desktop
   toggle.addEventListener('click', () => {
     sidebar.classList.toggle('close');
   })
 
   const logoutMobileBtn = container.querySelector('#logoutMobileBtn');
+  const logoutSidebarBtn = container.querySelector('#logoutSidebarBtn');
   const openModal = container.querySelector('#feed-container');
   const closeModalButton = container.querySelector('#close-modal');
   const modal = container.querySelector('#modal');
@@ -123,39 +124,6 @@ export default () => {
   const textBox = container.querySelector('#textBox');
   const publicationPoster = container.querySelector('#publicationPoster');
   const user = accessUser();
-
-  // Criando a estrutura do post que vai aparecer no feed
-  // function addPoster(data) {
-  //   console.log('addPoster');
-  //   const formattedDate = data.dataBox.toDate().toLocaleString('pt-br');
-  //   const templatePoster = `
-  //   <section id="_${data.postId}" class="poster-container">
-  //     <div id="poster">
-  //       <span id="userPoster" class="material-symbols-outlined">account_circle</span><label id="userName">${data.displayName}</label>
-  //       <span id="dataBoxPoster">${formattedDate}</span>
-  //     </div>
-  //     <div id="informsPublication">
-  //       <div id="textPoster-container">
-  //         <span id="textBoxPoster">${data.textBox}</span>
-  //       </div>
-  //       <div id="locationPoster">
-  //         <span id="iconLocationFeed" class="material-symbols-outlined">location_on</span><span id="locationInputPoster">${data.locationInput}</span>
-  //       </div>
-  //     </div>  
-  //     <div id="container-icons">
-  //       <div id="container-likes">
-  //         <span id= "iconLikeFeed" class="like material-symbols-outlined" data-postId="${data.postId}">favorite</span>
-  //         <p id="_${data.postId}_likesCount" class="likesCount"></p>
-  //       </div>  
-  //       <div id="edit-delete">
-  //         ${data.user === auth.currentUser.uid ? `<span class="material-symbols-outlined edit" data-postId="${data.postId}">edit_square</span>` : ''}
-  //         ${data.user === auth.currentUser.uid ? `<span class="material-symbols-outlined delete" data-postId="${data.postId}">delete</span>` : ''}
-  //       </div>
-  //     </div> 
-  //   </section>
-  //   `;
-  //   publicationPoster.innerHTML += templatePoster;
-  // }
 
   function updatePoster(postIdSave, textBoxEditValue, locationInputEditValue) {
     // Fazer atualização do poster conforme o ID recebido
@@ -170,8 +138,18 @@ export default () => {
     publicationPoster.innerHTML = '';
   }
 
-  // Botão de sair
+  // Botão de sair mobile
   logoutMobileBtn.addEventListener('click', (event) => {
+    event.preventDefault();
+    signOutBtn().then(() => {
+      window.location.hash = '#login';
+    }).catch((error) => {
+      console.log(error);
+    });
+  });
+
+  // Botão de sair desktop
+  logoutSidebarBtn.addEventListener('click', (event) => {
     event.preventDefault();
     signOutBtn().then(() => {
       window.location.hash = '#login';
@@ -276,8 +254,7 @@ export default () => {
       });
     });
   }
-
-
+  
   // Criando a estrutura do post que vai aparecer no feed
   function addPoster(data) {
     console.log('addPoster');
@@ -365,10 +342,6 @@ export default () => {
       console.log('Publicação excluida com sucesso');
       // Recarregue o feed para refletir as alterações
       deletePoster(postIdDelete);
-      // loadPoster(addPoster, limparTela);
-      // attachLikeOnPosts();
-      // attachEditOnPosts();
-      // attachDeleteOnPosts();
       // Feche o modal Delete
       toggleModalDelete();
     });
@@ -431,10 +404,6 @@ export default () => {
           await updateDoc(docRef, { likes });
         }
         atualizarLike(likeButton);
-        // loadPoster(addPoster, limparTela);
-        // attachLikeOnPosts();
-        // attachEditOnPosts();
-        // attachDeleteOnPosts();
       });
     });
   }
@@ -453,11 +422,6 @@ export default () => {
     // Adicione o novo post ao firestore
     const addDocPromise = addDoc(posterCollection, data);
     addDocPromise.then(() => {
-      // Após adicionar o post ao firestore com sucesso, adicione-o ao feed
-      // loadPoster(addPoster, limparTela);
-      // attachLikeOnPosts();
-      // attachEditOnPosts();
-      // attachDeleteOnPosts();
       // Limpa conteúdo do modal de publicação
       locationInput.value = '';
       textBox.value = '';
