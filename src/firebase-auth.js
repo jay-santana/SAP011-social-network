@@ -12,7 +12,13 @@ import {
 import { auth } from './firebase-conf.js';
 
 // Criação de novos usuários
-export function createUser(userPosterIcon, createUserName, createEmail, createPassword, confirmPassword) {
+export function createUser(
+  userPosterIcon,
+  createUserName,
+  createEmail,
+  createPassword,
+  confirmPassword,
+) {
   return createUserWithEmailAndPassword(auth, createEmail, createPassword, confirmPassword)
     .then(async () => {
       await updateProfile(auth.currentUser, {

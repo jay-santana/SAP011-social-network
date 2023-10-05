@@ -6,30 +6,29 @@ import {
   query,
   orderBy,
   getDocs,
+  getDoc,
 } from 'firebase/firestore';
-import { db } from './firebase-conf';
+import { db, auth } from './firebase-conf';
 
 const posts = 'posts';
 
-// Adicionar dados
-// export function publication() {
-//   const user = accessUser();
-//   const data = {
-//     dataBox: Timestamp.now(), // Use serverTimestamp para obter a data e hora atual do servidor
-//     locationInput: locationInput.value,
-//     textBox: textBox.value,
-//     user: user.uid,
-//     displayName: user.displayName,
-//     likes: [],
-//   };
-//   addDoc(collection(db, posts), data)
-//     .then((docRef) => {
-//       console.log('Documento adicionado com sucesso:', docRef.id);
-//     })
-//     .catch((error) => {
-//       console.error('Erro ao adicionar documento:', error);
-//     });
-// }
+// Like
+export async function likePoster(postIdLike, updateLike) {
+  console.log(postIdLike, updateLike);
+  const uid = auth.currentUser.uid;
+  const docRef = doc(db, posts, postIdLike);
+  const docSnap = await getDoc(docRef);
+  const likes = docSnap.data().likes || [];
+  if (likes.includes(uid)) {
+    const updatedLikes = likes.filter((o) => o !== uid);
+    await updateDoc(docRef, { likes: updatedLikes });
+    updateLike(postIdLike, updatedLikes.length);
+  } else {
+    likes.push(uid);
+    await updateDoc(docRef, { likes });
+    updateLike(postIdLike, likes.length);
+  }
+}
 
 // Editar dados
 export function editPoster(postIdSave, textBoxEditValue, locationInputEditValue, updatPoster) {
@@ -37,24 +36,27 @@ export function editPoster(postIdSave, textBoxEditValue, locationInputEditValue,
     textBox: textBoxEditValue,
     locationInput: locationInputEditValue,
   }).then(
-    updatPoster(textBoxEditValue, locationInputEditValue)
+    updatPoster(postIdSave, textBoxEditValue, locationInputEditValue),
   );
 }
 
 // Excluir dados
-export function deletePoster(postIdDelete) {
-  deleteDoc(doc(db, posts, postIdDelete));
+export function deletePoster(postIdDelete, updateDelete) {
+  deleteDoc(doc(db, posts, postIdDelete))
+    .then(
+      updateDelete(postIdDelete),
+    );
 }
 
 // Carregando o poster no feed
 export function loadPoster(
   addPoster,
   limparTela,
-  attachLikeOnPosts, 
+  attachLikeOnPosts,
   attachEditOnPosts,
-  attachDeleteOnPosts, 
-) { 
-  console.log('loadPoster')
+  attachDeleteOnPosts,
+) {
+  console.log('loadPoster');
   limparTela();
   const posterCollection = collection(db, posts);
   const orderPoster = query(posterCollection, orderBy('dataBox', 'desc'));
@@ -71,5 +73,3 @@ export function loadPoster(
     console.error('Erro ao carregar postagens ordenadas:', error);
   });
 }
-
- 
