@@ -1,7 +1,7 @@
-import cadastro from './pages/register/register.js';
+import register from './pages/register/register.js';
 import feed from './pages/feed/feed.js';
 import login from './pages/login/login.js';
-import sobre from './pages/about/about.js';
+import about from './pages/about/about.js';
 import { verifyUserLogged } from './firebase-auth.js';
 
 const main = document.getElementById('root');
@@ -12,8 +12,8 @@ function verifyHash() {
     case '#login':
       main.appendChild(login());
       break;
-    case '#cadastro':
-      main.appendChild(cadastro());
+    case '#register':
+      main.appendChild(register());
       break;
     case '#feed':
       verifyUserLogged((user) => {
@@ -25,8 +25,8 @@ function verifyHash() {
         }
       });
       break;
-    case '#sobre':
-      main.appendChild(sobre());
+    case '#about':
+      main.appendChild(about());
       break;
     default:
       main.appendChild(login());

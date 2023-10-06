@@ -97,7 +97,7 @@ a {
   font-weight: 500;
 }
 
-#loginButton {
+#loginButton a {
   text-decoration: none;
   color: black;
 }
@@ -283,7 +283,6 @@ a {
   #login-page {
     width: 100vw;
     height: 100vh;
-    background-image: none;
     background-color: #BEE1E5;
     background-image: url(../../assets-2/web_login-cadastro.png);
     background-position: 0% 50%;

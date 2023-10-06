@@ -23,14 +23,6 @@ header {
     z-index: 20;
 }
 
-#ul-header {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    list-style: none;
-    align-items: center;
-}
-
 .li-header {
     display: flex;
     flex-direction: column;
@@ -431,30 +423,15 @@ footer {
         background-color: red;
         border: solid #fff;
       } */
-
-    .sidebar .text,
-    .textLink {
-        font-size: 1.5rem;
-        font-weight: 800;
-        color: #054040;
-        text-align: center;
-        transition: 0.4s;
-        white-space: nowrap;
-        visibility: visible;
-    }
-
-    .sidebar.close .textLink {
-        visibility: hidden;
-    }
-
-    .sidebar.close #textLogo {
-        visibility: hidden;
-    }
-
+    
     #textLogo {
         font-size: 1.3rem;
         font-weight: 800;
         color: #054040;
+    }
+
+    .sidebar.close #textLogo {
+        visibility: hidden;
     }
 
     .sidebar .logo-text {
@@ -503,33 +480,6 @@ footer {
         gap: 2vh;
     }
 
-    .sidebar li .icons {
-        min-width: 60px;
-        font-size: 2.2rem;
-        font-weight: 700;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: 0.1s;
-        /* background-color: #fff; */
-    }
-
-    .sidebar li .text,
-    .icons,
-    #logoutSidebarBtn,
-    .textLink {
-        font-size: 1.3rem;
-        font-weight: 500;
-        transition: 0.1s;
-    }
-
-    .sidebar li .text:hover,
-    .icons:hover,
-    .textLink:hover,
-    #logoutSidebarBtn:hover {
-        color: #DB9F8F;
-    }
-
     .sidebar li .nav-text,
     .textLink,
     .text {
@@ -540,6 +490,26 @@ footer {
         display: flex;
         align-items: center;
         transition: 0.2s;
+    }
+
+    .sidebar .text,
+    .textLink {
+        font-size: 1.5rem;
+        font-weight: 800;
+        color: #054040;
+        text-align: center;
+        transition: 0.4s;
+        white-space: nowrap;
+        visibility: visible;
+    }
+
+    .sidebar li .text,
+    .icons,
+    #logoutSidebarBtn,
+    .textLink {
+        font-size: 1.3rem;
+        font-weight: 500;
+        transition: 0.1s;
     }
 
     .sidebar .logo {
@@ -572,5 +542,27 @@ footer {
         flex-direction: column;
         padding-top: 10vh;
         gap: 10vh;
+    }
+
+    .sidebar li .text:hover,
+    .icons:hover,
+    .textLink:hover,
+    #logoutSidebarBtn:hover {
+        color: #DB9F8F;
+    }
+
+    .sidebar.close .textLink {
+        visibility: hidden;
+    }
+
+    .sidebar li .icons {
+        min-width: 60px;
+        font-size: 2.2rem;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: 0.1s;
+        /* background-color: #fff; */
     }
 }

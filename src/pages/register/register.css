@@ -305,7 +305,6 @@ a {
   #register-page {
     width: 100vw;
     height: 100vh;
-    background-image: none;
     background-color: #BEE1E5;
     background-image: url(../../assets-2/web_login-cadastro.png);
     background-position: 0% 50%;
@@ -351,7 +350,6 @@ a {
   #registerButton {
     width: 8vw;
     height: 5vh;
-    margin-top: 3vh;
     margin: 0.8vh 0;
     display: flex;
     justify-content: center;

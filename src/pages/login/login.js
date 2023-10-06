@@ -32,7 +32,7 @@ export default () => {
             <img id="googleIcon"src="../../assets-2/google_icon.png" alt="ícone Goggle">
           </section> 
           <section> 
-            <p>Não tem uma conta? <button id="loginBtn"><a class="loginButtonTwo" href="/#cadastro">Cadastre-se</a></button></p>
+            <p>Não tem uma conta? <button id="loginBtn"><a class="loginButtonTwo" href="/#register">Cadastre-se</a></button></p>
           </section> 
         </section>
         <section id="footerContainerLogin">

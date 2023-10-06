@@ -51,7 +51,7 @@ export default () => {
                 <a class="text nav-text" href="/#feed"><span id="homeSidebarOne" class="icons material-symbols-outlined">home</span><p class="textLink">Feed</p></a>
               </li>
               <li class="li-navLinks">
-                <a class="text nav-text" href="/#sobre"><span id="infoSidebarOne" class="icons material-symbols-outlined">info</span><p class="textLink">Sobre</p></a>
+                <a class="text nav-text" href="/#about"><span id="infoSidebarOne" class="icons material-symbols-outlined">info</span><p class="textLink">Sobre</p></a>
               </li>
               <li class="li-navLinks">
                 <button id="logoutSidebarBtn"><span id="logoutSidebarOne" class="icons material-symbols-outlined">logout</span><p class="textLink">Sair</p></button>
@@ -95,7 +95,7 @@ export default () => {
             <span id="homeFooterTwo" class="material-symbols-outlined">home</span><a href="/#feed">Feed</a>
           </li>
           <li class="li-footer">
-            <span id="infoFooterTwo"class="material-symbols-outlined">info</span><a href="/#sobre">Sobre</a>
+            <span id="infoFooterTwo"class="material-symbols-outlined">info</span><a href="/#about">Sobre</a>
           </li>
           <li class="li-footer">
             <span id="arrowUpFooterTwo" class="material-symbols-outlined">keyboard_double_arrow_up</span><button id="btnTopMobile">Topo</button>

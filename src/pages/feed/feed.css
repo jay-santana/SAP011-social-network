@@ -270,6 +270,11 @@ footer {
   z-index: 21;
 }
 
+.li-footer>a {
+  color: #032e2e;
+  font-weight: 400;
+}
+
 #nav-footer a {
   text-decoration: none;
   color: black;
@@ -292,11 +297,6 @@ footer {
   flex-direction: column;
   align-items: center;
   color: #054040;
-}
-
-.li-footer>a {
-  color: #032e2e;
-  font-weight: 400;
 }
 
 #btnTopMobile {
@@ -781,10 +781,6 @@ span.material-symbols-outlined.filled {
     font-weight: 600;
   }
 
-  .modal-body-edit {
-    gap: 1.2rem;
-  }
-
   #modalEdit {
     padding: 1.2rem 2rem;
   }
@@ -810,7 +806,7 @@ span.material-symbols-outlined.filled {
   .modal-body-edit {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 1.2rem;
     /* border: solid red; */
   }
 
@@ -1203,18 +1199,14 @@ span.material-symbols-outlined.filled {
     visibility: visible;
   }
 
-  .sidebar.close .textLink {
-    visibility: hidden;
-  }
-
-  .sidebar.close #textLogo{
-    visibility: hidden;
-  }
-
   #textLogo {
     font-size: 1.3rem;
     font-weight: 800;
     color: #054040;
+  }
+
+  .sidebar.close #textLogo{
+    visibility: hidden;
   }
 
   .sidebar .logo-text{
@@ -1261,32 +1253,15 @@ span.material-symbols-outlined.filled {
     gap: 2vh;
   }
 
-  .sidebar li .icons {
-    min-width: 60px;
-    font-size: 2.2rem;
-    font-weight: 700;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: 0.1s;
-    /* background-color: #fff; */
-  }
-
   .sidebar li .text, .icons,
   #logoutSidebarBtn, .textLink {
     font-size: 1.3rem;
     font-weight: 500;
     transition: 0.1s;
   }
-
-  .sidebar li .text:hover, 
-  .icons:hover, 
-  .textLink:hover, #logoutSidebarBtn:hover {
-    color: #DB9F8F;
-  }
  
-  .sidebar li .nav-text, 
-  .textLink, .text {
+  .text .sidebar li .nav-text, 
+  .textLink {
     width: 100%;
     height: 100%;
     text-decoration: none;
@@ -1326,8 +1301,24 @@ span.material-symbols-outlined.filled {
     padding-top: 10vh;
     gap: 10vh;
   }
-}
+  .sidebar li .text:hover, 
+  .icons:hover, 
+  .textLink:hover, #logoutSidebarBtn:hover {
+    color: #DB9F8F;
+  }
 
-/* Para telas maiores */
-/* @media (min-width: 1200px) {
-} */
+  .sidebar.close .textLink {
+    visibility: hidden;
+  }
+
+  .sidebar li .icons {
+    min-width: 60px;
+    font-size: 2.2rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.1s;
+    /* background-color: #fff; */
+  }
+}

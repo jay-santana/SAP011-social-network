@@ -34,7 +34,7 @@ export default () => {
                 <a class="text nav-text" href="/#feed"><span id="homeSidebarOne" class="icons material-symbols-outlined">home</span><p class="textLink">Feed</p></a>
               </li>
               <li class="li-navLinks">
-                <a class="text nav-text" href="/#sobre"><span id="infoSidebarOne" class="icons material-symbols-outlined">info</span><p class="textLink">Sobre</p></a>
+                <a class="text nav-text" href="/#about"><span id="infoSidebarOne" class="icons material-symbols-outlined">info</span><p class="textLink">Sobre</p></a>
               </li>
               <li class="li-navLinks">
                 <button id="logoutSidebarBtn"><span id="logoutSidebarOne" class="icons material-symbols-outlined">logout</span><p class="textLink">Sair</p></button>
@@ -85,7 +85,7 @@ export default () => {
             <span id="homeFooterOne" class="material-symbols-outlined">home</span><a href="/#feed">Feed</a>
           </li>
           <li class="li-footer">
-            <span id="infoFooterOne" class="material-symbols-outlined">info</span><a href="/#sobre">Sobre</a>
+            <span id="infoFooterOne" class="material-symbols-outlined">info</span><a href="/#about">Sobre</a>
           </li>
           <li class="li-footer">
             <span id="arrowUpFooterOne" class="material-symbols-outlined">keyboard_double_arrow_up</span><button id="btnTopMobile">Topo</button>
@@ -105,7 +105,7 @@ export default () => {
   // Função para expandir o menu sidebar desktop
   toggle.addEventListener('click', () => {
     sidebar.classList.toggle('close');
-  })
+  });
   // Botão de sair mobile
   logoutMobileBtn.addEventListener('click', (event) => {
     event.preventDefault();
