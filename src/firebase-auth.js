@@ -13,7 +13,6 @@ import { auth } from './firebase-conf.js';
 
 // Criação de novos usuários
 export function createUser(
-  userPosterIcon,
   createUserName,
   createEmail,
   createPassword,
@@ -23,14 +22,7 @@ export function createUser(
     .then(async () => {
       await updateProfile(auth.currentUser, {
         displayName: createUserName,
-        photoURL: userPosterIcon,
-      })
-        .then(() => {
-          const eventCreate = new CustomEvent('userCreated', { detail: createUserName });
-          window.dispatchEvent(eventCreate);
-          const eventNamePublication = new CustomEvent('userPublication', { detail: createUserName });
-          window.dispatchEvent(eventNamePublication);
-        });
+      });
     });
 }
 // Login com o Google

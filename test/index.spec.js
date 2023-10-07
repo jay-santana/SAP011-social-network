@@ -12,10 +12,17 @@ import {
 //   verifyUserLogged,
 //   signOutBtn,
 } from '../src/firebase-auth.js';
-import { async } from 'regenerator-runtime';
+import { auth } from '../src/firebase-conf.js';
 
 // // Informando para o jest a biblioteca
 jest.mock('firebase/auth');
+jest.mock('../src/firebase-conf.js', () => ({
+  ...jest.requireActual('../src/firebase-conf.js'),
+  auth: {
+    currentUser: 'user',
+  },
+}));
+
 // jest.mock('firebase/firestore');
 
 const createUserForm = [
@@ -39,12 +46,33 @@ describe('createUser', () => {
     expect(typeof createUser).toBe('function');
   });
 
-  it('Esperado que o input do nome receba um nome valido', () => {
+  it('Esperado que o input do nome receba um nome valido', async () => {
     createUserWithEmailAndPassword.mockResolvedValue();
-    expect(createUser(createUserForm, 'name')).toStrictEqual([{
-      name: 'Maria', email: 'maria@email.com', password: '123456', confirmPassword: '123456',
-    }]);
+
+    const user = createUserForm[0];
+
+    await createUser(
+      undefined,
+      user.email,
+      user.password,
+      user.confirmPassword,
+    );
+
+    expect(createUserWithEmailAndPassword).toHaveBeenCalledWith(
+      auth,
+      user.email,
+      user.password,
+      user.confirmPassword,
+    );
   });
+});
+
+// it('Esperado que o input do nome receba um nome valido', () => {
+//   createUserWithEmailAndPassword.mockResolvedValue();
+//   expect(createUser(createUserForm, 'name')).toStrictEqual([{
+//     name: 'Maria', email: 'maria@email.com', password: '123456', confirmPassword: '123456',
+//   }]);
+// });
 
 // it('É esperado que o input do email receba um email valido', () => {
 //   expect(createUser(createUserForm, 'email')).toStrictEqual([{
@@ -61,7 +89,7 @@ describe('createUser', () => {
 //     name: 'Maria', email: 'maria@email.com', password: '123456', confirmPassword: '123456',
 //   }]);
 // });
-});
+// });
 
 // Teste Login de Usuário
 // describe('signIn', () => {
