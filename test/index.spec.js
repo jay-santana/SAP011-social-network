@@ -1,16 +1,18 @@
 import {
   createUserWithEmailAndPassword,
-  //   signInWithPopup,
-  //   signInWithEmailAndPassword,
-  //   onAuthStateChanged,
-  //   signOut,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+  GoogleAuthProvider,
+  signOut,
+  // onAuthStateChanged,
 } from 'firebase/auth';
 import {
   createUser,
-//   loginGoogle,
-//   signIn,
-//   verifyUserLogged,
-//   signOutBtn,
+  signIn,
+  loginGoogle,
+  signOutUser,
+  accessUser,
+  // verifyUserLogged,
 } from '../src/firebase-auth.js';
 import { auth } from '../src/firebase-conf.js';
 
@@ -19,7 +21,11 @@ jest.mock('firebase/auth');
 jest.mock('../src/firebase-conf.js', () => ({
   ...jest.requireActual('../src/firebase-conf.js'),
   auth: {
-    currentUser: 'user',
+    currentUser: {
+      displayName: 'TestUser',
+      email: 'test@example.com',
+      uid: '12345',
+    },
   },
 }));
 
@@ -33,12 +39,6 @@ const createUserForm = [
     confirmPassword: '123456',
   },
 ];
-// const loginUserGoogle = [
-//   {
-//     email: 'maria@gmail.com',
-//     password: '654321',
-//   },
-// ];
 
 // Teste Cadastro de Usuário
 describe('createUser', () => {
@@ -67,58 +67,135 @@ describe('createUser', () => {
   });
 });
 
-// it('Esperado que o input do nome receba um nome valido', () => {
-//   createUserWithEmailAndPassword.mockResolvedValue();
-//   expect(createUser(createUserForm, 'name')).toStrictEqual([{
-//     name: 'Maria', email: 'maria@email.com', password: '123456', confirmPassword: '123456',
-//   }]);
-// });
-
-// it('É esperado que o input do email receba um email valido', () => {
-//   expect(createUser(createUserForm, 'email')).toStrictEqual([{
-//     name: 'Maria', email: 'maria@email.com', password: '123456', confirmPassword: '123456',
-//   }]);
-// });
-// it('É esperado que o input de senha receba uma senha valida', () => {
-//   expect(createUser(createUserForm, 'password')).toStrictEqual([{
-//     name: 'Maria', email: 'maria@email.com', password: '123456', confirmPassword: '123456',
-//   }]);
-// });
-// it('É esperado que o input de confirmação de senha', () => {
-//   expect(createUser(createUserForm, 'confirmPassword')).toStrictEqual([{
-//     name: 'Maria', email: 'maria@email.com', password: '123456', confirmPassword: '123456',
-//   }]);
-// });
-// });
-
 // Teste Login de Usuário
-// describe('signIn', () => {
+describe('signIn', () => {
+  it('is a function', () => {
+    expect(typeof signIn).toBe('function');
+  });
+
+  it('Esperado que o usuário cadastrado consiga logar com mesmo email cadastrado', async () => {
+    const mockUserCredential = {
+      user: {
+        displayName: 'TestUser',
+      },
+    };
+    signInWithEmailAndPassword.mockResolvedValue(mockUserCredential);
+
+    const user = createUserForm[0];
+
+    await signIn(
+      user.email,
+      user.password,
+    );
+
+    expect(signInWithEmailAndPassword).toHaveBeenCalledWith(
+      auth,
+      user.email,
+      user.password,
+    );
+  });
+});
+
+// Teste Login de Usuário com Google
+describe('loginGoogle', () => {
+  it('is a function', () => {
+    expect(typeof loginGoogle).toBe('function');
+  });
+
+  it('É esperado que o usuário consiga logar com uma conta google', () => {
+    const mockProvider = new GoogleAuthProvider();
+    signInWithPopup.mockResolvedValue(mockProvider);
+    loginGoogle();
+    expect(signInWithPopup).toHaveBeenCalledTimes(1);
+  });
+});
+
+// Teste Botão Logout
+describe('signOutUser', () => {
+  it('is a function', () => {
+    expect(typeof signOutUser).toBe('function');
+  });
+
+  it('É esperado que o usuário consiga deslogar', () => {
+    const mockLogout = {
+      user: {
+        displayName: 'TestUser',
+      },
+    };
+    signOut.mockResolvedValue(mockLogout);
+    signOutUser();
+    expect(signOut).toHaveBeenCalledTimes(1);
+  });
+});
+
+// Teste Acesso informação do usuário
+describe('accessUser', () => {
+  it('is a function', () => {
+    expect(typeof accessUser).toBe('function');
+  });
+
+  it('É esperado que o usuário esteja logado', () => {
+    auth.currentUser = {
+      displayName: 'TestUser',
+      email: 'test@example.com',
+      uid: '12345',
+    };
+    const user = accessUser();
+    expect(user).toEqual({
+      displayName: 'TestUser',
+      email: 'test@example.com',
+      uid: '12345',
+    });
+  });
+
+  it('É esperado que o usuário não esteja logado', () => {
+    auth.currentUser = null;
+    const user = accessUser();
+    expect(user).toBeNull();
+  });
+});
+
+// describe('accessUser', () => {
 //   it('is a function', () => {
-//     expect(typeof signIn).toBe('function');
+//     expect(typeof accessUser).toBe('function');
 //   });
 
-//   it('Esperado que o usuário cadastrado consiga logar com mesmo email cadastrado', () => {
-//     signInWithEmailAndPassword.mockResolvedValue(userCredential);
-//     expect(signIn(createUserForm, 'maria@email.com')).toStrictEqual([{
-//       name: 'Maria', email: 'maria@email.com', password: '123456', confirmPassword: '123456',
-//     }]);
+//   it('É esperado que o usuário esteja logado', () => {
+//     const user = createUserForm[0];
+
+//     accessUser(
+//       undefined,
+//     );
+//     expect(user).toEqual(
+//       auth,
+//     );
 //   });
 
-//   it('É esperado que o usuário cadastrado consiga logar com a mesma senha cadastrada', () => {
-//     expect(signIn(createUserForm, '123456')).toStrictEqual([{
-//       name: 'Maria', email: 'maria@email.com', password: '123456', confirmPassword: '123456',
-//     }]);
+//   it('É esperado que o usuário não esteja logado', () => {
+//     const user = createUserForm[0];
+//     accessUser(
+//       null,
+//     );
+//     expect(user).toBeNull();
 //   });
 // });
 
-// // Teste Login de Usuário com Google
-// describe('loginGoogle', () => {
+// Teste Verificar se usuário esta logado
+// describe('verifyUserLogged', () => {
 //   it('is a function', () => {
-//     expect(typeof loginGoogle).toBe('function');
+//     expect(typeof verifyUserLogged).toBe('function');
 //   });
-//   it('É esperado que o usuário consiga logar com uma conta google', () => {
-//     expect(loginGoogle(loginUserGoogle, 'maria@gmail.com')).toStrictEqual([{
-//       name: 'Maria', email: 'maria@email.com', password: '123456', confirmPassword: '123456',
-//     }]);
+
+//   it('É esperado que o usuário permaneça logado', () => {
+//     const mockCallback = jest.fn();
+//     onAuthStateChanged.mockImplementation((callback) => {
+//       const user = {
+//         displayName: 'TestUser',
+//         email: 'test@example.com',
+//       };
+//       callback(user);
+//     });
+//     verifyUserLogged(mockCallback);
+//     expect(mockCallback).toHaveBeenCalledTimes(1);
 //   });
 // });

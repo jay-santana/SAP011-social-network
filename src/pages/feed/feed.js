@@ -5,7 +5,7 @@ import {
   getDoc,
   Timestamp,
 } from 'firebase/firestore';
-import { signOutBtn, accessUser } from '../../firebase-auth.js';
+import { signOutUser, accessUser } from '../../firebase-auth.js';
 import {
   likePoster,
   editPoster,
@@ -170,7 +170,7 @@ export default () => {
   // Botão de sair mobile
   logoutMobileBtn.addEventListener('click', (event) => {
     event.preventDefault();
-    signOutBtn().then(() => {
+    signOutUser().then(() => {
       window.location.hash = '#login';
     }).catch((error) => {
       console.log(error);
@@ -180,7 +180,7 @@ export default () => {
   // Botão de sair desktop
   logoutSidebarBtn.addEventListener('click', (event) => {
     event.preventDefault();
-    signOutBtn().then(() => {
+    signOutUser().then(() => {
       window.location.hash = '#login';
     }).catch((error) => {
       console.log(error);

@@ -14,7 +14,6 @@ const posts = 'posts';
 
 // Like
 export async function likePoster(postIdLike, updateLike) {
-  console.log(postIdLike, updateLike);
   const uid = auth.currentUser.uid;
   const docRef = doc(db, posts, postIdLike);
   const docSnap = await getDoc(docRef);
@@ -56,7 +55,6 @@ export function loadPoster(
   attachEditOnPosts,
   attachDeleteOnPosts,
 ) {
-  console.log('loadPoster');
   limparTela();
   const posterCollection = collection(db, posts);
   const orderPoster = query(posterCollection, orderBy('dataBox', 'desc'));

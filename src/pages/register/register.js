@@ -73,10 +73,7 @@ export default () => {
           // const user = userCredential.user;
         })
         .catch((error) => {
-          console.log(error);
           const errorCode = error.code;
-          const errorMessage = error.message;
-          console.log(errorMessage);
           // Se erro de email já cadastrado, exibe a mensagem de erro
           if (errorCode === 'auth/email-already-in-use') {
             container.querySelector('#createEmailAlert').textContent = 'E-mail já cadastrado!';

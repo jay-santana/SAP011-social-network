@@ -25,55 +25,34 @@ export function createUser(
       });
     });
 }
+
 // Login com o Google
-export function loginGoogle(user) {
+export function loginGoogle() {
   const provider = new GoogleAuthProvider();
-  if (user) {
-    window.location.hash = '#feed';
-  } else {
-    window.location.hash = '#login';
-  }
   return signInWithPopup(auth, provider);
 }
+
 // Verificar se usuário está logado
 export function verifyUserLogged(callback) {
   onAuthStateChanged(auth, callback);
 }
+
 // Acessar informação do usuários
 export function accessUser() {
   const user = auth.currentUser;
   if (user !== null) {
-    const displayName = user.displayName;
-    const email = user.email;
-    const uid = user.uid;
-    console.log(displayName, email, uid);
     return user;
   }
-  return accessUser();
+  return null;
 }
+
 // Login de usuários existentes
 export function signIn(loginEmail, loginPassword) {
-  signInWithEmailAndPassword(auth, loginEmail, loginPassword)
-    .then((userCredential) => {
-      // Signed in
-      const user = userCredential.user;
-      const createUserName = user.displayName;
-      const eventSignIn = new CustomEvent('userLoggedIn', { detail: createUserName });
-      window.dispatchEvent(eventSignIn);
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      console.log(errorCode, errorMessage);
-    });
+  signInWithEmailAndPassword(auth, loginEmail, loginPassword);
   return signInWithEmailAndPassword(auth, loginEmail, loginPassword);
 }
+
 // Para desconectar um usuário
-export function signOutBtn() {
-  return signOut(auth).then(() => {
-  // Sign-out successful.
-  }).catch((error) => {
-    console.log(error);
-  // An error happened.
-  });
+export function signOutUser() {
+  return signOut(auth);
 }

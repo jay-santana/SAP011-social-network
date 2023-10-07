@@ -58,16 +58,11 @@ export default () => {
       container.querySelector('#loginPasswordAlert').innerHTML = 'Senha obrigatória';
     } else {
       signIn(loginEmail.value, loginPassword.value)
-        .then((userCredential) => {
+        .then(() => {
           window.location.hash = '#feed';
-          const user = userCredential.user;
-          console.log(user);
         })
         .catch((error) => {
-          console.log(error);
           const errorCode = error.code;
-          const errorMessage = error.message;
-          console.log(errorMessage);
           if (errorCode === 'auth/user-not-found') {
             container.querySelector('#loginEmailAlert').textContent = 'E-mail não cadastrado!';
           }
@@ -75,7 +70,7 @@ export default () => {
             container.querySelector('#loginEmailAlert').textContent = 'E-mail já cadastrado!';
           }
           if (errorCode === 'auth/wrong-password') {
-            container.querySelector('#loginEmailAlert').textContent = 'Senha incorreta!';
+            container.querySelector('#loginPasswordAlert').textContent = 'Senha incorreta!';
           }
         });
     }
@@ -83,20 +78,8 @@ export default () => {
   googleIconBtn.addEventListener('click', (event) => {
     event.preventDefault();
     loginGoogle()
-      .then((result) => {
-        // The signed-in user info.
+      .then(() => {
         window.location.hash = '#feed';
-        const user = result.user;
-        console.log(user);
-      }).catch((error) => {
-        // Handle Errors here.
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        // The email of the user's account used.
-        const email = error.customData.email;
-        // The AuthCredential type that was used.
-        // const credential = GoogleAuthProvider.credentialFromError(error);
-        console.log(errorCode, errorMessage, email);
       });
   });
   return container;
