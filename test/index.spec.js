@@ -6,6 +6,12 @@ import {
   signOut,
   // onAuthStateChanged,
 } from 'firebase/auth';
+
+import {
+  deleteDoc,
+  doc,
+} from 'firebase/firestore';
+
 import {
   createUser,
   signIn,
@@ -14,9 +20,13 @@ import {
   accessUser,
   // verifyUserLogged,
 } from '../src/firebase-auth.js';
-import { auth } from '../src/firebase-conf.js';
 
-// // Informando para o jest a biblioteca
+import {
+  deletePoster,
+} from '../src/firebase-store.js';
+import { auth, db } from '../src/firebase-conf.js';
+
+// Informando para o jest a biblioteca
 jest.mock('firebase/auth');
 jest.mock('../src/firebase-conf.js', () => ({
   ...jest.requireActual('../src/firebase-conf.js'),
@@ -29,7 +39,14 @@ jest.mock('../src/firebase-conf.js', () => ({
   },
 }));
 
-// jest.mock('firebase/firestore');
+jest.mock('firebase/firestore');
+
+// jest.mock('firebase/firestore', () => ({
+//   getFirestore: jest.fn(() => ({
+//     deleteDoc: jest.fn(),
+//     doc: jest.fn(),
+//   })),
+// }));
 
 const createUserForm = [
   {
@@ -155,31 +172,6 @@ describe('accessUser', () => {
   });
 });
 
-// describe('accessUser', () => {
-//   it('is a function', () => {
-//     expect(typeof accessUser).toBe('function');
-//   });
-
-//   it('É esperado que o usuário esteja logado', () => {
-//     const user = createUserForm[0];
-
-//     accessUser(
-//       undefined,
-//     );
-//     expect(user).toEqual(
-//       auth,
-//     );
-//   });
-
-//   it('É esperado que o usuário não esteja logado', () => {
-//     const user = createUserForm[0];
-//     accessUser(
-//       null,
-//     );
-//     expect(user).toBeNull();
-//   });
-// });
-
 // Teste Verificar se usuário esta logado
 // describe('verifyUserLogged', () => {
 //   it('is a function', () => {
@@ -197,5 +189,32 @@ describe('accessUser', () => {
 //     });
 //     verifyUserLogged(mockCallback);
 //     expect(mockCallback).toHaveBeenCalledTimes(1);
+//   });
+// });
+
+// Teste função deletar
+describe('deletePoster', () => {
+  it('is a function', () => {
+    expect(typeof deletePoster).toBe('function');
+  });
+  it('É esperado que o usuário consiga deletar um post', () => {
+    const postIdDelete = 'abcdefg';
+    deleteDoc.mockResolvedValue();
+    deletePoster(postIdDelete);
+    expect(doc).toHaveBeenCalledWith(db, 'posts', postIdDelete);
+    expect(deleteDoc).toHaveBeenCalledWith(doc(db, 'posts', postIdDelete));
+  });
+  console.log(deletePoster, deleteDoc);
+});
+
+// Teste função deletar
+// describe('deletePoster', () => {
+//   it('deve chamar deleteDoc com o ID correto e updateDelete', () => {
+//     const postIdDelete = 'post123';
+//     const updateDelete = jest.fn(); // Mock da função updateDelete
+//     deletePoster(postIdDelete, updateDelete);
+//     expect(doc).toHaveBeenCalledWith(db, 'posts', postIdDelete);
+//     expect(deleteDoc).toHaveBeenCalledWith(doc(db, 'posts', postIdDelete));
+//     expect(updateDelete).toHaveBeenCalledWith(postIdDelete);
 //   });
 // });

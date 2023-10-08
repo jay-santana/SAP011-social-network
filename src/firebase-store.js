@@ -34,18 +34,23 @@ export function editPoster(postIdSave, textBoxEditValue, locationInputEditValue,
   updateDoc(doc(db, posts, postIdSave), {
     textBox: textBoxEditValue,
     locationInput: locationInputEditValue,
-  }).then(
-    updatPoster(postIdSave, textBoxEditValue, locationInputEditValue),
-  );
+  }).then(() => {
+    updatPoster(postIdSave, textBoxEditValue, locationInputEditValue);
+  });
 }
 
 // Excluir dados
-export function deletePoster(postIdDelete, updateDelete) {
-  deleteDoc(doc(db, posts, postIdDelete))
-    .then(
-      updateDelete(postIdDelete),
-    );
+export function deletePoster(postIdDelete) {
+  deleteDoc(doc(db, posts, postIdDelete));
 }
+
+// Excluir dados (original)
+// export function deletePoster(postIdDelete, updateDelete) {
+//   deleteDoc(doc(db, posts, postIdDelete))
+//   .then(() => {
+//     updateDelete(postIdDelete);
+//   });
+// }
 
 // Carregando o poster no feed
 export function loadPoster(
