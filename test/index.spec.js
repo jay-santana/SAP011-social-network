@@ -4,7 +4,7 @@ import {
   signInWithPopup,
   GoogleAuthProvider,
   signOut,
-  // onAuthStateChanged,
+  onAuthStateChanged,
 } from 'firebase/auth';
 
 import {
@@ -18,7 +18,7 @@ import {
   loginGoogle,
   signOutUser,
   accessUser,
-  // verifyUserLogged,
+  verifyUserLogged,
 } from '../src/firebase-auth.js';
 
 import {
@@ -56,6 +56,10 @@ const createUserForm = [
     confirmPassword: '123456',
   },
 ];
+
+// function updateDelete(postIdDelete) {
+//   return postIdDelete;
+// }
 
 // Teste Cadastro de Usuário
 describe('createUser', () => {
@@ -121,9 +125,9 @@ describe('loginGoogle', () => {
 
   it('É esperado que o usuário consiga logar com uma conta google', () => {
     const mockProvider = new GoogleAuthProvider();
-    signInWithPopup.mockResolvedValue(mockProvider);
+    signInWithPopup.mockResolvedValue();
     loginGoogle();
-    expect(signInWithPopup).toHaveBeenCalledTimes(1);
+    expect(signInWithPopup).toHaveBeenCalledWith(auth, mockProvider);
   });
 });
 
@@ -141,7 +145,7 @@ describe('signOutUser', () => {
     };
     signOut.mockResolvedValue(mockLogout);
     signOutUser();
-    expect(signOut).toHaveBeenCalledTimes(1);
+    expect(signOut).toHaveBeenCalledWith(auth);
   });
 });
 
@@ -173,23 +177,31 @@ describe('accessUser', () => {
 });
 
 // Teste Verificar se usuário esta logado
-// describe('verifyUserLogged', () => {
-//   it('is a function', () => {
-//     expect(typeof verifyUserLogged).toBe('function');
-//   });
+describe('verifyUserLogged', () => {
+  it('is a function', () => {
+    expect(typeof verifyUserLogged).toBe('function');
+  });
 
-//   it('É esperado que o usuário permaneça logado', () => {
-//     const mockCallback = jest.fn();
-//     onAuthStateChanged.mockImplementation((callback) => {
-//       const user = {
-//         displayName: 'TestUser',
-//         email: 'test@example.com',
-//       };
-//       callback(user);
-//     });
-//     verifyUserLogged(mockCallback);
-//     expect(mockCallback).toHaveBeenCalledTimes(1);
+  it('É esperado que o usuário permaneça logado', () => {
+    const mockCallback = jest.fn();
+    verifyUserLogged(mockCallback);
+    expect(onAuthStateChanged).toHaveBeenCalledWith(auth, mockCallback);
+  });
+});
+
+// Teste função deletar
+// describe('deletePoster', () => {
+//   it('is a function', () => {
+//     expect(typeof deletePoster).toBe('function');
 //   });
+//   it('É esperado que o usuário consiga deletar um post', () => {
+//     const postIdDelete = 'abcdefg';
+//     deleteDoc.mockResolvedValue();
+//     deletePoster(postIdDelete, updateDelete);
+//     expect(doc).toHaveBeenCalledWith(db, 'posts', postIdDelete);
+//     expect(deleteDoc).toHaveBeenCalledWith(doc(db, 'posts', postIdDelete));
+//   });
+//   console.log(deletePoster, deleteDoc);
 // });
 
 // Teste função deletar
@@ -197,24 +209,13 @@ describe('deletePoster', () => {
   it('is a function', () => {
     expect(typeof deletePoster).toBe('function');
   });
-  it('É esperado que o usuário consiga deletar um post', () => {
-    const postIdDelete = 'abcdefg';
+  it('deve chamar deleteDoc com o ID correto e updateDelete', async () => {
+    const postIdDelete = 'post123';
+    const updateDelete = jest.fn(); // Mock da função updateDelete
     deleteDoc.mockResolvedValue();
-    deletePoster(postIdDelete);
+    await deletePoster(postIdDelete, updateDelete);
     expect(doc).toHaveBeenCalledWith(db, 'posts', postIdDelete);
     expect(deleteDoc).toHaveBeenCalledWith(doc(db, 'posts', postIdDelete));
+    expect(updateDelete).toHaveBeenCalledWith(postIdDelete);
   });
-  console.log(deletePoster, deleteDoc);
 });
-
-// Teste função deletar
-// describe('deletePoster', () => {
-//   it('deve chamar deleteDoc com o ID correto e updateDelete', () => {
-//     const postIdDelete = 'post123';
-//     const updateDelete = jest.fn(); // Mock da função updateDelete
-//     deletePoster(postIdDelete, updateDelete);
-//     expect(doc).toHaveBeenCalledWith(db, 'posts', postIdDelete);
-//     expect(deleteDoc).toHaveBeenCalledWith(doc(db, 'posts', postIdDelete));
-//     expect(updateDelete).toHaveBeenCalledWith(postIdDelete);
-//   });
-// });
