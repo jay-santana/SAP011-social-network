@@ -7,9 +7,12 @@ import {
   onAuthStateChanged,
   GoogleAuthProvider,
   signInWithPopup,
+  getAuth,
 } from 'firebase/auth';
+import { app } from './firebase-conf';
 
-import { auth } from './firebase-conf.js';
+// Inicialize o Firebase Authentication e obtenha uma referência ao serviço
+export const auth = getAuth(app);
 
 // Criação de novos usuários
 export function createUser(
@@ -39,6 +42,7 @@ export function verifyUserLogged(callback) {
 
 // Acessar informação do usuários
 export function accessUser() {
+  console.log(auth);
   const user = auth.currentUser;
   if (user !== null) {
     return user;

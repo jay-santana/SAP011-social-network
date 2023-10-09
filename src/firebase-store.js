@@ -7,24 +7,27 @@ import {
   orderBy,
   getDocs,
   getDoc,
+  getFirestore,
 } from 'firebase/firestore';
-import { db, auth } from './firebase-conf';
+import { getAuth } from 'firebase/auth';
+import { app } from './firebase-conf';
 
 const posts = 'posts';
+export const auth = getAuth(app);
+export const db = getFirestore(app);
 
 // Like
 export async function likePoster(postIdLike, updateLike) {
   const uid = auth.currentUser.uid;
-  const docRef = doc(db, posts, postIdLike);
-  const docSnap = await getDoc(docRef);
+  const docSnap = await getDoc(doc(db, posts, postIdLike));
   const likes = docSnap.data().likes || [];
   if (likes.includes(uid)) {
     const updatedLikes = likes.filter((o) => o !== uid);
-    await updateDoc(docRef, { likes: updatedLikes });
+    await updateDoc(doc(db, posts, postIdLike), { likes: updatedLikes });
     updateLike(postIdLike, updatedLikes.length);
   } else {
     likes.push(uid);
-    await updateDoc(docRef, { likes });
+    await updateDoc(doc(db, posts, postIdLike), { likes });
     updateLike(postIdLike, likes.length);
   }
 }
@@ -42,20 +45,15 @@ export async function editPoster(
   postIdSave,
   textBoxEditValue,
   locationInputEditValue,
-  updatPoster,
+  updatePoster,
 ) {
   updateDoc(doc(db, posts, postIdSave), {
     textBox: textBoxEditValue,
     locationInput: locationInputEditValue,
   }).then(() => {
-    updatPoster(postIdSave, textBoxEditValue, locationInputEditValue);
+    updatePoster(postIdSave, textBoxEditValue, locationInputEditValue);
   });
 }
-
-// Excluir dados
-// export function deletePoster(postIdDelete) {
-//   deleteDoc(doc(db, posts, postIdDelete));
-// }
 
 // Excluir dados (original)
 export async function deletePoster(postIdDelete, updateDelete) {

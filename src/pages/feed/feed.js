@@ -5,15 +5,16 @@ import {
   getDoc,
   Timestamp,
 } from 'firebase/firestore';
-import { signOutUser, accessUser } from '../../firebase-auth.js';
+import { signOutUser, accessUser, auth } from '../../firebase-auth.js';
 import {
   likePoster,
   editPoster,
   deletePoster,
   loadPoster,
+  db,
 } from '../../firebase-store.js';
 // import { async } from 'regenerator-runtime';
-import { db, auth } from '../../firebase-conf.js';
+// import { db } from '../../firebase-conf.js';
 
 const posts = 'posts';
 
