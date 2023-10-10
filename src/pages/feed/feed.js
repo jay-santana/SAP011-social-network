@@ -437,9 +437,9 @@ export default () => {
     console.log('valor: ', data);
     // Adicione o novo post ao firestore
     const addDocPromise = addDoc(posterCollection, data);
-    addDocPromise.then((banana) => {
-      data.postId = banana.id;
-      console.log(banana.id);
+    addDocPromise.then((doc) => {
+      data.postId = doc.id;
+      console.log(doc.id);
       const containerPost = document.createElement('div');
       containerPost.innerHTML = templatePoster(data);
       publicationPoster.prepend(containerPost);

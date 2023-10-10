@@ -196,7 +196,7 @@ describe('editPoster', () => {
   });
 });
 
-// Teste função like (2)
+// Teste função like
 describe('likePoster', () => {
   const postIdLike = 'post123';
   const updateLike = jest.fn();

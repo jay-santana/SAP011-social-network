@@ -1,5 +1,5 @@
 import { signIn, loginGoogle } from '../../firebase-auth.js';
-
+import googleIcon from '../../assets-2/google_icon.png';
 export default () => {
   const container = document.createElement('div');
 
@@ -29,7 +29,7 @@ export default () => {
           <p>---------- ou ----------</p>
           <p>Fazer login com o Google</p>
           <section> 
-            <img id="googleIcon"src="../../assets-2/google_icon.png" alt="ícone Goggle">
+            <img id="googleIcon"src="${googleIcon}" alt="ícone Goggle">
           </section> 
           <section> 
             <p>Não tem uma conta? <button id="loginBtn"><a class="loginButtonTwo" href="/#register">Cadastre-se</a></button></p>

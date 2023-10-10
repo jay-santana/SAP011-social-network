@@ -3,19 +3,17 @@
 
 ### Índice
 
-* [Título](#Título)
-* [Índice](#índice)
-* [Descrição do Projeto](#descrição-do-projeto)
-* [Status do Projeto](#status-do-Projeto)
-* [Desenho de interface do usuário](#desenho-de-interface-do-usuário)
-* [Testes unitários](#testes-unitários)
-* [Acesso ao Projeto](#acesso-ao-projeto)
-* [Tecnologias Utilizadas](#tecnologias-utilizadas) 
-* [Objetivos de Aprendizagem](#objetivos-de-aprendizagem)
-* [Desenvolvedora do Projeto](#desenvolvedora)
+* [1. Prefácio](#prefácio)
+* [2. Descrição do Projeto](#descrição-do-projeto)
+* [3. Desenho de interface do usuário](#desenho-de-interface-do-usuário)
+* [4. Testes unitários](#testes-unitários)
+* [5. Acesso ao Projeto](#acesso-ao-projeto)
+* [6. Especificações Técnicas](#especificações-técnicas) 
+* [7. Objetivos de Aprendizagem](#objetivos-de-aprendizagem)
+* [8. Desenvolvedora do Projeto](#desenvolvedora)
 
 
-## Descrição do Projeto 
+## 2. Descrição do Projeto 
 Para esse projeto do Bootcamp Laboratoria 
 
 
@@ -28,6 +26,28 @@ Critérios de aceitação:
     Criar o SPA das páginas (loging, cadastro, feed, sobre);
     Usuário se movimentar entre as páginas;
     SPA com estrutura HTML simples.
+
+Histórias de usuário 1 - Criação de conta de usuário
+
+Como usuário, quero poder me cadastrar com um e-mail e senha, para que eu possa me conectar com outros viajantes.
+
+Critérios de aceitação:
+
+    Botão para cadastro de usuário;
+    Segunda página para inserir dados de cadastro do usuário;
+    Campo para nome de usuário;
+    Mensagem sobre nome de usuário já existe;
+    Campo para e-mail;
+    Somente usuários com contas válidas têm acesso permitido;
+    A conta do usuário deve ser um email válido;
+    Mensagem sobre e-mail inválido;
+    Campo para senha;
+    Campo para confirmar senha;
+    O que o usuário digita no campo de senha (input) deve ser secreto;
+    Mensagem sobre campo de senha vazio;
+    Botão para cadastro de usuário;
+    Quando o formulário de registro é enviado, ele deve ser validado;
+    Se houver erros, mensagens descritivas devem ser exibidas para ajudar o usuário.
 
 Histórias de usuário 2 - Login de conta de usuário
 
@@ -53,8 +73,6 @@ Critérios de aceitação:
 
     Campo para digitar texto;
     Botão para publicar;
-    Alert sobre a publicação ter sido efetuada com sucesso: “Publicação efetuada com sucesso!”
-    Ao clicar no botão publicar e o conteúdo estiver vazio, exibir um Alert: “Por favor, escreva algo para publicar!”;
     Ao recarregar o aplicativo, é necessário verificar se o usuário está logado antes de exibir o conteúdo.
 
 Histórias de usuário 4 - Editar publicações
@@ -66,9 +84,7 @@ Critérios de aceitação:
     ícone para editar publicação;
     Ao clicar em editar um post, você deve alterar o texto para um input que permite editar o texto e salvar as alterações.
     Botão para salvar informações editadas;
-    Alert sobre informações alteradas com sucesso;
-    Ao salvar as alterações, você deve voltar ao texto normal, mas com a informação editada.
-    Ao recarregar a página, poder ver os textos editados.
+    Ao salvar as informações alteradas, elas devem ser exibidas no feed.
 
 Histórias de usuário 5 - Excluir publicações
 
@@ -77,9 +93,9 @@ Como usuário, quero poder excluir minhas postagens, para que eu possa modificar
 Critérios de aceitação:
 
     ícone de lixeira para excluir;
-    Poder excluir uma postagem específica;
-    Alert solicitando confirmação antes de excluir um post, com opção de “ok” e “cancelar”: “Tem certeza que deseja excluir esta publicação?”.
-
+    Poder excluir as minhas postagens.
+    Botão para excluir publicação;
+    Ao confirmar a exclusão, o feed deve ser atualizado.
 
 Histórias de usuário 6 - Like em publicações
 
@@ -88,7 +104,7 @@ Como usuário, quero poder dar like e deslike em publicações de outros usuári
 Critérios de aceitação:
 
     Ícone de like;
-    Poder dar e remover likes em uma publicação, com o máximo de um por usuário.
+    Poder dar e remover likes em uma publicação, com o máximo de um like por usuário.
     Visualizar contagem de likes.
 
 Histórias de usuário 7 - Conectando com uma conta do Google
@@ -103,7 +119,7 @@ Critérios de aceitação:
 
 História de Usuário 8 - Acesso Multiplataforma:
 
-Como usuário, quero poder acessar o site da plataforma de qualquer dispositivo, como computadores, tablets e smartphones, para ter uma experiência agradável independentemente do dispositivo que estou usando.
+Como usuário, quero poder acessar o site da plataforma de qualquer dispositivo, para ter uma experiência agradável independentemente do dispositivo que estou usando.
 
 Critérios de Aceitação:
 
@@ -113,10 +129,7 @@ Critérios de Aceitação:
 
 
 
-## Status do Projeto 
-Em andamento. 
-
-## Desenho de interface do usuário 
+## 3. Desenho de interface do usuário 
 
 Protótipo de baixa fidelidade (desktop)
 
@@ -130,21 +143,31 @@ Gif mostrando funcionalidade
 
 ![Isso será um gif.](/image/sample.png "Isso é um gif.")
 
-## Testes unitários
+## 4. Testes unitários
 
 
-
-## Acesso 
+## 5. Acesso
 Link projeto [Social Network - Diário de Viagem](https://github.com/jay-santana/SAP011-social-network). 
 
-## Tecnologias Utilizadas 
-HTML, CSS, JavaScript, Jest Mock e ESLint.  ( ? )
-Figma 
+## 6. Especificações Técnicas
+O projeto foi desenvolvido utilizando como ferramentas e tecnologias:
 
-## Objetivos de Aprendizagem 
+    * HTML5
+    * CSS3
+    * JavaScript
+    * Visual Studio Code
+    * Firebase
+    * Node.js
+    * Jest
+    * Mock
+    * Vite
+    * GitBash
+    * GitHub
+    * Figma
+## 7. Objetivos de Aprendizagem 
 !!!!!! 
 
-## Desenvolvedora do Projeto
+## 8. Desenvolvedora do Projeto
 [Jay Santana](https://github.com/jay-santana).
 
 [Sarah Lao](https://github.com/laosarah).
