@@ -13,6 +13,7 @@ import { app } from './firebase-conf';
 
 // Inicialize o Firebase Authentication e obtenha uma referência ao serviço
 export const auth = getAuth(app);
+console.log(auth);
 
 // Criação de novos usuários
 export function createUser(

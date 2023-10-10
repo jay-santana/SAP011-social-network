@@ -31,14 +31,6 @@ export async function likePoster(postIdLike, updateLike) {
     updateLike(postIdLike, likes.length);
   }
 }
-//  Testar o postIdLikes e updateLike
-//  (testar se eu possa dar like numa publicação e se esse like é atualizado na página)
-//  Criar um mock para getDock e passar para ele o que vou querer testar no docSnap
-//  Testar o if e else
-//  If se o usuário já curtiu o post:
-//  remove o ID do usuário da lista de "likes" no documento do post.
-//  Else se o usuário ainda não curtiu o post:
-//  adiciona o ID do usuário da lista de "likes" no documento do post.
 
 // Editar dados
 export async function editPoster(

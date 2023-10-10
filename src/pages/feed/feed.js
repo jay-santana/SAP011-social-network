@@ -13,7 +13,6 @@ import {
   loadPoster,
   db,
 } from '../../firebase-store.js';
-// import { async } from 'regenerator-runtime';
 // import { db } from '../../firebase-conf.js';
 
 const posts = 'posts';
@@ -115,6 +114,16 @@ export default () => {
   toggle.addEventListener('click', () => {
     sidebar.classList.toggle('close');
   });
+
+  function scrollToTop() {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  }
+
+  const buttonMobileTop = container.querySelector('#btnTopMobile');
+  buttonMobileTop.addEventListener('click', scrollToTop);
 
   const logoutMobileBtn = container.querySelector('#logoutMobileBtn');
   const logoutSidebarBtn = container.querySelector('#logoutSidebarBtn');
@@ -426,15 +435,17 @@ export default () => {
       likes: [],
     };
     console.log('valor: ', data);
-    const containerPost = document.createElement('div');
-    containerPost.innerHTML = templatePoster(data);
-    publicationPoster.prepend(containerPost);
-    attachLikeOnPosts();
-    attachEditOnPosts();
-    attachDeleteOnPosts();
     // Adicione o novo post ao firestore
     const addDocPromise = addDoc(posterCollection, data);
-    addDocPromise.then(() => {
+    addDocPromise.then((banana) => {
+      data.postId = banana.id;
+      console.log(banana.id);
+      const containerPost = document.createElement('div');
+      containerPost.innerHTML = templatePoster(data);
+      publicationPoster.prepend(containerPost);
+      attachLikeOnPosts();
+      attachEditOnPosts();
+      attachDeleteOnPosts();
       // Limpa conteúdo do modal de publicação
       locationInput.value = '';
       textBox.value = '';

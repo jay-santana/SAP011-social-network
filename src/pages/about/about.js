@@ -114,6 +114,16 @@ export default () => {
     });
   });
 
+  function scrollToTop() {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  }
+
+  const buttonMobileTop = container.querySelector('#btnTopMobile');
+  buttonMobileTop.addEventListener('click', scrollToTop);
+
   // Botão de sair desktop
   logoutSidebarBtn.addEventListener('click', (event) => {
     event.preventDefault();

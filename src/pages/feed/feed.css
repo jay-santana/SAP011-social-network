@@ -781,6 +781,89 @@ span.material-symbols-outlined.filled {
     font-weight: 600;
   }
 
+  #modal {
+    position: fixed;
+    width: 450px;
+    /* border: solid #9b0543; */
+  }
+
+  .modal-body {
+    width: 50vw;
+    display: flex;
+    /* border: solid #9b0543; */
+  }
+
+  #userPublication {
+    width: 30vw;
+    display: flex;
+    align-items: center;
+    gap: 0.8vw;
+    position: absolute;
+    bottom: 19vh;
+    font-size: 1rem;
+    font-weight: 500;
+    /* border: solid #032e2e; */
+  }
+  
+  #textBox {
+    width: 48vw;
+    height: 7vh;
+    padding: 1vw;
+    display: flex;
+    background-color: #E6EAEA;
+    border: none;
+    border-radius: 0.2rem;
+    font-size: 1rem;
+    font-weight: 400;
+    /* border: solid #637b02; */
+  }
+  
+  #textBox::placeholder,
+  #locationInput::placeholder {
+    display: flex;
+    text-align: left;
+    font-size: 1.1rem;
+    font-weight: 400;
+  }
+  
+  #location {
+    width: 48vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1vw;
+    /* border: solid #054040; */
+  }
+  
+  #locationInput {
+    width: 60vw;
+    height: 3vh;
+    padding: 0.8vw;
+    background-color: #E6EAEA;
+    border: none;
+    border-radius: 0.2rem;
+    font-size: 0.9rem;
+    font-weight: 400;
+    /* border: solid #286d71; */
+  }
+  
+  #publication {
+    display: flex;
+    justify-content: center;
+    /* border: solid #9b0543; */
+  }
+  
+  #publicationBtn {
+    width: 12vw;
+    height: 3vh;
+    cursor: pointer;
+    background-color: #E6EAEA;
+    border: none;
+    border-radius: 0.2rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+
   #modalEdit {
     padding: 1.2rem 2rem;
   }
@@ -804,6 +887,7 @@ span.material-symbols-outlined.filled {
   }
 
   .modal-body-edit {
+    width: 53vw;
     display: flex;
     flex-direction: column;
     gap: 1.2rem;
@@ -811,7 +895,7 @@ span.material-symbols-outlined.filled {
   }
 
   #textBoxEdit {
-    width: 56vw;
+    width: 50vw;
     font-size: 1.3rem;
     font-weight: 400;
   }
@@ -821,7 +905,7 @@ span.material-symbols-outlined.filled {
   }
 
   #locationInputEdit {
-    width: 45vw;
+    width: 43vw;
     height: 3.5vh;
     font-size: 1.2rem;
     font-weight: 400;
@@ -830,13 +914,13 @@ span.material-symbols-outlined.filled {
   #publicationEdit {
     display: flex;
     justify-content: center;
-    gap: 2vw;
+    gap: 3vw;
   }
 
   #editBtnCancel,
   #editBtnSave {
     width: 16vw;
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-weight: 600;
   }
 
@@ -849,6 +933,63 @@ span.material-symbols-outlined.filled {
   #iconUserEdit {
     font-size: 2.8rem;
     font-weight: 500;
+  }
+
+  #modalDelete {
+    position: fixed;
+    width: 450px;
+  }
+
+  #close-modal-delete {
+    height: 3vh;
+    display: flex;
+    justify-content: flex-end;
+    position: relative;
+    cursor: pointer;
+    /* border: solid #c25a3d; */
+  }
+  
+  .modal-body-delete {
+    width: 55vw;
+    height: 12vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1vh;
+    /* border: solid #DB9F8F; */
+  }
+  
+  #areaTextBoxDelete {
+    width: 85%;
+    height: 7vh;
+    border-radius: 0.4rem;
+    background-color: #E6EAEA;
+    display: flex;
+    align-items: center;
+    /* border: solid #0a8c42; */
+  }
+  
+  #textBoxDelete {
+    padding: 0.4rem 0 0.5rem 1rem;
+    /* padding-left: 1rem; */
+    /* border: solid #c25a3d; */
+  }
+  
+  #publicationDelete {
+    display: flex;
+    column-gap: 3vw;
+    /* border: solid #a14cb8; */
+  }
+  
+  #deleteBtnCancel,
+  #deleteBtnSave {
+    width: 18vw;
+    height: 3vh;
+    cursor: pointer;
+    background-color: #E6EAEA;
+    border: none;
+    border-radius: 0.4rem;
   }
 }
 
@@ -872,7 +1013,7 @@ span.material-symbols-outlined.filled {
     background-position: 0% 45%;
     display: flex;
     align-items: center;
-    /* border: solid #fff; */
+    /* border: solid #d82424; */
   }
 
   #displayName {
@@ -1029,57 +1170,156 @@ span.material-symbols-outlined.filled {
     font-weight: 600;
   }
 
+  #modal {
+    position: fixed;
+    width: 450px;
+    /* border: solid #9b0543; */
+  }
+
+  .modal-body {
+    width: 30vw;
+    display: flex;
+    /* border: solid #9b0543; */
+  }
+
+  #userPublication {
+    width: 18vw;
+    display: flex;
+    align-items: center;
+    gap: 0.8vw;
+    position: absolute;
+    bottom: 19vh;
+    font-size: 1rem;
+    font-weight: 500;
+    /* border: solid #032e2e; */
+  }
+  
+  #textBox {
+    width: 30vw;
+    height: 7vh;
+    padding: 1vw;
+    background-color: #E6EAEA;
+    border: none;
+    border-radius: 0.2rem;
+    font-size: 1rem;
+    font-weight: 400;
+    /* border: solid #637b02; */
+  }
+  
+  #textBox::placeholder,
+  #locationInput::placeholder {
+    display: flex;
+    text-align: left;
+    font-size: 1rem;
+    font-weight: 400;
+  }
+  
+  #location {
+    width: 30vw;
+    display: flex;
+    align-items: center;
+    gap: 1vw;
+    /* border: solid #054040; */
+  }
+  
+  #locationInput {
+    width: 60vw;
+    height: 2vh;
+    padding: 0.8vw;
+    background-color: #E6EAEA;
+    border: none;
+    border-radius: 0.2rem;
+    font-size: 0.9rem;
+    font-weight: 400;
+    /* border: solid #286d71; */
+  }
+  
+  #publication {
+    width: 30vw;
+    display: flex;
+    justify-content: center;
+    /* border: solid #9b0543; */
+  }
+  
+  #publicationBtn {
+    width: 7vw;
+    height: 3vh;
+    cursor: pointer;
+    background-color: #E6EAEA;
+    border: none;
+    border-radius: 0.2rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+
   .modal-body-edit {
     gap: 1rem;
+    display: flex;
+    align-items: center;
+    /* border: solid #054040; */
   }
 
   #modalEdit {
+    width: 450px;
     padding: 1.2rem 2rem;
+    /* border: solid #DB9F8F */
   }
 
   .modal-header-edit {
-    width: 32vw;
+    width: 30vw;
     /* border: solid #637b02; */
   }
 
   #userPublicationEdit {
-    font-size: 1.2rem;
+    width: 20vw;
+    font-size: 1rem;
+    font-weight: 500;
     /* border: solid #55078a; */
   }
 
   #closeEdit {
-    width: 4vw;
+    width: 2vw;
     /* border: solid #9b0543; */
   }
 
   #textBoxEdit {
-    width: 32vw;
-    height: 12vh;
+    width: 28vw;
+    height: 7vh;
     font-size: 1.2rem;
     padding: 0.7rem;
+    /* border: solid #9b0543; */
   }
 
   #locationEdit {
+    width: 28vw;
+    display: flex;
+    align-items: center;
+    gap: 1vw;
     gap: 0.8rem;
+    /* border: solid #55078a; */
   }
 
   #locationInputEdit {
-    width: 25vw;
-    height: 5vh;
+    width: 30vw;
+    height: 3vh;
     font-size: 1.1rem;
     padding: 0.7rem;
   }
 
   #publicationEdit {
-    gap: 1vw;
+    width: 28vw;
+    gap: 3vw;
+    /* border: solid #054040; */
   }
 
   #editBtnCancel,
   #editBtnSave {
-    width: 8vw;
+    width: 7vw;
     height: 4vh;
-    font-size: 1rem;
+    padding: 0.4rem;
+    font-size: 0.9rem;
     font-weight: 600;
+    /* border: solid #032e2e; */
   }
 
   #close-modal-edit,
@@ -1301,6 +1541,7 @@ span.material-symbols-outlined.filled {
     padding-top: 10vh;
     gap: 10vh;
   }
+
   .sidebar li .text:hover, 
   .icons:hover, 
   .textLink:hover, #logoutSidebarBtn:hover {
