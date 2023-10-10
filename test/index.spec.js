@@ -12,7 +12,7 @@ import {
   deleteDoc,
   doc,
   updateDoc,
-  // getDoc,
+  getDoc,
   // docSnap,
 } from 'firebase/firestore';
 
@@ -28,13 +28,13 @@ import {
 import {
   deletePoster,
   editPoster,
-  // likePoster,
+  likePoster,
 } from '../src/firebase-store.js';
 
 // Informando para o jest a biblioteca
 jest.mock('firebase/auth', () => ({
   getAuth: jest.fn(() => ({
-    currentUser: {},
+    currentUser: { uid: 'test' },
   })),
   createUserWithEmailAndPassword: jest.fn(),
   updateProfile: jest.fn(),
@@ -46,13 +46,17 @@ jest.mock('firebase/auth', () => ({
     callback();
   }),
 }));
-jest.mock('firebase/firestore');
+// jest.mock('firebase/firestore');
 
-// jest.mock('firebase/firestore', () => ({
-//   getDoc: jest.fn(() => ({
-//     data: () => ({ likes: [] }), // Estrutura de dados esperada
-//   })),
-// }));
+jest.mock('firebase/firestore', () => ({
+  getDoc: jest.fn(() => ({
+    data: () => ({ likes: [] }), // Estrutura de dados esperada
+  })),
+  getFirestore: jest.fn(),
+  deleteDoc: jest.fn(),
+  doc: jest.fn(),
+  updateDoc: jest.fn(),
+}));
 
 const createUserForm = [
   {
@@ -78,7 +82,7 @@ describe('createUser', () => {
     );
 
     expect(createUserWithEmailAndPassword).toHaveBeenCalledWith(
-      { currentUser: {} },
+      { currentUser: { uid: 'test' } },
       user.email,
       user.password,
       user.confirmPassword,
@@ -104,7 +108,7 @@ describe('signIn', () => {
     );
 
     expect(signInWithEmailAndPassword).toHaveBeenCalledWith(
-      { currentUser: {} },
+      { currentUser: { uid: 'test' } },
       user.email,
       user.password,
     );
@@ -117,7 +121,7 @@ describe('loginGoogle', () => {
     const mockProvider = new GoogleAuthProvider();
     signInWithPopup.mockResolvedValue();
     loginGoogle();
-    expect(signInWithPopup).toHaveBeenCalledWith({ currentUser: {} }, mockProvider);
+    expect(signInWithPopup).toHaveBeenCalledWith({ currentUser: { uid: 'test' } }, mockProvider);
   });
 });
 
@@ -131,20 +135,15 @@ describe('signOutUser', () => {
     };
     signOut.mockResolvedValue(mockLogout);
     signOutUser();
-    expect(signOut).toHaveBeenCalledWith({ currentUser: {} });
+    expect(signOut).toHaveBeenCalledWith({ currentUser: { uid: 'test' } });
   });
 });
 
 // Teste Acesso informação do usuário (Naroka)
 describe('accessUser', () => {
-  it('Esperado que o usuário esteja logado', () => {
-    const user = accessUser();
-    expect(user).toBe(user);
-  });
-
   it('Esperado que o usuário não esteja logado', () => {
     const user = accessUser();
-    expect(user).toStrictEqual({});
+    expect(user).toStrictEqual({ uid: 'test' });
   });
 });
 
@@ -153,7 +152,7 @@ describe('verifyUserLogged', () => {
   it('Esperado que o usuário permaneça logado', () => {
     const mockCallback = jest.fn();
     verifyUserLogged(mockCallback);
-    expect(onAuthStateChanged).toHaveBeenCalledWith({ currentUser: {} }, mockCallback);
+    expect(onAuthStateChanged).toHaveBeenCalledWith({ currentUser: { uid: 'test' } }, mockCallback);
   });
 });
 
@@ -197,62 +196,32 @@ describe('editPoster', () => {
   });
 });
 
-// Teste função like (0)
-// describe('LikePoster', () => {
-//   const postIdLike = 'post123';
-//   const updateLike = jest.fn();
-//   it('Deve chamar likePoster com o ID correto e adicionar um like', async () => {
-//     // Mock do getDoc para retornar um documento com likes vazios
-//     getDoc.mockReturnValueOnce({
-//       data: () => ({ likes: [] }),
-//     });
-//     // Mock do updateDoc
-//     updateDoc.mockResolvedValue();
-//     // Chamar a função likePoster
-//     await likePoster(postIdLike, updateLike);
-//     // Verifica se a função updateLike foi chamada com o valor correto
-//     expect(updateLike).toHaveBeenCalledWith(postIdLike, 1);
-//     console.log(updateLike);
-//     // expect(updateLike).toHaveBeenCalledTimes(1);
-//   });
-//   it('Deve chamar likePoster com o ID correto e remover um like', async () => {
-//     // Mock do getDoc retorna um documento com um like do usuário
-//     getDoc.mockReturnValueOnce({
-//       data: () => ({ likes: [{ currentUser: {} }] }),
-//     });
-//     await likePoster(postIdLike, updateLike);
-//     // Verifica se a função updateLike foi chamada com o valor correto
-//     expect(updateLike).toHaveBeenCalledWith(postIdLike, 0);
-//     // expect(updateLike).toHaveBeenCalledTimes(2);
-//     console.log(updateLike);
-//   });
-// });
-
 // Teste função like (2)
-// describe('likePoster', () => {
-//   const postIdLike = 'post123';
-//   const updateLike = jest.fn();
-//   it('Deve chamar likePoster com o ID correto e adicionar um like', async () => {
-//     updateDoc.mockResolvedValue();
-//     await likePoster(postIdLike, updateLike);
-//     expect(doc).toHaveBeenCalledWith(undefined, 'posts', postIdLike);
-//     expect(updateDoc).toHaveBeenCalledWith(
-//       doc(undefined, 'posts', postIdLike),
-//       expect.anything(),
-//       { likes: ['user456', 'user123'] },
-//     );
-//     expect(updateLike).toHaveBeenCalledWith(postIdLike, 2);
-//   });
+describe('likePoster', () => {
+  const postIdLike = 'post123';
+  const updateLike = jest.fn();
+  it('Deve chamar likePoster com o ID correto e adicionar um like', async () => {
+    updateDoc.mockClear();
+    await likePoster(postIdLike, updateLike);
+    expect(doc).toHaveBeenCalledWith(undefined, 'posts', postIdLike);
+    expect(updateDoc).toHaveBeenCalledWith(
+      undefined,
+      { likes: ['test'] },
+    );
+    expect(updateLike).toHaveBeenCalledWith(postIdLike, 1);
+  });
 
-//   it('Deve chamar likePoster com o ID correto e remover um like', async () => {
-//     updateDoc.mockResolvedValue();
-//     await likePoster(postIdLike, updateLike);
-//     expect(doc).toHaveBeenCalledWith(undefined, 'posts', postIdLike);
-//     expect(updateDoc).toHaveBeenCalledWith(
-//       doc(undefined, 'posts', postIdLike),
-//       expect.anything(),
-//       { likes: ['user456'] },
-//     );
-//     expect(updateLike).toHaveBeenCalledWith(postIdLike, 1);
-//   });
-// });
+  it('Deve chamar likePoster com o ID correto e remover um like', async () => {
+    updateDoc.mockClear();
+    getDoc.mockImplementation(jest.fn(() => ({
+      data: () => ({ likes: ['test'] }),
+    })));
+    await likePoster(postIdLike, updateLike);
+    expect(doc).toHaveBeenCalledWith(undefined, 'posts', postIdLike);
+    expect(updateDoc).toHaveBeenCalledWith(
+      undefined,
+      { likes: [] },
+    );
+    expect(updateLike).toHaveBeenCalledWith(postIdLike, 0);
+  });
+});
