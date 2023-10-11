@@ -241,16 +241,6 @@ main {
   /* border: solid #0b7e6b; */
 }
 
-/* #dataPublication {
-  display: flex;
-  justify-content: flex-end;
-  align-items: flex-end;
-} */
-
-/* #dataBox {
-  width: 26vw;
-} */
-
 #logoutMobileBtn {
   border: none;
   background-color: transparent;
@@ -288,8 +278,6 @@ footer {
   justify-content: space-around;
   list-style: none;
   text-decoration: none;
-  /* font-size: 0.9rem;
-  font-weight: 700; */
 }
 
 .li-footer {
@@ -332,7 +320,11 @@ footer {
   z-index: 10;
   width: 500px;
   max-width: 90%;
-  padding: 1.2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1.2rem;
   border-radius: 0.5rem;
   box-shadow: 3px 3px 8px 0px rgba(0, 0, 0, 0.25);
 }
@@ -347,39 +339,51 @@ footer {
   top: 0;
 }
 
-#close-modal {
+.modal-header {
+  width: 77vw;
   display: flex;
-  justify-content: flex-end;
-  /* border-bottom: 1px solid #ccc; */
-  margin-bottom: 0.5rem;
+  justify-content: space-between;
+  align-items: center;
   padding-bottom: 0.5rem;
-  position: relative;
+  /* border: solid #637b02; */
+}
+
+#userPublicationPoster {
+  width: 57vw;
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+  font-weight: 600;
+  gap: 0.4rem;
+  /* border: solid #55078a; */
+}
+
+#close-modal {
+  width: 8vw;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  font-size: 0.8rem;
+  font-weight: 500;
   cursor: pointer;
+  /* border: solid #9b0543; */
 }
 
 .modal-body {
+  width: 77vw;
   display: flex;
   flex-direction: column;
   gap: 0.7rem;
-}
-
-#userPublication {
-  display: flex;
-  align-items: center;
-  gap: 3vw;
-  position: absolute;
-  bottom: 21vh;
-  font-size: 1rem;
-  font-weight: 500;
+  /* border: solid red; */
 }
 
 #textBox {
-  width: 77vw;
+  width: 76vw;
   height: 7vh;
   padding: 2vw;
   background-color: #E6EAEA;
   border: none;
-  border-radius: 0.2rem;
+  border-radius: 0.3rem;
   font-size: 1rem;
   font-weight: 400;
 }
@@ -404,7 +408,7 @@ footer {
   padding: 2vw;
   background-color: #E6EAEA;
   border: none;
-  border-radius: 0.2rem;
+  border-radius: 0.3rem;
   font-size: 0.9rem;
   font-weight: 400;
 }
@@ -420,7 +424,7 @@ footer {
   cursor: pointer;
   background-color: #E6EAEA;
   border: none;
-  border-radius: 0.2rem;
+  border-radius: 0.3rem;
   font-size: 0.8rem;
   font-weight: 600;
 }
@@ -435,16 +439,6 @@ footer {
   font-size: 2rem;
   font-weight: 500;
 }
-
-
-/* #containerEdit {
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 5vh;
-} */
 
 .edit {
   cursor: pointer;
@@ -480,7 +474,11 @@ footer {
   z-index: 10;
   width: 500px;
   max-width: 90%;
-  padding: 1.2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1.2rem;
   border-radius: 0.5rem;
   box-shadow: 3px 3px 8px 0px rgba(0, 0, 0, 0.25);
 }
@@ -496,7 +494,7 @@ footer {
 }
 
 .modal-header-edit {
-  width: 77vw;
+  width: 75vw;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -514,7 +512,7 @@ footer {
   /* border: solid #55078a; */
 }
 
-#closeEdit {
+#close-modal-edit {
   width: 8vw;
   display: flex;
   align-items: center;
@@ -534,7 +532,8 @@ footer {
 
 #textBoxEdit {
   width: 75vw;
-  height: 7vh;
+  height: 7%;
+  font-size: 1rem;
   padding: 2vw;
   background-color: #E6EAEA;
   border: none;
@@ -556,10 +555,11 @@ footer {
 #locationInputEdit {
   width: 60vw;
   height: 3.5vh;
+  font-size: 0.9rem;
   padding: 2vw;
   background-color: #E6EAEA;
   border: none;
-  border-radius: 0.2rem;
+  border-radius: 0.3rem;
 }
 
 #publicationEdit {
@@ -575,7 +575,7 @@ footer {
   cursor: pointer;
   background-color: #E6EAEA;
   border: none;
-  border-radius: 0.2rem;
+  border-radius: 0.3rem;
   font-size: 0.8rem;
   font-weight: 600;
 }
@@ -625,6 +625,10 @@ footer {
   z-index: 10;
   width: 500px;
   max-width: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   padding: 1.2rem;
   border-radius: 0.5rem;
   box-shadow: 3px 3px 8px 0px rgba(0, 0, 0, 0.25);
@@ -640,43 +644,48 @@ footer {
   top: 0;
 }
 
-#close-modal-delete {
+.modal-header-delete {
+  width: 77vw;
   height: 2vh;
   display: flex;
   justify-content: flex-end;
-  /* border-bottom: 1px solid #ccc; */
-  margin-bottom: 0.5rem;
-  /* padding-bottom: 0.4rem; */
-  position: relative;
+  align-items: center;
+  padding-bottom: 0.5rem;
+  /* border: solid #637b02; */
+}
+
+#close-modal-delete {
+  width: 8vw;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  font-size: 1.5rem;
+  font-weight: 500;
   cursor: pointer;
-  /* border: solid #c25a3d; */
+  /* border: solid #9b0543; */
 }
 
 .modal-body-delete {
-  width: 80vw;
-  height: 12vh;
+  width: 77vw;
+  height: 14vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 1vh;
+  gap: 2vh;
   /* border: solid #DB9F8F; */
 }
 
 #areaTextBoxDelete {
-  width: 85%;
+  width: 75vw;
   height: 7vh;
-  /* margin-top: -2vh; */
-  border-radius: 0.4rem;
+  font-size: 1rem;
+  text-align: center;
+  padding: 2vw;
   background-color: #E6EAEA;
-  display: flex;
-  align-items: center;
+  border: none;
+  border-radius: 0.3rem;
   /* border: solid #0a8c42; */
-}
-
-#textBoxDelete {
-  padding: 0.4rem 0 0.5rem 1rem;
-  /* padding-left: 1rem; */
 }
 
 #publicationDelete {
@@ -689,10 +698,12 @@ footer {
 #deleteBtnSave {
   width: 22vw;
   height: 3vh;
+  font-size: 0.8rem;
+  font-weight: 600;
   cursor: pointer;
   background-color: #E6EAEA;
   border: none;
-  border-radius: 0.4rem;
+  border-radius: 0.3rem;
 }
 
 span.material-symbols-outlined.filled {
@@ -782,90 +793,78 @@ span.material-symbols-outlined.filled {
   }
 
   #modal {
-    position: fixed;
-    width: 450px;
+    padding: 1.5rem;
+    /* border: solid #9b0543; */
+  }
+
+  .modal-header {
+    width: 56vw;
+    padding-bottom: 1rem;
+    /* border: solid #637b02; */
+  }
+
+  #userPublicationPoster {
+    width: 56vw;
+    font-size: 1.4rem;
+    padding: 0.1rem;
+    /* border: solid #55078a; */
+  }
+
+  #close-modal {
+    width: 5vw;
+    font-size: 2rem;
     /* border: solid #9b0543; */
   }
 
   .modal-body {
-    width: 50vw;
+    width: 56vw;
     display: flex;
+    flex-direction: column;
+    gap: 1rem;
     /* border: solid #9b0543; */
   }
 
-  #userPublication {
-    width: 30vw;
-    display: flex;
-    align-items: center;
-    gap: 0.8vw;
-    position: absolute;
-    bottom: 19vh;
-    font-size: 1rem;
-    font-weight: 500;
-    /* border: solid #032e2e; */
-  }
-  
   #textBox {
-    width: 48vw;
-    height: 7vh;
-    padding: 1vw;
-    display: flex;
-    background-color: #E6EAEA;
-    border: none;
-    border-radius: 0.2rem;
-    font-size: 1rem;
+    width: 56vw;
+    font-size: 1.3rem;
     font-weight: 400;
-    /* border: solid #637b02; */
   }
-  
+
   #textBox::placeholder,
   #locationInput::placeholder {
     display: flex;
     text-align: left;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     font-weight: 400;
   }
-  
+
   #location {
-    width: 48vw;
+    width: 50vw;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 1vw;
     /* border: solid #054040; */
   }
-  
+
   #locationInput {
-    width: 60vw;
-    height: 3vh;
-    padding: 0.8vw;
-    background-color: #E6EAEA;
-    border: none;
-    border-radius: 0.2rem;
-    font-size: 0.9rem;
-    font-weight: 400;
+    gap: 2vw;
     /* border: solid #286d71; */
   }
-  
+
   #publication {
     display: flex;
     justify-content: center;
     /* border: solid #9b0543; */
   }
-  
+
   #publicationBtn {
-    width: 12vw;
-    height: 3vh;
-    cursor: pointer;
-    background-color: #E6EAEA;
-    border: none;
-    border-radius: 0.2rem;
-    font-size: 0.9rem;
+    width: 16vw;
+    font-size: 1.2rem;
     font-weight: 600;
   }
 
   #modalEdit {
-    padding: 1.2rem 2rem;
+    padding: 1.5rem;
   }
 
   .modal-header-edit {
@@ -876,27 +875,27 @@ span.material-symbols-outlined.filled {
 
   #userPublicationEdit {
     width: 57vw;
-    font-size: 1.4rem;
+    font-size: 1.3rem;
     padding: 0.1rem;
     /* border: solid #55078a; */
   }
 
-  #closeEdit {
+  #close-modal-edit {
     width: 5vw;
     /* border: solid #9b0543; */
   }
 
   .modal-body-edit {
-    width: 53vw;
+    width: 57vw;
     display: flex;
     flex-direction: column;
-    gap: 1.2rem;
+    gap: 1rem;
     /* border: solid red; */
   }
 
   #textBoxEdit {
-    width: 50vw;
-    font-size: 1.3rem;
+    width: 56vw;
+    font-size: 1.4rem;
     font-weight: 400;
   }
 
@@ -905,7 +904,7 @@ span.material-symbols-outlined.filled {
   }
 
   #locationInputEdit {
-    width: 43vw;
+    width: 45vw;
     height: 3.5vh;
     font-size: 1.2rem;
     font-weight: 400;
@@ -920,7 +919,7 @@ span.material-symbols-outlined.filled {
   #editBtnCancel,
   #editBtnSave {
     width: 16vw;
-    font-size: 1rem;
+    font-size: 1.2rem;
     font-weight: 600;
   }
 
@@ -936,60 +935,56 @@ span.material-symbols-outlined.filled {
   }
 
   #modalDelete {
-    position: fixed;
-    width: 450px;
+    padding: 1.5rem;
+  }
+
+  .modal-header-delete {
+    width: 57vw;
+    height: 3vh;
+    padding-bottom: 0.5rem;
+    /* border: solid #637b02; */
   }
 
   #close-modal-delete {
-    height: 3vh;
-    display: flex;
-    justify-content: flex-end;
-    position: relative;
-    cursor: pointer;
-    /* border: solid #c25a3d; */
+    width: 5vw;
+    font-size: 2rem;
+    /* border: solid #9b0543; */
   }
-  
+
   .modal-body-delete {
-    width: 55vw;
-    height: 12vh;
+    width: 57vw;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 1vh;
-    /* border: solid #DB9F8F; */
+    gap: 1.2rem;
+    /* border: solid red; */
   }
-  
+
   #areaTextBoxDelete {
-    width: 85%;
-    height: 7vh;
-    border-radius: 0.4rem;
-    background-color: #E6EAEA;
-    display: flex;
-    align-items: center;
-    /* border: solid #0a8c42; */
+    width: 56vw;
+    height: 8vh;
+    font-size: 1.3rem;
+    font-weight: 400;
+    text-align: center;
+    padding: 1rem;
+    /* border: solid blue; */
   }
-  
-  #textBoxDelete {
-    padding: 0.4rem 0 0.5rem 1rem;
-    /* padding-left: 1rem; */
-    /* border: solid #c25a3d; */
-  }
-  
+
   #publicationDelete {
     display: flex;
     column-gap: 3vw;
     /* border: solid #a14cb8; */
   }
-  
+
   #deleteBtnCancel,
   #deleteBtnSave {
-    width: 18vw;
+    width: 16vw;
     height: 3vh;
     cursor: pointer;
     background-color: #E6EAEA;
     border: none;
-    border-radius: 0.4rem;
+    border-radius: 0.3rem;
+    font-size: 1.2rem;
+    font-weight: 600;
   }
 }
 
@@ -1022,8 +1017,6 @@ span.material-symbols-outlined.filled {
     align-items: center;
     padding: 1vw;
     margin-top: 5vh;
-    /* margin-right: 25vw; */
-    /* position: relative; */
     font-size: 1.6rem;
     color: #054040;
   }
@@ -1116,7 +1109,7 @@ span.material-symbols-outlined.filled {
 
   #locationPoster {
     width: 45vw;
-    height: 3.3vh;
+    height: 4.5vh;
     margin-top: 1vh;
     display: flex;
     align-items: center;
@@ -1171,121 +1164,117 @@ span.material-symbols-outlined.filled {
   }
 
   #modal {
-    position: fixed;
-    width: 450px;
+    padding: 1.5rem;
+    /* border: solid #9b0543; */
+  }
+
+  .modal-header {
+    width: 31vw;
+    padding-bottom: 0.5rem;
+    /* border: solid #637b02; */
+  }
+
+  #userPublicationPoster {
+    width: 28vw;
+    /* border: solid #55078a; */
+  }
+
+  #close-modal {
+    width: 3vw;
+    font-size: 1.5rem;
     /* border: solid #9b0543; */
   }
 
   .modal-body {
-    width: 30vw;
+    width: 31vw;
     display: flex;
     /* border: solid #9b0543; */
   }
 
-  #userPublication {
-    width: 18vw;
-    display: flex;
-    align-items: center;
-    gap: 0.8vw;
-    position: absolute;
-    bottom: 19vh;
-    font-size: 1rem;
-    font-weight: 500;
-    /* border: solid #032e2e; */
-  }
-  
   #textBox {
-    width: 30vw;
-    height: 7vh;
+    width: 30.5vw;
+    height: 10vh;
     padding: 1vw;
-    background-color: #E6EAEA;
-    border: none;
-    border-radius: 0.2rem;
     font-size: 1rem;
     font-weight: 400;
     /* border: solid #637b02; */
   }
-  
+
   #textBox::placeholder,
   #locationInput::placeholder {
     display: flex;
     text-align: left;
-    font-size: 1rem;
+    font-size: 0.9rem;
     font-weight: 400;
   }
-  
+
   #location {
-    width: 30vw;
+    width: 28vw;
     display: flex;
     align-items: center;
     gap: 1vw;
     /* border: solid #054040; */
   }
-  
+
   #locationInput {
-    width: 60vw;
-    height: 2vh;
+    width: 28vw;
+    height: 4.5vh;
     padding: 0.8vw;
     background-color: #E6EAEA;
     border: none;
-    border-radius: 0.2rem;
-    font-size: 0.9rem;
+    border-radius: 0.3rem;
+    font-size: 1rem;
     font-weight: 400;
     /* border: solid #286d71; */
   }
-  
+
   #publication {
     width: 30vw;
     display: flex;
-    justify-content: center;
+    align-self: center;
     /* border: solid #9b0543; */
   }
-  
+
   #publicationBtn {
-    width: 7vw;
-    height: 3vh;
-    cursor: pointer;
-    background-color: #E6EAEA;
-    border: none;
-    border-radius: 0.2rem;
-    font-size: 0.8rem;
+    width: 8vw;
+    height: 4vh;
+    font-size: 0.9rem;
     font-weight: 600;
   }
 
-  .modal-body-edit {
-    gap: 1rem;
-    display: flex;
-    align-items: center;
-    /* border: solid #054040; */
-  }
-
   #modalEdit {
-    width: 450px;
-    padding: 1.2rem 2rem;
+    padding: 1.5rem;
     /* border: solid #DB9F8F */
   }
 
   .modal-header-edit {
-    width: 30vw;
+    width: 31vw;
+    padding-bottom: 0.5rem;
     /* border: solid #637b02; */
   }
 
   #userPublicationEdit {
-    width: 20vw;
+    width: 28vw;
     font-size: 1rem;
     font-weight: 500;
     /* border: solid #55078a; */
   }
 
-  #closeEdit {
-    width: 2vw;
+  #close-modal-edit {
+    width: 3vw;
     /* border: solid #9b0543; */
   }
 
+  .modal-body-edit {
+    width: 31vw;
+    gap: 1rem;
+    /* border: solid #054040; */
+  }
+
   #textBoxEdit {
-    width: 28vw;
-    height: 7vh;
-    font-size: 1.2rem;
+    width: 30.5vw;
+    height: 10vh;
+    font-size: 1rem;
     padding: 0.7rem;
     /* border: solid #9b0543; */
   }
@@ -1295,28 +1284,28 @@ span.material-symbols-outlined.filled {
     display: flex;
     align-items: center;
     gap: 1vw;
-    gap: 0.8rem;
     /* border: solid #55078a; */
   }
 
   #locationInputEdit {
-    width: 30vw;
-    height: 3vh;
-    font-size: 1.1rem;
+    width: 28vw;
+    height: 4.5vh;
+    font-size: 1rem;
     padding: 0.7rem;
   }
 
   #publicationEdit {
     width: 28vw;
-    gap: 3vw;
+    display: flex;
+    align-self: center;
+    gap: 1vw;
     /* border: solid #054040; */
   }
 
   #editBtnCancel,
   #editBtnSave {
-    width: 7vw;
+    width: 8vw;
     height: 4vh;
-    padding: 0.4rem;
     font-size: 0.9rem;
     font-weight: 600;
     /* border: solid #032e2e; */
@@ -1333,38 +1322,49 @@ span.material-symbols-outlined.filled {
     font-weight: 500;
   }
 
+  #modalDelete {
+    padding: 1.5rem;
+  }
+
+  .modal-header-delete {
+    width: 31vw;
+    height: 2vh;
+    /* border: solid #637b02; */
+  }
+
+  #close-modal-delete {
+    width: 3vw;
+    /* border: solid #9b0543; */
+  }
+
   .modal-body-delete {
-    width: 100%;
+    width: 31vw;
     height: 20vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 1vh;
-    /* border: solid #DB9F8F; */
+    gap: 1rem;
+    /* border: solid red; */
   }
 
   #areaTextBoxDelete {
-    width: 95%;
-    height: 9vh;
-    /* padding: 0.2vw; */
-    /* margin-top: -2vh; */
-    border-radius: 0.4rem;
-    background-color: #E6EAEA;
+    width: 30.5vw;
+    height: 12vh;
+    font-size: 1.1rem;
+    padding: 1rem;
+    /* border: solid blue; */
+  }
+
+  #publicationDelete {
+    width: 28vw;
     display: flex;
     justify-content: center;
-    /* border: solid #0a8c42; */
+    gap: 1vw;
+    /* border: solid #a14cb8; */
   }
 
   #deleteBtnCancel,
   #deleteBtnSave {
     width: 8vw;
     height: 4vh;
-    margin-top: 2vh;
-    cursor: pointer;
-    background-color: #E6EAEA;
-    border: none;
-    border-radius: 0.4rem;
+    font-size: 0.9rem;
     font-weight: 600;
   }
 
@@ -1416,7 +1416,7 @@ span.material-symbols-outlined.filled {
     min-height: 50px;
     font-size: 2.2rem;
     font-weight: 700;
-    color:#054040;
+    color: #054040;
     border-radius: 11px;
     display: flex;
     align-items: center;
@@ -1424,12 +1424,8 @@ span.material-symbols-outlined.filled {
     transition: 0.1s;
   }
 
-   /* .sidebar .logo{
-    background-color: red;
-    border: solid #fff;
-  } */
-
-  .sidebar .text, .textLink {
+  .sidebar .text,
+  .textLink {
     font-size: 1.5rem;
     font-weight: 800;
     color: #054040;
@@ -1445,11 +1441,11 @@ span.material-symbols-outlined.filled {
     color: #054040;
   }
 
-  .sidebar.close #textLogo{
+  .sidebar.close #textLogo {
     visibility: hidden;
   }
 
-  .sidebar .logo-text{
+  .sidebar .logo-text {
     position: relative;
   }
 
@@ -1476,13 +1472,15 @@ span.material-symbols-outlined.filled {
     transform: translateY(-50%);
   }
 
-  .sidebar, .menuLinks {
+  .sidebar,
+  .menuLinks {
     display: flex;
     flex-direction: column;
     gap: 5vh;
   }
 
-  .sidebar li, .logo  {
+  .sidebar li,
+  .logo {
     height: 50px;
     margin-top: 10px;
     list-style: none;
@@ -1493,14 +1491,16 @@ span.material-symbols-outlined.filled {
     gap: 2vh;
   }
 
-  .sidebar li .text, .icons,
-  #logoutSidebarBtn, .textLink {
+  .sidebar li .text,
+  .icons,
+  #logoutSidebarBtn,
+  .textLink {
     font-size: 1.3rem;
     font-weight: 500;
     transition: 0.1s;
   }
- 
-  .text .sidebar li .nav-text, 
+
+  .text .sidebar li .nav-text,
   .textLink {
     width: 100%;
     height: 100%;
@@ -1512,7 +1512,7 @@ span.material-symbols-outlined.filled {
   }
 
   .sidebar .logo {
-    display: flex; 
+    display: flex;
     flex-direction: column;
   }
 
@@ -1529,12 +1529,13 @@ span.material-symbols-outlined.filled {
     transition: 0.2s;
   }
 
-  .sidebar li .nav-text:hover, 
+  .sidebar li .nav-text:hover,
   #logoutSidebarBtn:hover {
     background-color: #BEE1E5;
   }
 
-  .sidebar, .menu-bar {
+  .sidebar,
+  .menu-bar {
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -1542,9 +1543,10 @@ span.material-symbols-outlined.filled {
     gap: 10vh;
   }
 
-  .sidebar li .text:hover, 
-  .icons:hover, 
-  .textLink:hover, #logoutSidebarBtn:hover {
+  .sidebar li .text:hover,
+  .icons:hover,
+  .textLink:hover,
+  #logoutSidebarBtn:hover {
     color: #DB9F8F;
   }
 

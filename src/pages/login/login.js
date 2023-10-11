@@ -1,5 +1,6 @@
 import { signIn, loginGoogle } from '../../firebase-auth.js';
 import googleIcon from '../../assets-2/google_icon.png';
+
 export default () => {
   const container = document.createElement('div');
 
