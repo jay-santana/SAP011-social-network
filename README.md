@@ -1,17 +1,17 @@
 # Social Network - Diário de Viagem 
 
 ### Índice
-* [1. Prefácio](#prefácio)
-* [2. Descrição do Projeto](#descrição-do-projeto)
-* [3. Histórias de usuário](#história-de-usuário)
-* [4. Desenho de interface do usuário](#desenho-de-interface-do-usuário)
-* [5. Interface do projeto](#Interface-do-projeto)
-* [6. Testes unitários](#testes-unitários)
-* [7. Acesso ao Projeto](#acesso-ao-projeto)
-* [8. Especificações Técnicas](#especificações-técnicas) 
-* [9. Implementações futuras](#implementações-futuras)
-* [10. Referências](#referência)
-* [11. Desenvolvedora do Projeto](#desenvolvedora)
+* [1. Prefácio](#1-prefácio)
+* [2. Descrição do Projeto](#2-descrição-do-projeto)
+* [3. Histórias de usuário](#3-histórias-de-usuário)
+* [4. Desenho de interface do usuário](#4-desenho-de-interface-do-usuário)
+* [5. Interface do projeto](#5-interface-do-projeto)
+* [6. Testes unitários](#6-testes-unitários)
+* [7. Acesso ao Projeto](#7-acesso-ao-projeto)
+* [8. Especificações Técnicas](#8-especificações-técnicas) 
+* [9. Implementações futuras](#9-implementações-futuras)
+* [10. Referências](#10-referências)
+* [11. Desenvolvedoras do Projeto](#11-desenvolvedoras-do-projeto)
 
 
 ## 1. Prefácio
@@ -181,7 +181,7 @@ Os testes unitários cobriram o mínimo 70% de statements, functions, lines e br
 ![Teste unitário](./src/assets-2/test-unitario.png)
 
 
-## 7. Acesso 
+## 7. Acesso ao Projeto
 Link projeto [Social Network - Diário de Viagem](https://social-network-c87de.web.app/). 
 
 
@@ -203,10 +203,10 @@ O projeto foi desenvolvido utilizando como ferramentas e tecnologias:
 * Figma
 
 
-## 8. Implementações futuras
-    * Aumentar a cobertura dos testes unitários;
-    * Adicionar responsividade para que se adapte a mais telas;
-    * Melhorias da funcionalidade do modal de editar e deletar;
+## 9. Implementações futuras
+* Aumentar a cobertura dos testes unitários;
+* Adicionar responsividade para que se adapte a mais telas;
+* Melhorias da funcionalidade do modal de editar e deletar;
 
 
 ## 10. Referências
@@ -235,7 +235,7 @@ Fontes:
 * Roboto - [Google Fonts](https://fonts.google.com/specimen/Roboto?icon.query=user&selected=Material+Symbols+Outlined:face_3:FILL@0;wght@400;GRAD@0;opsz@24&query=roboto)
 
 
-## 10. Desenvolvedora do Projeto
-[Jay Santana](https://github.com/jay-santana).
+## 11. Desenvolvedoras do Projeto
+* [Jay Santana](https://github.com/jay-santana).
 
 * [Sarah Lao](https://github.com/laosarah).
