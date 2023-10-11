@@ -317,11 +317,13 @@ footer {
         width: 42vw;
         height: 37vh;
         font-size: 1.1rem;
+        /* border: solid #fff; */
     }
 
     #containerInforms {
         margin-top: 5vh;
         gap: 5vh;
+        /* border: solid #fff; */
     }
 
     #titleDev {
@@ -330,14 +332,16 @@ footer {
 
     #containerDevs {
         gap: 2rem;
+        /* border: solid #fff; */
     }
 
     #devOne,
     #devTwo {
         width: 10vw;
-        height: 20vh;
+        height: 22vh;
         gap: 0.4rem;
         padding-top: 1rem;
+        /* border: solid #fff; */
     }
 
     #containerDevOne,
@@ -418,11 +422,6 @@ footer {
         justify-content: center;
         transition: 0.1s;
     }
-
-    /* .sidebar .logo{
-        background-color: red;
-        border: solid #fff;
-      } */
     
     #textLogo {
         font-size: 1.3rem;

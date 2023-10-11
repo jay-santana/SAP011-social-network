@@ -68,13 +68,15 @@ export default () => {
         <section id="publicationPoster"></section>
         <section id="fade" class="hide"></section>
         <section id="modal" class="hide">
-          <span class="modal-header">
+        <section class="modal-header">
+          <div id="userPublicationPoster">
+            <span id="iconUserPublication" class="material-symbols-outlined">account_circle</span><label id="userNamePublication">${auth.currentUser.displayName}</label>
+          </div>
+          <div id="closePublication">
             <span id="close-modal" class="material-symbols-outlined">disabled_by_default</span>
-          </span>
+          </div>
+        </section>
           <span class="modal-body">
-            <div id="userPublication">
-              <span id="iconUserPublication" class="material-symbols-outlined">account_circle</span><label id="userNamePublication">${auth.currentUser.displayName}</label>
-            </div>
             <div>
               <textarea id="textBox" type="text" placeholder="Digite aqui seu texto"></textarea>
             </div>
