@@ -151,6 +151,7 @@ main {
     background-color: transparent;
     font-size: 0.9rem;
     font-weight: 700;
+    cursor: pointer;
 }
 
 footer {
@@ -195,6 +196,7 @@ footer {
     background-color: transparent;
     font-size: 0.9rem;
     font-weight: 700;
+    cursor: pointer;
 }
 
 #logoutHeaderOne,
@@ -261,6 +263,7 @@ footer {
     #logoutMobileBtn {
         font-size: 1.1rem;
         font-weight: 600;
+        cursor: pointer;
     }
 
     #nav-footer a {
@@ -276,6 +279,7 @@ footer {
     #btnTopMobile {
         font-size: 1.1rem;
         font-weight: 600;
+        cursor: pointer;
     }
 
 
@@ -488,6 +492,7 @@ footer {
         border-radius: 11px;
         display: flex;
         align-items: center;
+        cursor: pointer;
         transition: 0.2s;
     }
 
@@ -561,6 +566,7 @@ footer {
         display: flex;
         align-items: center;
         justify-content: center;
+        cursor: pointer;
         transition: 0.1s;
         /* background-color: #fff; */
     }

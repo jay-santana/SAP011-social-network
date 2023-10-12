@@ -119,7 +119,7 @@ a {
   background-color: transparent;
 }
 
-#loginBtn a {
+#loginBtn, .loginButtonTwo {
   text-decoration: none;
   color: #0048ff;
 }
@@ -182,6 +182,10 @@ a {
   .loginButtonOne {
     font-size: 1.2rem;
   }
+
+  #googleIcon {
+    cursor: pointer;
+  }
 }
 
 /* Para tablet, telas menores e laptops */
@@ -237,6 +241,7 @@ a {
 
   #googleIcon {
     width: 5vh;
+    cursor: pointer;
   }
 
   #footerContainerLogin {
@@ -268,8 +273,7 @@ a {
     font-size: 1rem;
   }
 
-  p,
-  .loginButtonTwo {
+  p, .loginButtonTwo {
     font-size: 1rem;
     font-weight: 500;
   }

@@ -102,7 +102,7 @@ a {
   font-weight: 500;
 }
 
-#registerBtn a {
+#registerBtn, .registerButtonOne, .registerButtonTwo {
   text-decoration: none;
   color: #0048ff;
 }

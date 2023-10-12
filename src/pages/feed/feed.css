@@ -723,6 +723,7 @@ span.material-symbols-outlined.filled {
   #logoutMobileBtn {
     font-size: 1.1rem;
     font-weight: 600;
+    cursor: pointer;
   }
 
   #nav-footer a {
@@ -738,6 +739,7 @@ span.material-symbols-outlined.filled {
   #btnTopMobile {
     font-size: 1.1rem;
     font-weight: 600;
+    cursor: pointer;
   }
 
   #logoutHeaderTwo,
@@ -1508,6 +1510,7 @@ span.material-symbols-outlined.filled {
     border-radius: 11px;
     display: flex;
     align-items: center;
+    cursor: pointer;
     transition: 0.2s;
   }
 
@@ -1561,6 +1564,7 @@ span.material-symbols-outlined.filled {
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
     transition: 0.1s;
     /* background-color: #fff; */
   }
