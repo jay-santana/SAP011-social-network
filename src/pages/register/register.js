@@ -70,7 +70,6 @@ export default () => {
       )
         .then(() => {
           window.location.hash = '#feed';
-          // const user = userCredential.user;
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -81,9 +80,6 @@ export default () => {
           if (errorCode === 'auth/invalid-email') {
             container.querySelector('#createEmailAlert').textContent = 'E-mail inválido!';
           }
-
-          // container.querySelector('#createEmailAlert').innerHTML = 'E-mail já cadastrado!'
-          // alert("Email já cadastrado")
         });
     }
   });

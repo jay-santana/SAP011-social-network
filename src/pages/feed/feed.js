@@ -13,7 +13,6 @@ import {
   loadPoster,
   db,
 } from '../../firebase-store.js';
-// import { db } from '../../firebase-conf.js';
 
 const posts = 'posts';
 

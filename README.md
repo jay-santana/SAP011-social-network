@@ -182,7 +182,7 @@ Os testes unitários cobriram o mínimo 70% de statements, functions, lines e br
 
 
 ## 7. Acesso ao Projeto
-Link projeto [Social Network - Diário de Viagem](https://social-network-c87de.web.app/). 
+Link projeto [Social Network - Diário de Viagem](https://diario-de-viagem-e1e97.web.app/). 
 
 
 ## 8. Especificações Técnicas

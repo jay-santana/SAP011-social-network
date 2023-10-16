@@ -52,7 +52,6 @@ export function accessUser() {
 
 // Login de usuários existentes
 export async function signIn(loginEmail, loginPassword) {
-  // await signInWithEmailAndPassword(auth, loginEmail, loginPassword);
   return signInWithEmailAndPassword(auth, loginEmail, loginPassword);
 }
 
