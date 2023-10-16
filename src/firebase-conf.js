@@ -5,12 +5,12 @@ import { initializeApp } from 'firebase/app';
 
 // Configuração do Firebase do seu aplicativo da web
 const firebaseConfig = {
-  apiKey: 'AIzaSyCjFYQm1nXgXC_NFIbjM2qUFWKBl2HzLyE',
-  authDomain: 'social-network-c87de.firebaseapp.com',
-  projectId: 'social-network-c87de',
-  storageBucket: 'social-network-c87de.appspot.com',
-  messagingSenderId: '721577973977',
-  appId: '1:721577973977:web:4e3d0bacedc068459986c8',
+  apiKey: "AIzaSyDJt7MdWVOTY-RvjekbDU9SJisXGXQTT4k",
+  authDomain: "diario-de-viagem-e1e97.firebaseapp.com",
+  projectId: "diario-de-viagem-e1e97",
+  storageBucket: "diario-de-viagem-e1e97.appspot.com",
+  messagingSenderId: "137767330697",
+  appId: "1:137767330697:web:922adeb94d38998384f758"
 };
 
 // Inicializar Firebase
