@@ -259,10 +259,10 @@ export default () => {
     // Botão editar
     editBtnSave.addEventListener('click', (event) => {
       event.preventDefault();
-      // Obtenha os valores dos campos de edição
+      // Obtém os valores dos campos de edição
       const textBoxEditValue = modalEditContainer.querySelector('#textBoxEdit').value;
       const locationInputEditValue = modalEditContainer.querySelector('#locationInputEdit').value;
-      const postIdSave = editBtnSave.dataset.postid; // Obtenha o postId da publicação a ser editada
+      const postIdSave = editBtnSave.dataset.postid; // Obtém o postId da publicação a ser editada
       // Atualiza os dados editados da publicação no feed
       editPoster(postIdSave, textBoxEditValue, locationInputEditValue, updatePoster);
       // Feche o modal de edição
@@ -380,12 +380,12 @@ export default () => {
     // Botão Salvar Modal Delete
     deleteBtnSave.addEventListener('click', async (event) => {
       event.preventDefault();
-      // Obtenha o postId da publicação a ser excluida
+      // Obtem o postId da publicação a ser excluida
       const postIdDelete = deleteBtnSave.dataset.postid;
       console.log('Publicação excluida com sucesso');
-      // Recarregue o feed para refletir as alterações
+      // Recarrega o feed para refletir as alterações
       deletePoster(postIdDelete, updateDelete);
-      // Feche o modal Delete
+      // Fecha o modal Delete
       toggleModalDelete();
     });
   }
@@ -437,7 +437,7 @@ export default () => {
       likes: [],
     };
     console.log('valor: ', data);
-    // Adicione o novo post ao firestore
+    // Adiciona o novo post ao firestore
     const addDocPromise = addDoc(posterCollection, data);
     addDocPromise.then((docId) => {
       data.postId = docId.id;

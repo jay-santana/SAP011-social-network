@@ -1,4 +1,3 @@
-// import { getAuth } from "firebase/auth";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -31,13 +30,13 @@ export function createUser(
 }
 
 // Login com o Google
-export function loginGoogle() {
+export async function loginGoogle() {
   const provider = new GoogleAuthProvider();
   return signInWithPopup(auth, provider);
 }
 
 // Verificar se usuário está logado
-export function verifyUserLogged(callback) {
+export async function verifyUserLogged(callback) {
   onAuthStateChanged(auth, callback);
 }
 
@@ -52,12 +51,12 @@ export function accessUser() {
 }
 
 // Login de usuários existentes
-export function signIn(loginEmail, loginPassword) {
-  signInWithEmailAndPassword(auth, loginEmail, loginPassword);
+export async function signIn(loginEmail, loginPassword) {
+  // await signInWithEmailAndPassword(auth, loginEmail, loginPassword);
   return signInWithEmailAndPassword(auth, loginEmail, loginPassword);
 }
 
 // Para desconectar um usuário
-export function signOutUser() {
+export async function signOutUser() {
   return signOut(auth);
 }

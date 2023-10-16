@@ -46,7 +46,6 @@ jest.mock('firebase/auth', () => ({
     callback();
   }),
 }));
-// jest.mock('firebase/firestore');
 
 jest.mock('firebase/firestore', () => ({
   getDoc: jest.fn(() => ({
@@ -139,7 +138,7 @@ describe('signOutUser', () => {
   });
 });
 
-// Teste Acesso informação do usuário (Naroka)
+// Teste Acesso informação do usuário
 describe('accessUser', () => {
   it('Esperado que o usuário não esteja logado', () => {
     const user = accessUser();

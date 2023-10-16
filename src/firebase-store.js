@@ -16,7 +16,7 @@ const posts = 'posts';
 export const auth = getAuth(app);
 export const db = getFirestore(app);
 
-// Like
+// Função de Like e deslike
 export async function likePoster(postIdLike, updateLike) {
   const uid = auth.currentUser.uid;
   const docSnap = await getDoc(doc(db, posts, postIdLike));
